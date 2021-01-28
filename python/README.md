@@ -1,0 +1,1 @@
+### Vai alla sezione [wiki](https://github.com/simonediricco1/Python-course/wiki)
