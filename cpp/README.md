@@ -1,32 +1,12 @@
-# Corso c++
+---
+title: "C++ per esempi"
+permalink: /cpp/cpp-per-esempi
+excerpt: "C++ per esempi"
+last_modified_at: 2021-01-10
+---
 
 Raccolta di esempi in C++ ordinati secondo difficoltà
-
-## Indice
-  - [Area e perimetro di un rettangolo](#area-e-perimetro-di-un-rettangolo)
-  - [Da intero a decine centinaia e unita'](#da-intero-a-decine-centinaia-e-unita)
-  - [Negativo, nullo o positivo?](#negativo-nullo-o-positivo)
-  - [Pari o Dispari?](#pari-o-dispari)
-  - [Uguali ?](#uguali-)
-  - [Da intero a carattere](#da-intero-a-carattere)
-  - [Da carattere a intero](#da-carattere-a-intero)
-  - [Da minuscolo a maiuscolo](#da-minuscolo-a-maiuscolo)
-  - [Da maiuscolo a minuscolo](#da-maiuscolo-a-minuscolo)
-  - [Da minuscolo a maiuscolo e viceversa](#da-minuscolo-a-maiuscolo-e-viceversa)
-  - [Risolvi equazioni di II grado](#risolvi-equazioni-di-ii-grado)
-  - [Conta dispari da sequenza illimitata](#conta-dispari-da-sequenza-illimitata)
-  - [Stampa cifre](#stampa-cifre)
-  - [Tavola pitagorica](#tavola-pitagorica)
-  - [Conta dispari da sequenza limitata](#conta-dispari-da-sequenza-limitata)
-  - [Sequenza crescente, decrescente o non ordinata?](#sequenza-crescente-decrescente-o-non-ordinata)
-  - [Vettore palindromo](#vettore-palindromo)
-  - [Conta ricorrenza numerica](#conta-ricorrenza-numerica)
-  - [Conta ricorrenza letterale](#conta-ricorrenza-letterale)
-  - [Segno elementi di un vettore](#segno-elementi-di-un-vettore)
-  - [Vettore - elementi dispari, nulli o pari?](#vettore---elementi-dispari-nulli-o-pari)
-  - [Vettore - elementi ordinati?](#vettore---elementi-ordinati)
-  - [Buffer circolare](#buffer-circolare)
-  - [Contenitore](#contenitore)
+  
 ## Area e perimetro di un rettangolo
 
 Restituisce area e perimetro di un rettangolo dati base e altezza immessi da tastiera
@@ -50,9 +30,11 @@ int main()
     area = base * altezza;
 
     cout << '\n' << "Perimetro: " << perimetro
-         << '\n' << "Area: " << area;
+         << '\n' << "Area: " << area << '\n';
 }
 ```
+
+![area-e-perimetro-di-un-rettangolo](./images/area-e-perimetro-di-un-rettangolo.gif)
 
 ## Da intero a decine centinaia e unita'
 
@@ -82,7 +64,8 @@ int main ()
 
         cout << '\n' << "centinaia:" << centinaia
              << '\n' << "decine:" << decine
-             << '\n' << "unita':" << unita;
+             << '\n' << "unita':" << unita
+             << '\n';
     }
 }
 ```
@@ -111,8 +94,12 @@ int main ()
     cout << '\n' << "centinaia:" << centinaia
          << '\n' << "decine:" << decine
          << '\n' << "unita':" << unita;
+         << '\n';
 }
 ```
+
+![](./images/da-intero-a-decine-centinaia-e-unita.gif)
+
 
 ## Negativo, nullo o positivo?
 
@@ -139,6 +126,8 @@ int main ()
         cout << '\n' << "Nullo.";
     else
         cout << '\n' << "Positivo.";
+
+    cout << '\n';
 }
 ```
 
@@ -158,8 +147,12 @@ int main ()
     cin >> numero;
 
     ( numero == 0 ) ? ( cout << '\n' << "Nullo." ) : ( (numero > 0) ? (cout << '\n' << "Positivo.") : (cout << '\n' << "Negativo.") );
+
+    cout << '\n';
 }
 ```
+
+![](./images/negativo-nullo-o-positivo.gif)
 
 ## Pari o Dispari?
 
@@ -171,15 +164,20 @@ using namespace std;
 
 int main(){
     cout << "Ttitle: Pari o dispari?" << '\n' 
-         << "Description: Acquisisce un numero intero da tastiera e stampa se è pari o dispari";
+         << "Description: Acquisisce un numero intero da tastiera e stampa se è pari o dispari\n";
         
     int n;
     cout << "Inserisci un numero:";
     cin >> n;
 
     (n%2) ? (cout << "Dispari.") : (cout << "Pari.");
+
+    cout << '\n';
 }
 ```
+
+![](./images/pari-o-dispari.gif)
+
 
 ## Uguali ?
 
@@ -208,8 +206,13 @@ int main(){
         cout << '\n' << "Due uguali.";
     else
         cout << '\n' << "Diversi.";
+    
+    cout << '\n';
 }
 ```
+
+![](./images/uguali-.gif)
+
 
 ## Da intero a carattere
 
@@ -230,8 +233,12 @@ int main(){
     //Se minore di 31 o maggiore di 127 forza a 32.
     i = ( (i < 32) || (i > 127) ) ? (i=32) : i;
     cout << char(i);
+
+    cout << '\n';
 }
 ```
+
+![](./images/da-intero-a-carattere.gif)
 
 ## Da carattere a intero
 
@@ -242,7 +249,7 @@ Acquisisce un carattere da tastiera e lo converte nel corrispondente codice ASCI
 using namespace std;
 
 int main(){
-    cout << "Title: Da carattere a intero\n";
+    cout << "Title: Da carattere a intero\n"
          << "Description: Acquisisce un carattere da tastiera e lo converte nel corrispondente codice ASCII\n";
 
     char c;
@@ -251,9 +258,13 @@ int main(){
     if ( ( (c >= 'a') && (c <= 'z') ) || ( (c >= 'A') && (c <= 'Z') ) )
         cout << "\nCodisce ASCII: " << int(c);
     else
-        cout << "\nNon � una lettera dell'alfabeto.";
+        cout << "\nNon e' una lettera dell'alfabeto.";
+    
+    cout << '\n';
 }
 ```
+
+![](./images/da-carattere-a-intero.gif)
 
 ## Da minuscolo a maiuscolo
 
@@ -273,7 +284,7 @@ using namespace std;
 // ~(1<<5) = 1101 1111
 
 int main() {
-    cout << "Title: Da minuscolo a maiuscolo\n";
+    cout << "Title: Da minuscolo a maiuscolo\n"
          << "Description: Acquisisce un carattere letterale minuscolo da tastiera e lo converte in un carattere letterale maiuscolo\n";
 
     char c;
@@ -283,8 +294,12 @@ int main() {
     c &= ~( 1 << 5 );
 
     cout << "Il carattere maiuscolo e': " << c;
+
+    cout << '\n';
 }
 ```
+
+![](./images/da-minuscolo-a-maiuscolo.gif)
 
 ## Da maiuscolo a minuscolo
 
@@ -301,7 +316,7 @@ using namespace std;
 // 0010 0000 --> = (1<<5)
 
 int main() {
-    cout << "Title: Da maiuscolo a minuscolo\n";
+    cout << "Title: Da maiuscolo a minuscolo\n"
          << "Description: Acquisisce un carattere letterale maiuscolo da tastiera e lo converte in un carattere letterale minuscolo\n";
 
     char c;
@@ -311,8 +326,12 @@ int main() {
     c |= ( 1 << 5 );
 
     cout << "Il carattere minuscolo e': " << c;
+
+    cout << '\n';
 }
 ```
+
+![](./images/da-maiuscolo-a-minuscolo.gif)
 
 
 ## Da minuscolo a maiuscolo e viceversa
@@ -332,7 +351,7 @@ using namespace std;
 //Calcolo 'a' - 'A'
 
 int main (){
-    cout << "Title: Da minuscolo a maiuscolo e viceversa\n";
+    cout << "Title: Da minuscolo a maiuscolo e viceversa\n"
          << "Description: Acquisisce un carattere letterale da tastiera e:\n"
          << "- Lo converte in maiuscolo se è minuscolo\n"
          << "- Lo converte in minuscolo se è maiuscolo\n"
@@ -354,8 +373,13 @@ int main (){
     }
     else
         cout << "Il carattere inserito e': " << c;
+    
+    cout << '\n';
 }
 ```
+
+![](./images/da-minuscolo-a-maiuscolo-e-viceversa.gif)
+
 
 ## Risolvi equazioni di II grado
 
@@ -415,8 +439,12 @@ int main (){
             cout << "\nx1:" << x1 << "\nx2:" << x2;
         }
     }
+
+    cout << '\n';
 }
 ```
+
+![](./images/risolvi-equazioni-di-ii-grado.gif)
 
 ## Conta dispari da sequenza illimitata
 
@@ -448,6 +476,8 @@ int main (){
         cin >> n;
     }
     cout << conta;
+
+    cout << '\n';
 }
 ```
 
@@ -483,8 +513,12 @@ int main (){
             break;
     }
     cout << conta;
+
+    cout << '\n';
 }
 ```
+
+![](./images/conta-dispari-da-sequenza-illimitata.gif)
 
 ## Stampa cifre
 
@@ -504,12 +538,17 @@ int main(){
 
     n = ( n > 0 ) ? n : -n;
 
+    cout << "Cifre:\n";
     do {
         cout << '>' << n%10 << '\n';
         n /= 10;
     } while ( n>0 );
+
+    cout << '\n';
 }
 ```
+
+![](./images/stampa-cifre.gif)
 
 ## Tavola pitagorica
 
@@ -535,12 +574,16 @@ int main(){
             cout << i*j << '\t';
         cout << "\n\n\n";
     }
+
+    cout << '\n';
 }
 ```
 
+![](./images/tavola-pitagorica.gif)
+
 ## Conta dispari da sequenza limitata
 
-Riceve una sequenza di numeri da tastiera e conta i dispari
+Riceve una sequenza di numeri da tastiera e conta i dispari. Termina anche se un numero inserito è nullo o negativo
 
 ```c++
 #include <iostream>
@@ -548,7 +591,7 @@ using namespace std;
 
 int main(){
     cout << "Title: Conta dispari da sequenza limitata"
-         << "Description: Riceve una sequenza di numeri da tastiera e conta i dispari\n";
+         << "Description: Riceve una sequenza di numeri da tastiera e conta i dispari. Termina anche se un numero inserito è nullo o negativo\n";
 
     int M, n, conta = 0;
     cout << "Inserisci il numero di elementi della sequenza:";
@@ -563,8 +606,12 @@ int main(){
     }
 
     cout << "\nI numeri dispari della sequenza sono:" << conta;
+
+    cout << '\n';
 }
 ```
+
+![](./images/conta-dispari-da-sequenza-limitata.gif)
 
 ## Sequenza crescente, decrescente o non ordinata?
 
@@ -575,11 +622,11 @@ Riceve da tastiera una sequenza di numeri interi e calcola se la sequenza è ord
 using namespace std;
 
 int main(){
-    cout << "Title: Sequenza crescente, decrescente o non ordinata?"
+    cout << "Title: Sequenza crescente, decrescente o non ordinata?\n"
          << "Description: Riceve da tastiera una sequenza di numeri interi e calcola se la sequenza è ordinata in modo crescente, decrescente o non ordinata\n";
 
     int n, n1, n2, crescente = 0, decrescente = 0, uguale = 0;
-    cout << "Immetti la Lunghezza seq, n:";
+    cout << "Immetti la Lunghezza della sequenza numerica:";
     cin >> n;
     cout << "\nImmetti la sequenza:\n";
     cin >> n1;
@@ -600,8 +647,12 @@ int main(){
         cout << "UGUALE.";
     else
         cout << "NON ORDINATA.";
+
+    cout << '\n';
 }
 ```
+
+![](./images/sequenza-crescente-decrescente-o-non-ordinata.gif)
 
 ## Vettore palindromo
 
@@ -633,6 +684,8 @@ int main(){
         cout << "Vettore palindromo.";
     else
         cout << "Vettore non palindromo.";
+    
+    cout << '\n';
 }
 
 void riempi ( int *v, int n ){
@@ -657,6 +710,8 @@ int palindromo ( int *v, int n ){
     return 1;
 }
 ```
+
+![](./images/vettore-palindromo.gif)
 
 ## Conta ricorrenza numerica
 
@@ -684,6 +739,8 @@ int main(){
 
     conta ( vettConta, LunghSeq );
     stampa ( vettConta, nElem );
+
+    cout << '\n';
 }
 
 void azzera ( int *v, int n ){
@@ -739,6 +796,8 @@ int main (){
     azzera ( vettConta, lettere );
     contaLettere ( stringa, vettConta );
     stampaLettere ( vettConta, lettere );
+
+    cout << '\n';
 }
 
 void azzera ( int *v, int n){
@@ -795,6 +854,8 @@ int main(){
     cout << "\nPos: " << pos
          << "\nNull: " << null
          << "\nNeg: " << neg;
+
+    cout << '\n';
 }
 ```
 
@@ -850,6 +911,8 @@ int main (){
         default:
             cout << "!!!";
     }
+
+    cout << '\n';
 }
 
 void leggi ( int *v, int n ){
@@ -908,6 +971,8 @@ int main (){
     int *vett = new int [nElem];
     leggi ( vett, nElem );
     stampa ( ordinato( vett, nElem ) );
+
+    cout << '\n';
 }
 
 void leggi ( int *v, int n ){
@@ -1032,6 +1097,8 @@ int main () {
                 break;
         }
     }
+
+    cout << '\n';
 }
 
 void inizializza ( buffer& buf, int dim ){
@@ -1197,5 +1264,7 @@ int main (){
     inserisci ( c1, 'a' );
     inserisci ( c1, 'd' );
     scrivi (c1);
+
+    cout << '\n';
 }
 ```
