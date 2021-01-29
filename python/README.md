@@ -1,52 +1,77 @@
 # Python
 
 - [Python](#python)
+- [Lezione 01](#lezione-01)
   - [Prerequisiti](#prerequisiti)
   - [Corso Python](#corso-python)
   - [Installazione e setup](#installazione-e-setup)
   - [Installazione e setup - Linux](#installazione-e-setup---linux)
   - [Configurazione di un IDE](#configurazione-di-un-ide)
+- [Lezione 02](#lezione-02)
   - [Primo script](#primo-script)
   - [Aggiunta di moduli](#aggiunta-di-moduli)
+- [Lezione 03](#lezione-03)
   - [Introduzione a webbrowser](#introduzione-a-webbrowser)
   - [Come rendo eseguibile un file python?](#come-rendo-eseguibile-un-file-python)
   - [Linux](#linux)
   - [Commenti](#commenti)
+- [Lezione 04](#lezione-04)
   - [Introduzione al modulo PyPDF2](#introduzione-al-modulo-pypdf2)
+- [Lezione 05](#lezione-05)
   - [Costrutto condizionale `if...else`](#costrutto-condizionale-ifelse)
+- [Lezione 06](#lezione-06)
   - [Costrutto iterativo `for`](#costrutto-iterativo-for)
   - [Indentazione Python](#indentazione-python)
   - [range() Function](#range-function)
+- [Lezione 07](#lezione-07)
   - [PyPDF2 - Copia PDF](#pypdf2---copia-pdf)
   - [PyPDF2 - Merge All pdf](#pypdf2---merge-all-pdf)
+- [Lezione 08](#lezione-08)
   - [Liste](#liste)
   - [Accesso agli elementi di una lista](#accesso-agli-elementi-di-una-lista)
   - [Modifica del valore degli elementi in una lista.](#modifica-del-valore-degli-elementi-in-una-lista)
   - [Aggiunta di elementi in una lista](#aggiunta-di-elementi-in-una-lista)
   - [Rimozione di elementi in una lista](#rimozione-di-elementi-in-una-lista)
   - [Creazione di sotto liste, **slicing** <br>](#creazione-di-sotto-liste-slicing-)
+- [Lezione 09](#lezione-09)
   - [Copia di Liste](#copia-di-liste)
   - [deepcopy()](#deepcopy)
+- [Lezione 10](#lezione-10)
   - [Le stringe](#le-stringe)
   - [Interpolazione di stringhe - Metodo `format()`](#interpolazione-di-stringhe---metodo-format)
+- [Lezione 11](#lezione-11)
   - [PyPDF2 - Merge All pdf v2](#pypdf2---merge-all-pdf-v2)
+- [Lezione 12](#lezione-12)
   - [Introduzione alla manipolazione dei docx](#introduzione-alla-manipolazione-dei-docx)
+- [Lezione 13](#lezione-13)
   - [Python `while()`](#python-while)
   - [Comando `break`](#comando-break)
   - [Comando `continue`](#comando-continue)
   - [Alcune considerazioni finali](#alcune-considerazioni-finali)
+- [Lezione 14](#lezione-14)
   - [Esercizio Asta online v1](#esercizio-asta-online-v1)
+- [Lezione 15](#lezione-15)
   - [Costrutto `try Except`](#costrutto-try-except)
+- [Lezione 16](#lezione-16)
   - [Introduzione alle espressioni regolari con Python](#introduzione-alle-espressioni-regolari-con-python)
+- [Lezione 17](#lezione-17)
   - [Esercizio Asta online v2](#esercizio-asta-online-v2)
+- [Lezione 18](#lezione-18)
   - [Costrutto `if ... in`](#costrutto-if--in)
+- [Lezione 19](#lezione-19)
   - [Esercizio Asta online v3](#esercizio-asta-online-v3)
+- [Lezione 20](#lezione-20)
   - [Introduzione alle Funzioni](#introduzione-alle-funzioni)
+- [Lezione 21](#lezione-21)
   - [Esercizio Asta online v4](#esercizio-asta-online-v4)
+- [Lezione 22](#lezione-22)
   - [Esercizio Asta online v5](#esercizio-asta-online-v5)
+- [Lezione 23](#lezione-23)
   - [Python - List Comprehension](#python---list-comprehension)
+- [Lezione 24](#lezione-24)
   - [Esercizio Asta online v6](#esercizio-asta-online-v6)
 
+# Lezione 01
 
 ## Prerequisiti 
 Conoscenza di un linguaggio qualsiasi OOP come C++ o Javascript
@@ -84,6 +109,8 @@ Per questo corso ho preferito non utilizzare un IDE specifico come Pycharm ma un
 
 ![](./images/python-extension-vscode.gif)
 
+# Lezione 02
+
 ## Primo script
 
 Ogni file python ha un'estensione `.py`.
@@ -113,7 +140,9 @@ pip install PyPDF2
 
 Qualora si avessero dubbi sul nome del modulo o sul comando esatto, niente paura, il browser ci è di supporto
 
-![](./images/pip-install.gif)
+![](./images/pip-install.gif)ù
+
+# Lezione 03
 
 ## Introduzione a webbrowser
 
@@ -171,6 +200,8 @@ E' sufficiente rendere il file *eseguibile* (all'interno delle proprietà del fi
 # questo è un commento e verrà ignorato dall'interprete
 print('ciao')
 ```
+
+# Lezione 04
 
 ## Introduzione al modulo PyPDF2
 
@@ -250,6 +281,8 @@ pdfOutput.close()
 
 ![](./images/pdf-1.gif)
 
+# Lezione 05
+
 ## Costrutto condizionale `if...else`
 
 Le istruzioni condizionali vengono utilizzate per eseguire un blocco di codice solo nel caso in cui una condizione risulti *true* o *false*
@@ -285,6 +318,8 @@ else:
 ```
 
 Notare che per il costrutto `if` in python, la `condition` è priva di parentesi tonde `( )` comuni invece a molti altri linguaggi di programmazione; l'operatore `:` è usato come terminatore della `condition` e l'indentazione è necessaria per racchiudere la porzione di codice condizionato da `if`.
+
+# Lezione 06
 
 ## Costrutto iterativo `for`
 
@@ -385,6 +420,8 @@ for numero in range(5):
 # 3:9
 # 4:16
 ```
+
+# Lezione 07
 
 ## PyPDF2 - Copia PDF
 
@@ -494,6 +531,8 @@ print("Finito..")
 ```
 
 ![](./images/mergeAllPdf.gif)
+
+# Lezione 08
 
 ## Liste
 
@@ -629,6 +668,8 @@ mySubList = myList[::-1]
 print(mySubList) #['cachi', 'mandarino', 'mela', 'kiwi', 'banana']
 ```
 
+# Lezione 09
+
 ## Copia di Liste
 
 Abbiamo visto nel paragrafo precedente che per la copia di liste è sufficiente utilizzare l'operatore `[:]` ma che non vale per liste annidate. In questa lezione approfondiremo l'operazione di copia di elementi.
@@ -723,6 +764,8 @@ print(myList)  #['kiwi', 'mela', [1, 2], 'cachi']
 print(myList2) #['banana', 'kiwi', 'mela', [12, 2], 'cachi']
 ```
 
+# Lezione 10
+
 ## Le stringe 
 
 **Le stringhe sono un tipo di dato immutabile in python** <br>
@@ -781,6 +824,8 @@ myList = ["dentista", "17:00"]
 print(f"Evento: {myList[0]} - Ora: {myList[1]} ") #Evento: dentista - Ora: 17:00 
 ```
 
+# Lezione 11
+
 ## PyPDF2 - Merge All pdf v2
 
 Questa è una versione migliorata dello script *Merge All pdf*. Aggiunge dei controlli sull'estensione del file e sulla natura del file. Controlla infatti se un file termina con formati "strani" come ".pdF", "PDf" considerandoli comunque validi e controlla eventuali falsi file trappola come cartella che termina con estensione ".pdf". <br>
@@ -838,6 +883,8 @@ PDF_Destinazione.close()
 
 print("Finito..")
 ```
+
+# Lezione 12
 
 ## Introduzione alla manipolazione dei docx
 
@@ -899,6 +946,8 @@ for p in paragrafi:
     #questo metodo su stringa genera una ripetizione 
     print("-"*50)
 ```
+
+# Lezione 13
 
 ## Python `while()`
 
@@ -1018,6 +1067,8 @@ E' normale chiedersi quando usare uno e quando usare l'altro.. Riporto quindi un
 - `while` loop è un ciclo indefinito. Andrebbe utilizzato quando non è noto a priori il numero di iterazioni totali
 - I comandi `break` e `continue` possono essere utilizzati indistintamente sia sul ciclo `for` che sul ciclo `while`
 
+# Lezione 14
+
 ## Esercizio Asta online v1
 
 Il seguente script vuole simulare l'andamento di un'asta online con la seguente regola:
@@ -1066,6 +1117,8 @@ Che cosa succede se l'utente inserisce dei valori di input non atesi? Ad esempio
 ![](./images/asta-02.gif)
 
 Vedremo nel capito successivo come trattare questi errori tramite il costrutto `try Except`
+
+# Lezione 15
 
 ## Costrutto `try Except`
 
@@ -1139,6 +1192,8 @@ while 1:
 
 ![](./images/try-except-02.gif)
 
+# Lezione 16
+
 ## Introduzione alle espressioni regolari con Python
 
 Una RegEx, o espressione regolare, è una sequenza di caratteri che forma un modello di ricerca.
@@ -1147,6 +1202,8 @@ Python ha un modulo integrato chiamato `re`, che può essere utilizzato per lavo
 
 
 [w3schools - Python RegEx](https://www.w3schools.com/python/python_regex.asp)
+
+# Lezione 17
 
 ## Esercizio Asta online v2
 
@@ -1197,6 +1254,8 @@ print(offerte)
 
 ![](./images/asta-03.gif)
 
+# Lezione 18
+
 ## Costrutto `if ... in`
 
 Analogamente al costrutto `for ... in` il costrutto `if ... in` si applica a collezioni di elementi in cui si richiede la ricerca di un particolare elemento in una lista
@@ -1223,6 +1282,8 @@ else:
 ```
 
 ![](./images/if-in.gif)
+
+# Lezione 19
 
 ## Esercizio Asta online v3
 
@@ -1276,6 +1337,8 @@ print(offerte)
 
 Come si vede una coppia identica *utente/bit coin* viene catturata e rifiutata ma è ancora permesso che un utente possa fare più offerte
 
+# Lezione 20
+
 ## Introduzione alle Funzioni
 Le funzioni vanno definite prima di utilizzarle
 
@@ -1311,6 +1374,8 @@ saluta("Linus")
 # ciao: Tobias!
 # ciao: Linus!
 ```
+
+# Lezione 21
 
 ## Esercizio Asta online v4
 
@@ -1371,6 +1436,8 @@ def inserisci_offerte():
 offerte = inserisci_offerte()
 stampa_lista(offerte)
 ```
+
+# Lezione 22
 
 ## Esercizio Asta online v5
 
@@ -1495,6 +1562,8 @@ print(f"Offerta minima: {minimo(offerte)}")
 
 ![](./images/asta-05.gif)
 
+# Lezione 23
+
 ## Python - List Comprehension
 
 *List Comprehension* offre una sintassi più breve quando si desidera creare un nuovo elenco basato sui valori di un elenco esistente.
@@ -1543,6 +1612,8 @@ Nel seguente esempio elenco i numeri dispari da 0 a 100 con una sola espressione
 #es: 4/2 = 2 >> 2*2 = 4 >> 4=4 
 print([x for x in range(0, 100) if x // 2 * 2 != x])
 ```
+
+# Lezione 24
 
 ## Esercizio Asta online v6
 

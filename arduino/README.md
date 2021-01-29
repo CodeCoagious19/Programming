@@ -1,5 +1,22 @@
 # Arduino
 
+- [Arduino](#arduino)
+- [Lezione 01](#lezione-01)
+- [Lezione 02](#lezione-02)
+  - [Alimentare arduino](#alimentare-arduino)
+- [Lezione 03](#lezione-03)
+  - [Pin I/O](#pin-io)
+- [Lezione 04](#lezione-04)
+  - [Sketch](#sketch)
+  - [Primo sketch - LED Blink](#primo-sketch---led-blink)
+- [Lezione 05](#lezione-05)
+  - [PWM](#pwm)
+- [Lezione 06](#lezione-06)
+  - [Documentazione Linguaggio Arduino](#documentazione-linguaggio-arduino)
+  - [analogRead](#analogread)
+
+# Lezione 01
+
 Arduino è una scheda elettronica per realizzare prototipi. Il cuore di arduino è il **microcontrollore**. Il modello **Arduino UNO R3** utilizza il microcontrollore **Atmega328P**. 
 
 ![](./images/Arduino-board.jpg)
@@ -10,7 +27,9 @@ Un microcontrollore (in inglese microcontroller in acronimo MCU ovvero MicroCont
 
 La scehda di Arduino, attraverso il microcontrollore, comunica con il mondo esterno attraverso i suoi PIN. Un microcontrollore in genere svolge un compito molto specifico come leggere il valore di certi sensori collegati in ingresso o settare le uscite collegate a qualche attuatore. Ci sono molti componenti elettronici interfacciabili direttamente con Arduino
 
-![come ad esempio la temperatura o ](./images/Arduino-components.jpg)
+![](./images/Arduino-components.jpg)
+
+# Lezione 02
 
 ## Alimentare arduino
 
@@ -32,6 +51,8 @@ Esiste inoltre un tasto `RESET` che consente il riavvio di Arduino.
 
 E' possibile inoltre riavviare Arduino attraverso il pin `RESET` con un apposito *segnale di reset*.
 
+# Lezione 03
+
 ## Pin I/O
 
 **Pin Digitali**<br>
@@ -42,6 +63,7 @@ Ci sono inoltre 5 PIN numerati da `14 - 19` per l'interfacciamento con segnali a
 
 ![](./images/ArduinoPINio.png)
 
+# Lezione 04
 
 ## Sketch
 
@@ -58,7 +80,7 @@ In linea generale possiamo affermare che:
 - **setup:** i comandi scritti all'interno di questo blocco vengono eseguiti una sola volta all'avvio di Arduino.
 - **loop** i comandi scritti all'interno di questo blocco vengono eseguiti ciclicamente dopo l'avvio di Arduino fino al riavvio o spegnimento della board. 
 
-### Primo sketch - LED Blink
+## Primo sketch - LED Blink
 
 Come primo Sketch vedremo come far lampeggiare un LED. Useremo il LED connesso direttamente ad arduino al `pin 13`. Per far ciò dovremo:
 
@@ -75,7 +97,7 @@ Poichè il `void loop(){}` esegue in loop le istruzioni, realizzerai un lampeggi
 
 Il codice completo:
 
-```arduino
+```cpp
 void setup() {
   // initialize digital pin LED_BUILTIN as an output.
   pinMode(13, OUTPUT);
@@ -98,7 +120,7 @@ E' possibile trovare questo sketch esempio su `File/Esempi/01.Basics/Blink`
 
 Apparirà come:
 
-```arduino
+```cpp
 /*
   Blink
 
@@ -142,7 +164,7 @@ L'unica differenza che trovi è `LED_BUILTIN`. E' una **costante** il cui valore
 
 Il valore di tutte le costanti di Arduino le puoi trovare sulla documentazione ufficiale: [Arduino - constants](https://www.arduino.cc/reference/it/language/variables/constants/constants/)
 
-
+# Lezione 05
 
 ## PWM
 
@@ -168,7 +190,7 @@ Per far ciò è necessario:
 
 Lo sketch completo è:
 
-```arduino
+```cpp
 void setup() {
 
 }
@@ -180,7 +202,7 @@ void loop() {
 
 Arduino fornisce un esepio più compelto all'interno della cartella degli esempi `File/Esempi/01.Basics/Fade`
 
-```arduino
+```cpp
 /*
   Fade
 
@@ -252,7 +274,7 @@ Puoi anche impostare un valore minimo di `brightness` e un valore massimo
 
 Ecco un esempio:
 
-```arduino
+```cpp
 /*
   Fade
 
@@ -307,6 +329,8 @@ IL PWM agisce sul'inerzia elettromeccanica dei componenti. Puoi intuire che abba
 Allo stesso tempo puoi intuire che alzando troppo la frequenza sia difficile per il componente leggere valori di duty cicle troppo piccoli. Nel caso del LED, lo vedrai sempre spento.
 Per determinare i valori minimi e massimi di frequenza PWM è necessario eseguire un'analisi dei componenti capacitivi/indutti parassiti e studiare la caratteristica al variare della frequenza. Per adesso comunque ti basta sapere che in linea generale, le frequenze possono andare nei casi più comuni tra `[100Hz - 100Khz]`. Avrai frequenze piuttosto basse se il componente ha una *capacità di reazione* lenta e frequenze più alte per componenti che hanno una *capacità di reazione* alta
 
+# Lezione 06
+
 ## Documentazione Linguaggio Arduino
 
 Arduino utilizza il linguaggio `C++` ma esporta una serie di funzioni molto semplici per il controllo dell'Hardware.
@@ -329,3 +353,7 @@ Qua sotto riporto comunque qualche costrutto fondamentale del linguaggio `C++` e
 | float  | 4 Byte        |Contenitore per numeri interi nel range numerico, da 0 to 4,294,967,295 (2^32 – 1)
 | double  | 4 Byte        |Contenitore per numeri interi nel range numerico, da 0 to 4,294,967,295 (2^32 – 1)
 | String  | -       |Contenitore per testo (e.g., “Resistenza”)
+
+
+## analogRead
+

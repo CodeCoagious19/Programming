@@ -2,21 +2,113 @@
 
 Benvenuto nella mia Repository dedicata alla programmazione. Qui puoi trovare appunti e corsi su diversi linguaggi di programmazione in lingua Italiana che potrebbero aiutarti nello studio o approfondimento.
 
-Ho iniziato a prendere appunti in `markdown` nel 2020 e fin da subito ho capito che era lo strumento giusto per memorizzare pezzi di codice e appuntare qualcosa di più di un commento. 
+- [Indice principale](#indice-principale)
+- [Programmazione Web](#programmazione-web)
+  - [Html](#html)
+  - [Css](#css)
+  - [Javascript](#javascript)
+  - [Node.js](#nodejs)
+  - [react.js](#reactjs)
+- [Programmazione Desktop](#programmazione-desktop)
+  - [Java - Corso base](#java---corso-base)
+  - [C++ - Per esempi](#c---per-esempi)
+  - [Python- Corso pratico](#python--corso-pratico)
+- [Programmazione Microcontrollori](#programmazione-microcontrollori)
+  - [Arduino](#arduino)
 
-Ogni documento che trovi è scritto in `markdown` ed è interpretato nativamente da GitHub. Se non conosci questo linguaggio di markup ti consiglio di dare un'occhiata [qua](), potrebbe aiutare anche te.
+# Programmazione Web
 
-## Programmazione Microcontrollori
-- [Arduino - Corso pratico](./arduino/README.md): *incompleto*
+## Html 
 
-## Programmazione Web
-- [Html e Css - Nozioni base](./html-css/README.MD/)
-- [Javascript - Nozioni base e avanzate]()
-- [node.js - Nozioni base]()
-- [react.js - Corso pratico]()
+>**[vai al corso](./html/README.MD/)**
 
-## Programmazione Desktop
+|Prerequisiti|Livello| % Completamento |
+|---         |---    | ---             |
+|Nessuno     |Base   | 60%             | 
 
-- [Java - Corso base](./java/README.md)
-- [C++ - Per esempi](./cpp/README.md)
-- [Python- Corso pratico](./python/README.md)
+Benvenuto nella mia Repository dedicata alla programmazione. Qui puoi trovare appunti e corsi su diversi linguaggi di programmazione in lingua Italiana che potrebbero aiutarti nello studio o approfondimento.
+
+## Css
+
+>**[vai al corso](./css/README.md)**
+
+|Prerequisiti|Livello| % Completamento |
+|---         |---    | ---             |
+|Html        |Base   | 60%             | 
+
+Benvenuto nella mia Repository dedicata alla programmazione. Qui puoi trovare appunti e corsi su diversi linguaggi di programmazione in lingua Italiana che potrebbero aiutarti nello studio o approfondimento. 
+
+## Javascript
+
+>**[vai al corso](./javascript/README.md)**
+
+|Prerequisiti|Livello| % Completamento |
+|---         |---    | ---             |
+|Html, Css   |Base   | 80%             | 
+
+Benvenuto nella mia Repository dedicata alla programmazione. Qui puoi trovare appunti e corsi su diversi linguaggi di programmazione in lingua Italiana che potrebbero aiutarti nello studio o approfondimento. 
+
+## Node.js
+
+>**[vai al corso](./node-js/README.md)**
+
+|Prerequisiti|Livello| % Completamento |
+|---         |---    | ---             |
+|Html, Css, Javascript   |Base   | 10% | 
+ 
+Benvenuto nella mia Repository dedicata alla programmazione. Qui puoi trovare appunti e corsi su diversi linguaggi di programmazione in lingua Italiana che potrebbero aiutarti nello studio o approfondimento.
+
+## react.js
+
+>**[vai al corso](./react-js/README.md)**
+
+|Prerequisiti|Livello| % Completamento |
+|---         |---    | ---             |
+|Html, Css, Javascript   |Base   | 10% | 
+ 
+Benvenuto nella mia Repository dedicata alla programmazione. Qui puoi trovare appunti e corsi su diversi linguaggi di programmazione in lingua Italiana che potrebbero aiutarti nello studio o approfondimento.
+  
+
+# Programmazione Desktop
+
+## Java - Corso base
+
+>**[vai al corso](./java/README.md)**
+
+|Prerequisiti|Livello| % Completamento |
+|---         |---    | ---             |
+|Nessuno     |Base   | 80% | 
+ 
+Benvenuto nella mia Repository dedicata alla programmazione. Qui puoi trovare appunti e corsi su diversi linguaggi di programmazione in lingua Italiana che potrebbero aiutarti nello studio o approfondimento. 
+  
+## C++ - Per esempi
+
+>**[vai al corso](./cpp/README.md)**
+
+|Prerequisiti|Livello| % Completamento |
+|---         |---    | ---             |
+|Nessuno     |Base   | 80% | 
+ 
+Benvenuto nella mia Repository dedicata alla programmazione. Qui puoi trovare appunti e corsi su diversi linguaggi di programmazione in lingua Italiana che potrebbero aiutarti nello studio o approfondimento. 
+
+## Python- Corso pratico
+  
+>**[vai al corso](./python/README.md)**
+
+|Prerequisiti|Livello| % Completamento |
+|---         |---    | ---             |
+|Nessuno     |Base   | 80% | 
+ 
+Benvenuto nella mia Repository dedicata alla programmazione. Qui puoi trovare appunti e corsi su diversi linguaggi di programmazione in lingua Italiana che potrebbero aiutarti nello studio o approfondimento.
+
+# Programmazione Microcontrollori
+
+## Arduino
+
+>**[vai al corso](./arduino/README.md)**
+
+|Prerequisiti|Livello| % Completamento |
+|---         |---    | ---             |
+|Nessuno     |Base   | 10%             | 
+
+Benvenuto nella mia Repository dedicata alla programmazione. Qui puoi trovare appunti e corsi su diversi linguaggi di programmazione in lingua Italiana che potrebbero aiutarti nello studio o approfondimento.

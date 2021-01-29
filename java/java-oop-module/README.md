@@ -1,3 +1,19 @@
+# Java OOP
+
+- [Java OOP](#java-oop)
+- [Lezione 01](#lezione-01)
+	- [Perchè la OOP?](#perchè-la-oop)
+- [Lezione 02](#lezione-02)
+	- [Creiamo una classe](#creiamo-una-classe)
+- [Lezione 03](#lezione-03)
+	- [Getter e setter](#getter-e-setter)
+- [Lezione 04](#lezione-04)
+		- [Getter e setter all'interno del costruttore](#getter-e-setter-allinterno-del-costruttore)
+- [Lezione 05](#lezione-05)
+	- [Cotruttore o costruttori?](#cotruttore-o-costruttori)
+
+# Lezione 01
+
 ## Perchè la OOP?
 
 Considerazioni generali del passaggio dal paradigma funzionale a quello dell OOP. Alcuni esempi sono la portabilità, l'estensione del codice o dei pezzi di codice.
@@ -19,7 +35,7 @@ In genere quando si scrive crea una nuova classe si fa in un file separato ma no
 
 In eclipse puoi quindi creare un nuovo file class
 
-![](./images_OOP/eclipse-new-class.png)
+![](./images/eclipse-new-class.png)
 
 
 
@@ -28,20 +44,21 @@ In eclipse puoi quindi creare un nuovo file class
 Il meccanismo dei package incapsula un'insieme di classi. All'interno di ogni package posso creare strutture dati, classi che non interferiranno a livello di nomi (un po' come il concetto del namespace) all'esterno. Se all'interno di un progetto creo due package e magari questi due package hanno delle classi in comune, cioè con lo stesso nome il compilatore riesce a distinguerli grazie al meccanismo di separazione dei package. L'assemblaggio dei package poi crea l'applicazione
 
 
-![](./images_OOP/eclipse-packages.png)
+![](./images/eclipse-packages.png)
 
 Di default Eclipse crea un package `default package`.
 
 Per accedere a una classe di un modello esterno devo esplicitare il nome del package prima del nome della classe
 
 
-![](./images_OOP/eclipse-package-2.png)
+![](./images/eclipse-package-2.png)
 
 
 A livello di struttura di cartelle, le classi all'interno del packege di default sono situate nella root del progetto, folder `src` mentre gli altri package sono situati in subfolder
 
-![](./images_OOP/packages-folder-structure.png)
+![](./images/packages-folder-structure.png)
 
+# Lezione 02
 
 ## Creiamo una classe
 
@@ -202,6 +219,8 @@ public class mainEntry {
 Durante la creazione passo i parametri che verranno assegnati alle variabili dello stato interno `x, y`
 
 
+# Lezione 03
+
 ## Getter e setter
 
 Un altro modo, oltre all'uso del costruttore è quello di utilizzare dei particolari metodi chiamati `getter` e `setter` utilizzati rispettivamente per la lettura e scrittura delle variabili interne ma sempre attraverso un metodo pubblico
@@ -260,9 +279,9 @@ public class mainEntry {
 
 Eclipse ti aiuta a scrivere in modo automatico i getter/setter:
 
-![](./images_OOP/eclipse-wizard-getter-setter-1.png)
-![](./images_OOP/eclipse-wizard-getter-setter-2.png)
-![](./images_OOP/eclipse-wizard-getter-setter-preview.png)
+![](./images/eclipse-wizard-getter-setter-1.png)
+![](./images/eclipse-wizard-getter-setter-2.png)
+![](./images/eclipse-wizard-getter-setter-preview.png)
 
 Dopodichè nel codice troverai:
 
@@ -330,6 +349,8 @@ public class mainEntry {
 
 ```
 
+# Lezione 04
+
 ### Getter e setter all'interno del costruttore
 
 Spesso si utilizzano le chiamate a getter e setter proprio all'interno del costruttore
@@ -390,6 +411,8 @@ public class Punto {
 	}
 }
 ```
+
+# Lezione 05
 
 ## Cotruttore o costruttori?
 
