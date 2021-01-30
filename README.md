@@ -20,54 +20,39 @@ Benvenuto nella mia Repository dedicata alla programmazione. Qui puoi trovare ap
 
 ## Html 
 
->**[vai al corso](./html/README.MD/)**
+<img src="./images/file_type_html_icon_130541.svg" alt="drawing" width="100"/>
 
-|Prerequisiti|Livello| % Completamento |
-|---         |---    | ---             |
-|Nessuno     |Base   | 60%             | 
+Html, HyperText Markup Language è un linguaggio di markup nato per la formattazione e impaginazione di documenti ipertestuali. 
 
-Benvenuto nella mia Repository dedicata alla programmazione. Qui puoi trovare appunti e corsi su diversi linguaggi di programmazione in lingua Italiana che potrebbero aiutarti nello studio o approfondimento.
+**[↪ vai al corso](./html/README.MD/)**
 
 ## Css
 
->**[vai al corso](./css/README.md)**
+<img src="./images/file_type_css_icon_130661.svg" alt="drawing" width="100"/>
 
-|Prerequisiti|Livello| % Completamento |
-|---         |---    | ---             |
-|Html        |Base   | 60%             | 
+CSS, Cascading Style Sheets, è un linguaggio usato per definire la formattazione e lo stile di documenti HTML, XHTML e XML.
 
-Benvenuto nella mia Repository dedicata alla programmazione. Qui puoi trovare appunti e corsi su diversi linguaggi di programmazione in lingua Italiana che potrebbero aiutarti nello studio o approfondimento. 
+**[↪ vai al corso](./css/README.md)**
 
 ## Javascript
 
->**[vai al corso](./javascript/README.md)**
+<img src="./images/JS-logo.png" alt="drawing" width="100"/>
 
-|Prerequisiti|Livello| % Completamento |
-|---         |---    | ---             |
-|Html, Css   |Base   | 80%             | 
+JavaScript è un linguaggio di programmazione orientato agli oggetti e agli eventi, comunemente utilizzato nella programmazione Web lato client (esteso poi anche al lato server) per la creazione, in siti web e applicazioni web, di effetti dinamici interattivi
 
-Benvenuto nella mia Repository dedicata alla programmazione. Qui puoi trovare appunti e corsi su diversi linguaggi di programmazione in lingua Italiana che potrebbero aiutarti nello studio o approfondimento. 
+**[↪ vai al corso](./javascript/README.md)**
 
 ## Node.js
-
->**[vai al corso](./node-js/README.md)**
-
-|Prerequisiti|Livello| % Completamento |
-|---         |---    | ---             |
-|Html, Css, Javascript   |Base   | 10% | 
  
 Benvenuto nella mia Repository dedicata alla programmazione. Qui puoi trovare appunti e corsi su diversi linguaggi di programmazione in lingua Italiana che potrebbero aiutarti nello studio o approfondimento.
+
+**[↪ vai al corso](./node-js/README.md)**
 
 ## react.js
 
->**[vai al corso](./react-js/README.md)**
-
-|Prerequisiti|Livello| % Completamento |
-|---         |---    | ---             |
-|Html, Css, Javascript   |Base   | 10% | 
- 
 Benvenuto nella mia Repository dedicata alla programmazione. Qui puoi trovare appunti e corsi su diversi linguaggi di programmazione in lingua Italiana che potrebbero aiutarti nello studio o approfondimento.
   
+**[↪ vai al corso](./react-js/README.md)**
 
 # Programmazione Desktop
 
