@@ -5,33 +5,61 @@ Benvenuto!
 In questa repository puoi trovare appunti sui linguaggi di programmazione o framework che ho avuto modo di studiare e approfondire per lavoro o per progetti personali.
 
 - [Indice principale](#indice-principale)
+  - [Link veloci](#link-veloci)
   - [Programmazione Web](#programmazione-web)
+    - [html](#html)
+    - [css](#css)
   - [Programmazione Desktop](#programmazione-desktop)
   - [Programmazione Microcontrollori](#programmazione-microcontrollori)
 
 <br>
 
-## Programmazione Web
-[<img src="./images/html_original_wordmark_logo_icon_146478.svg" width="100"/>](./html/README.MD/)
-[<img src="./images/css_original_wordmark_logo_icon_146576.svg" alt="drawing" width="100"  />](./css/README.md)
-[<img src="./images/javascript_vertical_logo_icon_168606.png" alt="drawing" width="100"  />](./javascript/README.md)
-[<img src="./images/brand_node_icon_157859.svg" alt="drawing" width="100"  />](./node-js/README.md)
-[<img src="./images/react_original_wordmark_logo_icon_146375.svg" alt="drawing" width="100"  />](./react-js/README.md)
+## Link veloci
 
-| Corso | Descrizione | Prerequisiti | % Completamento |
-| ---   | ---         | ---          | ---             |
-| **[Html](./html/README.MD)**  |In informatica l'HyperText Markup Language (traduzione letterale: linguaggio a marcatori per ipertesti), comunemente noto con l'acronimo HTML, è un linguaggio di markup. | Nessuno | 70%|
-| **[Css](./css/README.md)** | Il CSS (sigla di Cascading Style Sheets, in italiano fogli di stile a cascata), in informatica, è un linguaggio usato per definire la formattazione di documenti HTML, XHTML e XML, ad esempio i siti web e relative pagine web. | Html | 70% |
+[<img src="./images/html_original_wordmark_logo_icon_146478.svg" width="75"/>](./html/README.MD/)
+[<img src="./images/css_original_wordmark_logo_icon_146576.svg" alt="drawing" width="75"  />](./css/README.md)
+[<img src="./images/javascript_vertical_logo_icon_168606.png" alt="drawing" width="75"  />](./javascript/README.md)
+[<img src="./images/brand_node_icon_157859.svg" alt="drawing" width="75"  />](./node-js/README.md)
+[<img src="./images/react_original_wordmark_logo_icon_146375.svg" alt="drawing" width="75"  />](./react-js/README.md)
+[<img src="./images/java_original_wordmark_logo_icon_146459.svg" alt="drawing" width="75"  />](./java/README.md)
+[<img src="./images/cpp-logo-350x350.png" alt="drawing" width="75"  />](./cpp/README.md)
+[<img src="./images/python_original_wordmark_logo_icon_146382.svg" alt="drawing" width="75"  />](./cpp/README.md)
+[<img src="./images/arduino_official_logo_icon_167833.svg" alt="drawing" width="75"  />](./arduino/README.md)
+
+## Programmazione Web
+
+
+### html
+
+|Corso| Prerequisiti | Completamento |
+| :---: | :---: | :---: |
+|[<img src="./images/html_original_wordmark_logo_icon_146478.svg" width="50"/>](./html/README.MD/)| Nessuno | 70%|
+
+
+In informatica l'HyperText Markup Language (traduzione letterale: linguaggio a marcatori per ipertesti), comunemente noto con l'acronimo HTML, è un linguaggio di markup.
+
+> [vai al corso](./html/README.MD/)
+
+### css
+
+|Corso| Prerequisiti | Completamento |
+| :---: | :---: | :---: |
+|[<img src="./images/css_original_wordmark_logo_icon_146576.svg" alt="drawing" width="50"/>](./css/README.md)| html | 70%|
+
+Il CSS (sigla di Cascading Style Sheets, in italiano fogli di stile a cascata), in informatica, è un linguaggio usato per definire la formattazione di documenti HTML, XHTML e XML, ad esempio i siti web e relative pagine web. 
+
+> [vai al corso](./css/README.md)
+
 | **[Javascript](./javascript/README.md)** | Attualmente quasi tutte le pagine web contengono JavaScript, un linguaggio di scripting che viene eseguito dal browser del visitatore | Html, Css | 80% |
+
 | **[Node.js](./node-js/README.md)** | Node.js è un runtime system open source multipiattaforma orientato agli eventi per l'esecuzione di codice JavaScript, costruita sul motore JavaScript V8 di Google Chrome |Javascript| 10% |
+
 | **[React](./react-js/README.md)** | React è una libreria JavaScript per la creazione di interfacce utente | Html, Css, Javascript, Node.js | 10%|
 
 <br>
 
 ## Programmazione Desktop
-[<img src="./images/java_original_wordmark_logo_icon_146459.svg" alt="drawing" width="100"  />](./java/README.md)
-[<img src="./images/cpp-logo-350x350.png" alt="drawing" width="100"  />](./cpp/README.md)
-[<img src="./images/python_original_wordmark_logo_icon_146382.svg" alt="drawing" width="100"  />](./cpp/README.md)
+
 
 | Corso | Descrizione | Prerequisiti | % Completamento |
 | ---   | ---         | ---          | ---             |
@@ -42,7 +70,7 @@ In questa repository puoi trovare appunti sui linguaggi di programmazione o fram
 <br>
 
 ## Programmazione Microcontrollori
-[<img src="./images/arduino_official_logo_icon_167833.svg" alt="drawing" width="100"  />](./arduino/README.md)
+
 
 | Corso | Descrizione | Prerequisiti | % Completamento |
 | ---   | ---         | ---          | ---             |
