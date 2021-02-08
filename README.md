@@ -7,10 +7,17 @@ In questa repository puoi trovare appunti sui linguaggi di programmazione o fram
 - [Indice principale](#indice-principale)
   - [Link veloci](#link-veloci)
   - [Programmazione Web](#programmazione-web)
-    - [html](#html)
-    - [css](#css)
+    - [Html](#html)
+    - [Css](#css)
+    - [Javascript](#javascript)
+    - [Node.js](#nodejs)
+    - [React](#react)
   - [Programmazione Desktop](#programmazione-desktop)
+    - [Java](#java)
+    - [C++](#c)
+    - [Python](#python)
   - [Programmazione Microcontrollori](#programmazione-microcontrollori)
+    - [Arduino](#arduino)
 
 <br>
 
@@ -23,58 +30,124 @@ In questa repository puoi trovare appunti sui linguaggi di programmazione o fram
 [<img src="./images/react_original_wordmark_logo_icon_146375.svg" alt="drawing" width="75"  />](./react-js/README.md)
 [<img src="./images/java_original_wordmark_logo_icon_146459.svg" alt="drawing" width="75"  />](./java/README.md)
 [<img src="./images/cpp-logo-350x350.png" alt="drawing" width="75"  />](./cpp/README.md)
-[<img src="./images/python_original_wordmark_logo_icon_146382.svg" alt="drawing" width="75"  />](./cpp/README.md)
+[<img src="./images/python_original_wordmark_logo_icon_146382.svg" alt="drawing" width="75"/>](./python/README.md)
 [<img src="./images/arduino_official_logo_icon_167833.svg" alt="drawing" width="75"  />](./arduino/README.md)
 
 ## Programmazione Web
 
 
-### html
+### Html
 
-|Corso| Prerequisiti | Completamento |
-| :---: | :---: | :---: |
-|[<img src="./images/html_original_wordmark_logo_icon_146478.svg" width="50"/>](./html/README.MD/)| Nessuno | 70%|
+| Prerequisiti | Completamento |
+| :---: | :---: |
+| Nessuno | 70%|
 
 
 In informatica l'HyperText Markup Language (traduzione letterale: linguaggio a marcatori per ipertesti), comunemente noto con l'acronimo HTML, è un linguaggio di markup.
 
-> [vai al corso](./html/README.MD/)
+[**vai al corso**](./html/README.MD/)
 
-### css
+<br>
 
-|Corso| Prerequisiti | Completamento |
-| :---: | :---: | :---: |
-|[<img src="./images/css_original_wordmark_logo_icon_146576.svg" alt="drawing" width="50"/>](./css/README.md)| html | 70%|
+### Css
+
+| Prerequisiti | Completamento |
+| :---: | :---: |
+| html | 70%|
 
 Il CSS (sigla di Cascading Style Sheets, in italiano fogli di stile a cascata), in informatica, è un linguaggio usato per definire la formattazione di documenti HTML, XHTML e XML, ad esempio i siti web e relative pagine web. 
 
-> [vai al corso](./css/README.md)
+[**vai al corso**](./css/README.md)
 
-| **[Javascript](./javascript/README.md)** | Attualmente quasi tutte le pagine web contengono JavaScript, un linguaggio di scripting che viene eseguito dal browser del visitatore | Html, Css | 80% |
+<br>
 
-| **[Node.js](./node-js/README.md)** | Node.js è un runtime system open source multipiattaforma orientato agli eventi per l'esecuzione di codice JavaScript, costruita sul motore JavaScript V8 di Google Chrome |Javascript| 10% |
+### Javascript
 
-| **[React](./react-js/README.md)** | React è una libreria JavaScript per la creazione di interfacce utente | Html, Css, Javascript, Node.js | 10%|
+| Prerequisiti | Completamento |
+| :---: | :---: |
+| html, css | 80%|
+
+Attualmente quasi tutte le pagine web contengono JavaScript, un linguaggio di scripting che viene eseguito dal browser del visitatore
+
+[**vai al corso**](./javascript/README.md)
+
+<br>
+
+### Node.js
+
+| Prerequisiti | Completamento |
+| :---: | :---: |
+| Javascript | 10%|
+
+Node.js è un runtime system open source multipiattaforma orientato agli eventi per l'esecuzione di codice JavaScript, costruita sul motore JavaScript V8 di Google Chrome
+
+[**vai al corso**](./node-js/README.md)
+
+<br>
+
+### React
+
+| Prerequisiti | Completamento |
+| :---: | :---: |
+| Html, Css, Javascript, Node.js | 10%|
+
+React è una libreria JavaScript per la creazione di interfacce utente
+
+[**vai al corso**](./react/README.md)
 
 <br>
 
 ## Programmazione Desktop
 
+### Java
 
-| Corso | Descrizione | Prerequisiti | % Completamento |
-| ---   | ---         | ---          | ---             |
-| **[Java](./java/README.md)**  |In informatica Java è un linguaggio di programmazione ad alto livello, orientato agli oggetti e a tipizzazione statica, che si appoggia sull'omonima piattaforma ... | Nessuno | 70%|
-| **[C++](./cpp/README.md)** | In informatica C++ è un linguaggio di programmazione general-purpose, sviluppato in origine da Bjarne Stroustrup nei Bell Labs nel 1983 come evoluzione del linguaggio C inserendo la programmazione orientata agli oggetti, col tempo ha avuto notevoli evoluzioni, come l'introduzione dell'astrazione rispetto al tipo. | Nessuno | 70% |
-| **[Python](./python/README.md)** | Python è un linguaggio di programmazione di più "alto livello" rispetto alla maggior parte degli altri linguaggi, orientato a oggetti, adatto, tra gli altri usi, a sviluppare applicazioni distribuite, scripting, computazione numerica e system testing. | Nessuno| 50% |
+| Prerequisiti | Completamento |
+| :---: | :---: |
+| Nessuno | 70%|
+
+In informatica Java è un linguaggio di programmazione ad alto livello, orientato agli oggetti e a tipizzazione statica, che si appoggia sull'omonima piattaforma
+
+[**Vai al corso**](./java/README.md)
 
 <br>
 
+### C++
+
+| Prerequisiti | Completamento |
+| :---: | :---: |
+| Nessuno | 70%|
+
+ In informatica C++ è un linguaggio di programmazione general-purpose, sviluppato in origine da Bjarne Stroustrup nei Bell Labs nel 1983 come evoluzione del linguaggio C inserendo la programmazione orientata agli oggetti, col tempo ha avuto notevoli evoluzioni, come l'introduzione dell'astrazione rispetto al tipo. 
+
+[**Vai al corso**](./cpp/README.md)
+
+<br>
+
+### Python
+
+| Prerequisiti | Completamento |
+| :---: | :---: |
+| Nessuno | 50%|
+
+Python è un linguaggio di programmazione di più "alto livello" rispetto alla maggior parte degli altri linguaggi, orientato a oggetti, adatto, tra gli altri usi, a sviluppare applicazioni distribuite, scripting, computazione numerica e system testing.
+
+[**vai al corso**](./python/README.md)
+
+<br>
+
+
+
 ## Programmazione Microcontrollori
 
+### Arduino
 
-| Corso | Descrizione | Prerequisiti | % Completamento |
-| ---   | ---         | ---          | ---             |
-| **[Arduino](./arduino/README.md)**  |Arduino è una piattaforma hardware composta da una serie di schede elettroniche dotate di un microcontrollore | Nessuno | 10%|
+| Prerequisiti | Completamento |
+| :---: | :---: |
+| Nessuno | 10%|
+
+Arduino è una piattaforma hardware composta da una serie di schede elettroniche dotate di un microcontrollore
+
+[**vai al corso**](./arduino/README.md)
 
 
 
