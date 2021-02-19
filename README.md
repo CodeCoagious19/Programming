@@ -13,6 +13,7 @@ In questa repository puoi trovare appunti sui linguaggi di programmazione o fram
     - [Node.js](#nodejs)
     - [React](#react)
   - [Programmazione Desktop](#programmazione-desktop)
+    - [Espressioni Regolari](#espressioni-regolari)
     - [Java](#java)
     - [C++](#c)
     - [Python](#python)
@@ -23,15 +24,16 @@ In questa repository puoi trovare appunti sui linguaggi di programmazione o fram
 
 ## Link veloci
 
-[<img src="./images/html_original_wordmark_logo_icon_146478.svg" width="75"/>](./html/README.MD/)
-[<img src="./images/css_original_wordmark_logo_icon_146576.svg" alt="drawing" width="75"  />](./css/README.md)
-[<img src="./images/javascript_vertical_logo_icon_168606.png" alt="drawing" width="75"  />](./javascript/README.md)
-[<img src="./images/brand_node_icon_157859.svg" alt="drawing" width="75"  />](./node-js/README.md)
-[<img src="./images/react_original_wordmark_logo_icon_146375.svg" alt="drawing" width="75"  />](./react-js/README.md)
-[<img src="./images/java_original_wordmark_logo_icon_146459.svg" alt="drawing" width="75"  />](./java/README.md)
-[<img src="./images/cpp-logo-350x350.png" alt="drawing" width="75"  />](./cpp/README.md)
-[<img src="./images/python_original_wordmark_logo_icon_146382.svg" alt="drawing" width="75"/>](./python/README.md)
-[<img src="./images/arduino_official_logo_icon_167833.svg" alt="drawing" width="75"  />](./arduino/README.md)
+[<img src="./_images/html_original_wordmark_logo_icon_146478.svg" width="75"/>](./html/README.MD/)
+[<img src="./_images/css_original_wordmark_logo_icon_146576.svg" alt="drawing" width="75"  />](./css/README.md)
+[<img src="./_images/javascript_vertical_logo_icon_168606.png" alt="drawing" width="75"  />](./javascript/README.md)
+[<img src="./_images/brand_node_icon_157859.svg" alt="drawing" width="75"  />](./node-js/README.md)
+[<img src="./_images/react_original_wordmark_logo_icon_146375.svg" alt="drawing" width="75"  />](./react-js/README.md)
+[<img src="./_images/reg-expr.png" alt="drawing" width="150"  />](./reg-expr/README.md)
+[<img src="./_images/java_original_wordmark_logo_icon_146459.svg" alt="drawing" width="75"  />](./java/README.md)
+[<img src="./_images/cpp-logo-350x350.png" alt="drawing" width="75"  />](./cpp/README.md)
+[<img src="./_images/python_original_wordmark_logo_icon_146382.svg" alt="drawing" width="75"/>](./python/README.md)
+[<img src="./_images/arduino_official_logo_icon_167833.svg" alt="drawing" width="75"  />](./arduino/README.md)
 
 ## Programmazione Web
 
@@ -98,6 +100,18 @@ React è una libreria JavaScript per la creazione di interfacce utente
 <br>
 
 ## Programmazione Desktop
+
+### Espressioni Regolari
+
+| Prerequisiti | Completamento |
+| :---: | :---: |
+| Nessuno | 70%|
+
+Un'espressione regolare è una sequenza di simboli che identifica un insieme di stringhe
+
+[**Vai al corso**](./reg-expr/README.md)
+
+<br>
 
 ### Java
 
