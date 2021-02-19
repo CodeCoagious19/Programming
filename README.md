@@ -9,8 +9,7 @@ In questa repository puoi trovare appunti sui linguaggi di programmazione o fram
   - [Programmazione Web](#programmazione-web)
     - [Html](#html)
     - [Css](#css)
-    - [Javascript](#javascript)
-    - [Node.js](#nodejs)
+    - [Javascript e node.js](#javascript-e-nodejs)
     - [React](#react)
   - [Programmazione Desktop](#programmazione-desktop)
     - [Espressioni Regolari](#espressioni-regolari)
@@ -27,7 +26,6 @@ In questa repository puoi trovare appunti sui linguaggi di programmazione o fram
 [<img src="./_images/html_original_wordmark_logo_icon_146478.svg" width="75"/>](./html/README.MD/)
 [<img src="./_images/css_original_wordmark_logo_icon_146576.svg" alt="drawing" width="75"  />](./css/README.md)
 [<img src="./_images/javascript_vertical_logo_icon_168606.png" alt="drawing" width="75"  />](./javascript/README.md)
-[<img src="./_images/brand_node_icon_157859.svg" alt="drawing" width="75"  />](./node-js/README.md)
 [<img src="./_images/react_original_wordmark_logo_icon_146375.svg" alt="drawing" width="75"  />](./react-js/README.md)
 [<img src="./_images/reg-expr.png" alt="drawing" width="150"  />](./reg-expr/README.md)
 [<img src="./_images/java_original_wordmark_logo_icon_146459.svg" alt="drawing" width="75"  />](./java/README.md)
@@ -63,7 +61,7 @@ Il CSS (sigla di Cascading Style Sheets, in italiano fogli di stile a cascata), 
 
 <br>
 
-### Javascript
+### Javascript e node.js
 
 | Prerequisiti | Completamento |
 | :---: | :---: |
@@ -72,18 +70,6 @@ Il CSS (sigla di Cascading Style Sheets, in italiano fogli di stile a cascata), 
 Attualmente quasi tutte le pagine web contengono JavaScript, un linguaggio di scripting che viene eseguito dal browser del visitatore
 
 [**vai al corso**](./javascript/README.md)
-
-<br>
-
-### Node.js
-
-| Prerequisiti | Completamento |
-| :---: | :---: |
-| Javascript | 10%|
-
-Node.js è un runtime system open source multipiattaforma orientato agli eventi per l'esecuzione di codice JavaScript, costruita sul motore JavaScript V8 di Google Chrome
-
-[**vai al corso**](./node-js/README.md)
 
 <br>
 
