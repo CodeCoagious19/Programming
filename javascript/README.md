@@ -235,6 +235,10 @@
     - [find, filter, forEach, includes, indexOf](#find-filter-foreach-includes-indexof)
     - [push, pop, shift, unshift](#push-pop-shift-unshift)
     - [sort, splice, slice](#sort-splice-slice)
+  - [setTimeout(), setInterval()](#settimeout-setinterval)
+  - [Eventi Asincroni](#eventi-asincroni)
+  - [Promise, resolve, reject, then](#promise-resolve-reject-then)
+  - [Async, Await](#async-await)
 
 # Lezione 01
 
@@ -3673,6 +3677,10 @@ Console:
     - [find, filter, forEach, includes, indexOf](#find-filter-foreach-includes-indexof)
     - [push, pop, shift, unshift](#push-pop-shift-unshift)
     - [sort, splice, slice](#sort-splice-slice)
+  - [setTimeout(), setInterval()](#settimeout-setinterval)
+  - [Eventi Asincroni](#eventi-asincroni)
+  - [Promise, resolve, reject, then](#promise-resolve-reject-then)
+  - [Async, Await](#async-await)
 
 # Lezione 01
 
@@ -8776,3 +8784,242 @@ users = ["Cosimo", "Luigi", "Mario", "Alessio", "Matteo"];
 let subArray = users.slice(0,2);
 console.log(subArray); //[ 'Cosimo', 'Luigi' ]
 ```
+
+## setTimeout(), setInterval()
+
+la `setTimeout()` chiama la funzione passata come argomento dopo un certo valore di tempo specificato come argomento. La `setInterval()` invece chiama la funzione passata come argomento periodicamente con il periodo specificato come argomento
+
+```js
+//setTimeout()
+setTimeout(() => {
+  console.log('start');
+}, 1000);
+
+let i = 0;
+//setTimeout()
+setInterval(() => {
+  console.log(i++);
+}, 1000);
+
+
+/*
+start
+0
+1
+2
+3
+4
+5
+*/
+```
+
+## Eventi Asincroni
+
+```js
+// ----------------------------------> t
+//         x          x
+
+const fs = require('fs');
+//chiamata asincrona..
+//viene passato un path e una callback, una funzione
+//la callback viene chiamata una volta che la lettura è completata
+//readFile restituisce un buffer
+fs.readFile('./data.txt', function(err, data){
+  console.log(data.toString());
+});
+
+console.log('end!!');
+
+/*
+end!!
+hello!
+*/
+```
+
+## Promise, resolve, reject, then
+
+```js
+const fs = require('fs');
+
+//Promise
+//costrutto che permette di trattare le chiamate asicnrone come se fossero sincrone
+//non perdendo quindi il concetto di sequenzialità di un programma
+function readFile(fileName){
+  return new Promise(function(resolve, reject){
+    fs.readFile(fileName, function(err, data){
+      if (err){
+        reject(err);
+        return;
+      }
+      resolve(data);
+    })
+  });
+}
+
+let file = readFile('./data.txt');
+console.log(file); //Promise { <pending> }
+
+//metodo .then della Promise
+//Come primo parametro accetta una funzione che viene invocata se la Promise evolve in resolve
+//Come secondo parametro accetta una funzione che viene invocata se la Promise evolve in reject
+file.then(function(data){
+  console.log(data.toString()); //hello!
+}, function(err){
+  console.log(err)
+})
+```
+
+Vediamo lo stesso esempio ma con qualche `console.log()`
+
+```js
+const fs = require('fs');
+
+console.log('start'); //1
+//Promise
+//costrutto che permette di trattare le chiamate asicnrone come se fossero sincrone
+//non perdendo quindi il concetto di sequenzialità di un programma
+function readFile(fileName){
+  console.log('readFIle() inizio esecuzione'); //3 
+  return new Promise(function(resolve, reject){
+    console.log("promise(), prima dell'invocazione del metodo async readFile"); //4
+    fs.readFile(fileName, function(err, data){
+      console.log("promise(), esecuzione callback del metodo async readFile"); //8
+      if (err){
+        reject(err);
+        return;
+      }
+      resolve(data);
+    })
+  });
+}
+console.log("Prima dell'invocazione di readFile()");  //2
+let file = readFile('./data.txt');
+console.log(file); //Promise { <pending> } //5
+console.log("Dopo l'invocazione di readFile()"); //6
+
+//metodo .then della Promise
+//Come primo parametro accetta una funzione che viene invocata se la Promise evolve in resolve
+//Come secondo parametro accetta una funzione che viene invocata se la Promise evolve in reject
+console.log(".then(), invocazione del metodo della Promise"); //7
+file.then(function(data){
+  console.log(".then(), esecuzione del metodo della Promise"); //9
+  console.log(data.toString()); //hello! //10
+}, function(err){
+  console.log(err)
+})
+
+/*
+start
+Prima dell'invocazione di readFile()
+readFIle() inizio esecuzione
+promise(), prima dell'invocazione del metodo async readFile
+Promise { <pending> }
+Dopo l'invocazione di readFile()
+.then(), invocazione del metodo della Promise
+promise(), esecuzione callback del metodo async readFile
+.then(), esecuzione del metodo della Promise
+hello!
+*/
+```
+
+## Async, Await
+
+Vediamo lo stesso esempio di prima inserendo la chiamata a `readFile` in un contesto di chiamata asincrona
+
+```js
+const fs = require('fs');
+
+//Promise
+//costrutto che permette di trattare le chiamate asicnrone come se fossero sincrone
+//non perdendo quindi il concetto di sequenzialità di un programma
+function readFile(fileName){
+  return new Promise((resolve, reject) => {
+    fs.readFile(fileName, (err, data) => {
+      if (err){
+        reject(err);
+        return;
+      }
+      resolve(data);
+    })
+  });
+}
+
+let main = async function(){
+  console.log('start');
+  readFile('./data.txt').then( data => {
+    console.log(data.toString());
+  });
+  console.log('end');
+}
+
+main();
+
+/*
+start
+end
+hello!
+*/
+```
+
+Se però sfruttiamo anche la parola chiave `await`
+
+```js
+const fs = require('fs');
+
+//Promise
+//costrutto che permette di trattare le chiamate asicnrone come se fossero sincrone
+//non perdendo quindi il concetto di sequenzialità di un programma
+function readFile(fileName){
+  return new Promise((resolve, reject) => {
+    fs.readFile(fileName, (err, data) => {
+      if (err){
+        reject(err);
+        return;
+      }
+      resolve(data);
+    })
+  });
+}
+
+let main = async function(){
+  console.log('start');
+  await readFile('./data.txt').then(data => {
+    console.log(data.toString());
+  })
+  console.log('end');
+}
+
+main();
+```
+
+Oppure, visto che ritorna una `Promise`, posso anche fare così:
+
+```js
+const fs = require('fs');
+
+//Promise
+//costrutto che permette di trattare le chiamate asicnrone come se fossero sincrone
+//non perdendo quindi il concetto di sequenzialità di un programma
+function readFile(fileName){
+  return new Promise((resolve, reject) => {
+    fs.readFile(fileName, (err, data) => {
+      if (err){
+        reject(err);
+        return;
+      }
+      resolve(data);
+    })
+  });
+}
+
+let main = async function(){
+  console.log('start');
+  let data = await readFile('./data.txt');
+  console.log(data.toString());
+  console.log('end');
+}
+
+main();
+```
+
+In questo modo ottengo un comportamento sequenziale del codice
