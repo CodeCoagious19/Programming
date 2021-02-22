@@ -239,6 +239,9 @@
   - [Eventi Asincroni](#eventi-asincroni)
   - [Promise, resolve, reject, then](#promise-resolve-reject-then)
   - [Async, Await](#async-await)
+  - [Promise.all() e Promise.race()](#promiseall-e-promiserace)
+  - [Set e Map](#set-e-map)
+  - [Map](#map)
 
 # Lezione 01
 
@@ -3681,6 +3684,9 @@ Console:
   - [Eventi Asincroni](#eventi-asincroni)
   - [Promise, resolve, reject, then](#promise-resolve-reject-then)
   - [Async, Await](#async-await)
+  - [Promise.all() e Promise.race()](#promiseall-e-promiserace)
+  - [Set e Map](#set-e-map)
+  - [Map](#map)
 
 # Lezione 01
 
@@ -9023,3 +9029,227 @@ main();
 ```
 
 In questo modo ottengo un comportamento sequenziale del codice
+
+Vediamo un esempio più completo
+
+```js
+const fs = require('fs');
+
+//Promise
+//costrutto che permette di trattare le chiamate asicnrone come se fossero sincrone
+//non perdendo quindi il concetto di sequenzialità di un programma
+function readFile(fileName){
+  return new Promise((resolve, reject) => {
+    fs.readFile(fileName, (err, data) => {
+      if (err){
+        reject(err);
+        return;
+      }
+      resolve(data);
+    })
+  });
+}
+
+function wait(time){
+  return new Promise((resolve,reject) => {
+    setTimeout(() => {
+      resolve()
+    }, time);
+  })
+}
+
+let main = async function(){
+  console.log('start');
+  console.log('attendi 5 sec..');
+  await wait(5000);
+  console.log('sono passati 5 sec');
+  let data = await readFile('./data.txt');
+  console.log('attendi 5 sec..');
+  await wait(5000);
+  console.log('sono passati 5 sec');
+  console.log(data.toString());
+  console.log('end');
+}
+
+main();
+
+/*
+start
+attendi 5 sec..
+sono passati 5 sec
+attendi 5 sec..
+sono passati 5 sec
+hello!
+end  
+*/
+```
+
+
+## Promise.all() e Promise.race()
+
+Le `Promise.all()` accettano come parametro un array di Promise
+
+```js
+function wait(time, string){
+  return new Promise((resolve,reject) => {
+    setTimeout(() => {
+      resolve(string)
+    }, time);
+  })
+}
+
+//Pormise.all()
+//Cercano come argomento un array di Promise
+
+Promise.all([wait(1000, 1), wait(2000, 2), wait(3000, 3)]).then( value => {
+  console.log(value);
+})
+
+/*
+[ 1, 2, 3 ]
+*/
+```
+
+Dopo `3` secondi stampa a video `[ 1, 2, 3 ]` cioè il valore delle `Promise` dopo che tutte sono state risolte.
+
+La `Promise.race()` invece ritorna il valore della `Promise` che viene risolta per prima
+
+```js
+function wait(time, string){
+  return new Promise((resolve,reject) => {
+    setTimeout(() => {
+      resolve(string)
+    }, time);
+  })
+}
+
+//Pormise.all()
+//Cercano come argomento un array di Promise
+
+Promise.race([wait(1000, 1), wait(2000, 2), wait(3000, 3)]).then( value => {
+  console.log(value);
+})
+```
+
+## Set e Map
+
+```js
+let set = new Set();
+
+set.add(56);
+set.add('test');
+set.add('34');
+
+//con i set è possibile aggiungere univocamente un valore
+//questo significa che aggiungendo più volte lo stesso valore non avrà effetto
+set.add(34);
+set.add(34);
+set.add(34);
+
+console.log(set.size); //4
+```
+
+```js
+let set = new Set([32, '45', 5,6,7,8,8,8]);
+
+console.log(set.size); //6
+
+set.delete(32);
+
+console.log(set.size); //5
+
+console.log(set.has(6)); //true
+
+console.log('-----');
+set.forEach((value,key, set) => {
+  console.log(value);
+  console.log(key);
+  console.log(set.size);
+
+  console.log('-----');
+})
+
+/**
+-----
+45
+45
+5
+-----
+5
+5
+5
+-----
+6
+6
+5
+-----
+7
+7
+5
+-----
+8
+8
+5
+-----
+*/
+```
+
+E' possibile convertire un `set` in un array con lo `spread` operator.
+
+```js
+let set = new Set([32, '45', 5,6,7,8,8,8]);
+
+let array = [...set];
+
+console.log(array); //[ 32, '45', 5, 6, 7, 8 ]
+
+```
+
+In questo caso l'array non conterrà elementi duplicati. E' quindi possibile usare il set per rimuovere i duplicati all'interno di un array
+
+```js
+function deleteDuplicates(items){
+  return[...new Set(items)];
+}
+
+console.log(deleteDuplicates([0,1,2,3,3,3,3,4,5,6,7,7,7,7])); //[0, 1, 2, 3, 4, 5, 6, 7]
+```
+
+
+## Map
+
+```js
+let map = new Map()
+
+map.set('user1', 'Cosimo');
+map.set('user2', 'Simone');
+
+console.log(map); //Map(2) { 'user1' => 'Cosimo', 'user2' => 'Simone' }
+
+console.log(map.get('user1')); //Cosimo
+
+console.log(map.has('user1')); //true
+
+map.delete('user2');
+
+console.log(map.has('user2')); //false
+
+map.clear(); //svuota la mappa
+
+console.log(map.size); //0
+```
+
+```js
+let map = new Map([['key1',1], ['key2',2]]);
+
+console.log(map.get('key1')); //1
+
+map.forEach((value, key) => {
+  console.log(key, value); 
+})
+
+/*
+key1 1
+key2 2
+*/
+```
