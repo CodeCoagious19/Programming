@@ -15,6 +15,8 @@
 - [Props](#props)
 - [Stato](#stato)
 - [Hooks](#hooks)
+  - [npx ??](#npx-)
+  - [Funzioni o componenti?](#funzioni-o-componenti)
 
 # React.js in pratica
 
@@ -884,3 +886,12 @@ function App(){
 export default App;
 ```
 
+## npx ??
+
+Serve per installare script in modo locale quindi senza il bisogno di installare dei pacchetti globalmente e consente di avere la versione più aggiornata. 
+
+In questo caso può essere utilizzato per lo script `create-react-app` senza il bisogno di installare lo script globalmente. Alternativamente avrei dovuto fare `npm install - g create-react-app`. Dopodichè per creare una nuova applicazione react bata digitare `create-react-app my-app` e creerà una nuova applicazione react all'interno della folder `my-app`
+
+## Funzioni o componenti?
+
+Per gestire lo stato dell'applicazione, tempo fa era necessario l'uso delle classi.. Da quando sono stati introdotti gli `HOOCKS` è possibile gestire lo stato con le funzioni. Sarebbe comunque meglio vedere entrambi i modi poichè alcuni pezzi di codici sono scritti con le classi, altri con gli `HOOCKS`
