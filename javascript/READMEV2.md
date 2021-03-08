@@ -8,24 +8,22 @@
   - [Versioni di Javascript](#versioni-di-javascript)
 - [Lezione 02](#lezione-02)
   - [Primo script Javascript all'interno del browser web](#primo-script-javascript-allinterno-del-browser-web)
+    - [Javascript all'interno del tag `script`](#javascript-allinterno-del-tag-script)
+    - [Javascript all'interno di un file `.js`](#javascript-allinterno-di-un-file-js)
   - [Primo script Javascript con node.js](#primo-script-javascript-con-nodejs)
-- [Lezione 04](#lezione-04)
   - [Console](#console)
   - [Alert & prompt](#alert--prompt)
   - [Commenti](#commenti)
-- [Lezione 05](#lezione-05)
   - [Introduzione al DOM](#introduzione-al-dom)
   - [Introduzione alla libreria JQuery](#introduzione-alla-libreria-jquery)
   - [DOM ed Eventi](#dom-ed-eventi)
-- [Lezione 06](#lezione-06)
   - [Variabili Javascript](#variabili-javascript)
   - [Tipi di dati in JS](#tipi-di-dati-in-js)
   - [Dati nativi](#dati-nativi)
   - [Reference type](#reference-type)
-  - [Alcune regole generali per dichiarazione di variabili](#alcune-regole-generali-per-dichiarazione-di-variabili)
+  - [Alcune best practice per dichiarazione di variabili](#alcune-best-practice-per-dichiarazione-di-variabili)
   - [Reference type Const](#reference-type-const)
   - [Approfondimento Null - undefined - NaN](#approfondimento-null---undefined---nan)
-- [Lezione 07](#lezione-07)
   - [Stringhe](#stringhe)
   - [Opearotri, Proprietà e Metodi su stringhe](#opearotri-proprietà-e-metodi-su-stringhe)
   - [Operatori](#operatori)
@@ -117,15 +115,15 @@
   - [Introduzione ai Metodi](#introduzione-ai-metodi)
 - [Lezione 03](#lezione-03)
   - [Costruttore](#costruttore)
-- [Lezione 04](#lezione-04-1)
+- [Lezione 04](#lezione-04)
   - [Ereditarietà](#ereditarietà)
-- [Lezione 05](#lezione-05-1)
+- [Lezione 05](#lezione-05)
   - [Ereditarietà - Shadowing](#ereditarietà---shadowing)
   - [Ereditarietà classica](#ereditarietà-classica)
-- [Lezione 06](#lezione-06-1)
+- [Lezione 06](#lezione-06)
   - [THIS](#this)
   - [Object - Variabili Statiche (condivise)](#object---variabili-statiche-condivise)
-- [Lezione 07](#lezione-07-1)
+- [Lezione 07](#lezione-07)
   - [Introduzione For In](#introduzione-for-in)
   - [Oggetto Date()](#oggetto-date)
 - [Lezione 08](#lezione-08-1)
@@ -271,13 +269,9 @@ In questo corso tratteremo in maniera approfondita ES6.
 ## Primo script Javascript all'interno del browser web
 
 Come integro codice javascript all'interno di una pagina html?
-- Modo 1: E' possibile inserire codice Javascript direttamente all'interno della pagina html tramite il tag `<script></script>`.
-- Modo 2: E' possibile creare un collegamento con un file esterno con estensione `.js` che rappresenterà il file contente codice Javascript. Per creare tale collegamento è necessario inserire prima della chiusura del `body` il seguente link-tag
-```html
-<script src="main.js"></script>
-```
 
-**Modo 1: Codice Javascript interno alla pagina html**<br>
+### Javascript all'interno del tag `script`
+E' possibile inserire codice Javascript direttamente all'interno della pagina html tramite il tag `<script>`.
 
 ```html
 <!--File index.html-->
@@ -297,7 +291,8 @@ Come integro codice javascript all'interno di una pagina html?
 </html>
 ```
 
-**Modo 2: Collegamento al file javascript main.js** <br>
+### Javascript all'interno di un file `.js`
+E' possibile creare un collegamento con un file esterno con estensione `.js` che rappresenterà il file contente codice Javascript. 
 
 ```html
 <!--File index.html-->
@@ -341,7 +336,6 @@ Vedrai stampato sul terminale:
 hello
 ```
 
-# Lezione 04
 
 ## Console
 
@@ -384,7 +378,8 @@ Una lista di tutti i metodi applicabili all'oggetto si trova alla pagina [MDN - 
 
 ## Alert & prompt
 
-`alert()` mostra una finestra di avviso contenente il testo specificato mentre `prompt()` mostra una finestra di dialogo che chiede all'utente di inserire del testo.
+- `alert(messaggio)` mostra una finestra di avviso contenente il testo specificato
+- `prompt()` mostra una finestra di dialogo che consente all'utente di inserire del testo e memorizzarlo in una variabile del programma
 
 ```html
 <!DOCTYPE html>
@@ -412,7 +407,7 @@ Approfondimenti sul metodo `alert()` dell'oggetto `Window` li trovate su [MDN - 
 
 ## Commenti
 
-I commenti sono linee testuali non processate dall'interprete utili per la documentazione del codice. In javascritp ci sono due tipi di sintassi permesse per l'inserimento dei commenti.
+
 - `// comment`: per commenti inline
 - `/* comment */`: per commenti su linee multiple
 
@@ -421,28 +416,20 @@ I commenti sono linee testuali non processate dall'interprete utili per la docum
 
 /*
 multi line comment
-console.log('ciao a tutti');
 */
 ```
 
-# Lezione 05
-
-**Attenzione!**<br>
-Questa lezione sembrerà troppo approfondita e allo stesso tempo vaga considerato l'argomento che sto per trattare. Non preoccuparti se non capisci granchè, cerca comunque di cogliere il meccanismo di funzionamento dell'esempio che riporto in fondo alla lezione. Più avanti tratteremo questi argomenti in modo più dettagliato e diventerà tutto chiaro. Preferisco comunque affrontare questi argomenti "avanzati" fin da subito per evitare di basare l'apprendimento di Javascript sul solo comando `console.log()`. Mi sembra giusto passare all'interazione con html fin da subito per intuire con la pratica le potenzialità di questo linguaggio
 
 ## Introduzione al DOM
 
-E' utile introdurre fin da subito il concetto di DOM per scrivere codice Javascript in grado di interagire con la pagina html altrimenti saremmo costretti ad utilizzare per tutto il corso `console.log()` e non vederne un'applicazione pratica.
 
-In informatica il Document Object Model (spesso abbreviato come DOM), letteralmente modello a oggetti del documento, è una forma di rappresentazione dei documenti strutturati come modello orientato agli oggetti. È lo standard ufficiale del W3C per la rappresentazione di documenti strutturati in maniera da essere neutrali sia per la lingua che per la piattaforma. È inoltre la base per una vasta gamma di interfacce di programmazione delle applicazioni, alcune di esse standardizzate dal W3C.
-
-Nativamente supportato dai browser per modificare gli elementi di un documento HTML, DOM è un modo per accedere e aggiornare dinamicamente il contenuto, la struttura e lo stile dei documenti. Per le numerose incompatibilità dovute al diverso tipo di gestione di DOM dai vari browser, il W3C ha stabilito delle specifiche standard.
+Nativamente supportato dai browser per modificare gli elementi di un documento HTML, DOM è un modo per accedere e aggiornare dinamicamente il contenuto, la struttura e lo stile dei documenti. 
 
 ![](./images/DOM.png)
 
 [Wikipedia - Document Object Model](https://it.wikipedia.org/wiki/Document_Object_Model)
 
-Nelle lezioni precedenti abbiamo già utilizzato il concetto di DOM. Un esempio è la stampa diretta sulla pagina html:
+Hai già visto:
 
 ```js
 document.write("ciao mondo");
@@ -453,24 +440,23 @@ Il "comando" `document.write()` è in realtà un **oggetto Javscript** `document
 
 ## Introduzione alla libreria JQuery
 
-Vediamo anche il metodo per aggiungere librerie esterne, necessario qualora volessimo utilizzare funzioni particolari di Javascript non presenti nel linguaggio standard. Installeremo JQuery perchè è una libreria popolare molto utilizzata proprio per la manipolazione del DOM ovvero degli elementi (oggetti) html.
+Vediamo anche come aggiungere librerie esterne, per aggiungere quindi funzionalità al linguaggio standard. Installeremo JQuery perchè è una libreria popolare molto utilizzata proprio per la manipolazione del DOM ovvero degli elementi html.
 
-jQuery è una libreria JavaScript per applicazioni web, distribuita come software libero, distribuito sotto i termini della Licenza MIT. Nasce con l'obiettivo di semplificare la selezione, la manipolazione, la gestione degli eventi e l'animazione di elementi DOM in pagine HTML, nonché semplificare l'uso di funzionalità AJAX, la gestione degli eventi e la manipolazione dei CSS.
+- Scarica [JQuery](https://jquery.com/download/) e copialo nella root del progetto, dopodichè dovrai creare un collegamento al file attarverso:
 
-Le sue caratteristiche permettono agli sviluppatori JavaScript di astrarre le interazioni a basso livello con i contenuti delle pagine HTML. L'approccio di tipo modulare di jQuery consente la creazione semplificata di applicazioni web e contenuti dinamici versatili. Nel 2020, jQuery risulta la libreria JavaScript più utilizzata in Internet, ovvero è presente nel 74,4% dei primi 10 milioni di siti Internet più popolari secondo W3Techs.
-
-[Wikipedia - JQuery](https://it.wikipedia.org/wiki/JQuery)
-
-Scaricate quindi la libreria JQeury da [JQuery - download](https://jquery.com/download/)
+```html
+ <script type="text/javascript" src="jquery-3.5.1.min.js"></script>
+```
 
 Una volta scaricato il file è necessario copiarlo nella root del progetto e creare un collegamento al file html. 
-Vediamo le funzioni base della libreria JQuery. Le approfondiremo quando necessario più avanti nel corso
+
+Vediamo alcune funzionalità base offerte della libreria JQuery per la manipolazione del DOM. Le approfondiremo quando necessario più avanti nel corso
 
 - `$()`: Selettore di elementi html. E' possibile selezionare un elemento tramite il suo `id`, la sua `classe`, un `attributo`..
 
 Alcuni metodi:
 
-- `val()`: legge/scrive l'attributo `value` dell'elemento selezionato
+- `val()`: legge/scrive l'attributo `value` dell'elemento html selezionato
 - `click(functionName)`: aggiunge l'evento click all'elemento selezionato e chiama la funzione `functionName`
 
 Vediamo un esempio:
@@ -524,12 +510,10 @@ Vediamo un esempio:
 
 ![](./images/JQuery-esempio.gif)
 
-**ATTENZIONE:** Il simbolo `$` è un alias che sta per `jQuery`.E' importante saperlo perchè ci sono altre librerie che utilizzano il simbolo `$` e potrebbero quindi generare un conflitto. Per ovviare a ciò è possibile utilizzare il nome originale `jQuery` al posto del suo alias `$`.
-
-Con il comando `$.noConflict()` è possibile eliminare la definizione dell' alias `$` evitando quindi conflitti di ogni genere. A quel punto dovremmo però utilizzare necessariamente `jQuery` al posto di `$`
+**ATTENZIONE:** Il simbolo `$` è un alias che sta per `jQuery`. Puoi quindi utilizzare `jQuery` al posto di `$` qualora il simbolo `$` fosse utilizzato per unn'altra definizione
 
 ## DOM ed Eventi
-Appena la pagina va in esecuzione il browser deve costruire il DOM ma nel contempo potrebbe già partire il codice Javascript e l'esecuzione potrebbe portare a qualche errore in certi casi a causa di asincronismo. L'esempio di sopra potrebbe essere uno di questi. Per ovviare a ciò è necessario racchiudere l'evento all'interno di una funzione anonima:
+Appena la pagina html viene eseguita il browser parte con la costruzione del DOM per metterlo a disposizione di Javascript. Nel contempo potrebbe tuttavia scattare l'evento `$("#btn-ok").click(cambiaNome)` e mandare in errore il programma. Per evitare che questo accada è necessario abilitari gli eventi solo dopo che la costruzione del DOM è avvenuta con successo. Per far cio' si utilizza una **funzione anonima** con la seguente sintassi
 
 ```js
 $( function(){
@@ -537,7 +521,7 @@ $( function(){
 });
 ```
 
-Vediamolo applicato all'esempio di prima:
+Riscrivendo il codice abbiamo:
 
 ```html
 <!DOCTYPE html>
@@ -584,7 +568,7 @@ Vediamolo applicato all'esempio di prima:
 </body>
 </html>
 ```
-In questo modo si ha la sicurezza che il codice javascript e quindi l'evento possa scattare solo dopo la creazione del DOM. Il che non significa che comprende il caricamento di tutti gli oggetti come immagini, video o alcune formattazioni testuali ma solo la struttura html come oggetto Javascript che è tuttavia sufficiente al corretto funzionamento del codice Javascript. <br>
+
 Altri metodi equivalenti:
 
 ```js
@@ -599,11 +583,10 @@ $(window).ready(function () {
 })
 ```
 
-# Lezione 06
 
 ## Variabili Javascript
 
-Le variabili sono utilizzate per rappresentano dei valori attraverso un nome simbolico chiamato **identificatore**.
+Le variabili sono utilizzate per rappresentare valori attraverso un nome simbolico chiamato **identificatore**.
 
 ```js
 var cognome = 'Rossi';
@@ -615,12 +598,12 @@ pi = 3.14;
 
 Esistono tre tipi di `keyword` per la dichiarazione di variabili/costanti in JS.
 
-- `var`: Questa sintassi può essere usata per dichiarare sia variabili locali che globali
-- `let`: Introdotta nelle nuove versioni di JS può essere usata per dichiarare una variabile locale visibile in un blocco.
+- `var`: Sintassi obsoleta.
+- `let`: Introdotta nelle nuove versioni di JS, è usata per dichiarare una variabile locale visibile in un blocco.
 - `const`: Introdotta nelle nuove versioni di JS è utilizzata per creare una costante in sola lettura.
-- Possono inoltre dichiarare una variabile senza nessuna `keyword` (come fatto negli esempi precedenti) ma è da evitare perchè sarà l'interprete ad assegnare a tale variabile delle proprietà
+- Possono inoltre dichiarare una variabile senza nessuna `keyword` (come fatto negli esempi precedenti) ma è da evitare perchè sarà l'interprete ad assegnare a tale variabile una qualificatore
 
-Per le variabili dichiarate con `let/var` valgono le seguenti regole:
+Per le variabili dichiarate con `let` valgono le seguenti regole:
 
 - Posso dichiarare una variabile e non inizializzarla. Se non inizializzata verrà attribuita ad essa il valore `undefined`
 - Posso assegnare il valore di una variabile successivamente nel programma e modificarne il contenuto a piacimento (Variable mutation)
@@ -645,7 +628,7 @@ const myVar2;    //EEROR!! - solo dichiarazione
 
 **Quando usare const, let o var**
 
-E' sempre meglio usare `const` per tutte le strutture dati che non cambiano nel tempo, è più sicuro. E' necessario usare `let` o `var` solo per le variabili o strutture dati che cambiano valore nel tempo. Tra `let` e `var` è preferibile usare `let` per mantenere la regola della visibilità all'interno di un blocco (l'argomento visibilità delle variabili verrà trattato più avanti).
+E' sempre meglio usare `const` per tutte le strutture dati che non cambiano nel tempo, è più sicuro. E' necessario usare `let` o solo per le variabili o strutture dati che cambiano valore nel tempo.
 
 ## Tipi di dati in JS
 
@@ -663,9 +646,11 @@ L'ultimo standard ECMAScript definisce sette tipi di dati:
   - `Object`
   - `Array`
 
-**NOTA:** `typeof` è una proprietà di Javascript che stampa (ritorna) il tipo di un oggetto o una variabile.
+**NOTA:** `typeof` è una proprietà di Javascript che ritorna il tipo di un oggetto o una variabile.
 
 ## Dati nativi
+
+Javascript assegna il tipo a una variabile in modo dinamico ovvero in fase di dichiarazione della stessa. Vediamo degli esempi
 
 ```js
 //String
@@ -693,8 +678,11 @@ const mySymbol = Symbol();
 
 ## Reference type 
 
-Gli array sono tipi di dato *Reference Type* utilizzati per raggruppare diversi dati appartenenti alla stessa categoria, ovvero un insieme di dati omogenei.
-Gli object anch'essi *Reference Type* sono utilizzati per raggruppare qualità / caratteristiche di una struttura dati più complessa, in genere eterogenea.
+Tra i reference type troviamo:
+
+- **array**: utilizzati principalmente per raggruppare diversi elementi appartenenti alla stessa categoria.
+
+- **oggetti**: sono utilizzati per raggruppare qualità / caratteristiche di una struttura dati più complessa, in genere eterogenea.
 
 ```js
 //Arrays
@@ -716,15 +704,13 @@ const persona = {
 console.log(persona.nome); //simone
 ```
 
-Formalizzeremo più avanti sia la struttura dei dati primitivi sia la struttura dei reference type.  
 
-## Alcune regole generali per dichiarazione di variabili
 
-- Usare sempre dei nomi significativi e esplicativi per le variabili
+## Alcune best practice per dichiarazione di variabili
+
 - Usare sempre il camelCase quando la variabile è composta da due o più parole
-- Non si può usare un numero, un `#`, una `@`come inizio del nome di una variabile. E' accettanto invece il simbolo`$
-- Non si possono utilizzare, come identificatore, le keyword native di JS come: `function`, `if`, `delete` ..
-- E' possibile dichiarare più variabili/costanti nello stesso statement, separando le dichiarazioni con una virgola.
+- Non si può usare un numero, un `#`, una `@`come inizio del nome di una variabile. E' accettanto invece il simbolo `$`
+- Non si possono utilizzare, come identificatore, le keyword native di JS come: `function`, `if`, `delete`, `new`, `while` ..
 
 Vediamo qualche esempio qua sotto:
 
@@ -740,8 +726,7 @@ const na = 3,
 
 ## Reference type Const
 
-**ATTENZIONE:** Se un oggetto/array è dichiarato `const` non significa che non è possibile modificare i campi all'interno ma solo che non posso cambiare la natura dell'oggetto/array. QUesto proprio perchè gli oggetti/arrays sono, a differenza dei dati primitivi, dei reference type. Il loro nome rappresenta solo l'indirizzo per accedere al dato in memoria e non il dato in memoria. Questo concetto per adesso può sembrare poco chiaro ma i reference type verranno trattati ampiamente nelle sezioni più avanti.
-
+**ATTENZIONE:** Se un reference type (array o oggetto) è dichiarato `const` non significa che non è possibile modificare i campi all'interno ma solo che non posso cambiare la natura del reference type. Il nome di un reference type rappresenta solo l'indirizzo in memoria della struttura.
 ```js
 const myObj {
     nome: 'simone',
@@ -750,7 +735,7 @@ const myObj {
 }
 
 myObj.nome = 'luca'; //OK
-myOby = 5;           //ERROR perchè in questo caso cambierei la natura dell'oggetto. Da oggetto diventerebbe un <number>
+myOby = 5;           //ERROR, con const un <oggetto> non può diventare dinamicamente un <number>
 
 let myObj2 {
     ram: 4,
@@ -759,12 +744,10 @@ let myObj2 {
 }
 
 myObj2.ram = 6;   //OK
-myObj2 = 18;      //OK è permesso in JS. Ecco perchè si dovrebbe usare <const> invece di <let> quando è possibile
+myObj2 = 18;      //OK con let un <oggetto> può tramutarsi dinamicamente in un <number>
 ```
 
 ## Approfondimento Null - undefined - NaN
-
-Questa parte per adesso potrebbe essere troppo "approfondita", è possibile saltarla senza pregiudicare il corso
 
 - `undefined`: Si verifica quando un oggetto o una variabile non assume nessun valore
 - `null`: E' un valore attributo in fase di programmazione per identificare che un dato oggetto o variabile non assume nessun valore. Differisce da `undefined` poichè `null` è previsto deliberatamente in fase di programmazione
@@ -775,7 +758,7 @@ Esempio 1:
 console.log(null === undefined); //false
 ```
 
-**NOta:** Per controllare gli stati di *null* e *undefined* è possibile utilizzare direttamente le keyword `null` e `undefined` come nell'esempio sopra illustrato. La stessa cosa non vale per *NaN*. In questo caso conviene utilizzare `IsNaN()`.
+**Nota:** Per controllare gli stati di *null* e *undefined* è possibile utilizzare direttamente le keyword `null` e `undefined` come nell'esempio sopra illustrato. La stessa cosa non vale per *NaN*. In questo caso si utilizza `IsNaN()`.
 
 
 ```js
@@ -783,7 +766,6 @@ console.log(null === undefined); //false
 console.log(NaN != NaN); //true !!!!
 ```
  
-# Lezione 07
 
 ## Stringhe
 
@@ -3389,24 +3371,22 @@ Console:
   - [Versioni di Javascript](#versioni-di-javascript)
 - [Lezione 02](#lezione-02)
   - [Primo script Javascript all'interno del browser web](#primo-script-javascript-allinterno-del-browser-web)
+    - [Javascript all'interno del tag `script`](#javascript-allinterno-del-tag-script)
+    - [Javascript all'interno di un file `.js`](#javascript-allinterno-di-un-file-js)
   - [Primo script Javascript con node.js](#primo-script-javascript-con-nodejs)
-- [Lezione 04](#lezione-04)
   - [Console](#console)
   - [Alert & prompt](#alert--prompt)
   - [Commenti](#commenti)
-- [Lezione 05](#lezione-05)
   - [Introduzione al DOM](#introduzione-al-dom)
   - [Introduzione alla libreria JQuery](#introduzione-alla-libreria-jquery)
   - [DOM ed Eventi](#dom-ed-eventi)
-- [Lezione 06](#lezione-06)
   - [Variabili Javascript](#variabili-javascript)
   - [Tipi di dati in JS](#tipi-di-dati-in-js)
   - [Dati nativi](#dati-nativi)
   - [Reference type](#reference-type)
-  - [Alcune regole generali per dichiarazione di variabili](#alcune-regole-generali-per-dichiarazione-di-variabili)
+  - [Alcune best practice per dichiarazione di variabili](#alcune-best-practice-per-dichiarazione-di-variabili)
   - [Reference type Const](#reference-type-const)
   - [Approfondimento Null - undefined - NaN](#approfondimento-null---undefined---nan)
-- [Lezione 07](#lezione-07)
   - [Stringhe](#stringhe)
   - [Opearotri, Proprietà e Metodi su stringhe](#opearotri-proprietà-e-metodi-su-stringhe)
   - [Operatori](#operatori)
@@ -3498,15 +3478,15 @@ Console:
   - [Introduzione ai Metodi](#introduzione-ai-metodi)
 - [Lezione 03](#lezione-03)
   - [Costruttore](#costruttore)
-- [Lezione 04](#lezione-04-1)
+- [Lezione 04](#lezione-04)
   - [Ereditarietà](#ereditarietà)
-- [Lezione 05](#lezione-05-1)
+- [Lezione 05](#lezione-05)
   - [Ereditarietà - Shadowing](#ereditarietà---shadowing)
   - [Ereditarietà classica](#ereditarietà-classica)
-- [Lezione 06](#lezione-06-1)
+- [Lezione 06](#lezione-06)
   - [THIS](#this)
   - [Object - Variabili Statiche (condivise)](#object---variabili-statiche-condivise)
-- [Lezione 07](#lezione-07-1)
+- [Lezione 07](#lezione-07)
   - [Introduzione For In](#introduzione-for-in)
   - [Oggetto Date()](#oggetto-date)
 - [Lezione 08](#lezione-08-1)
