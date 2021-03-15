@@ -263,3 +263,110 @@ Puoi usare:
 ## Primi passi con javascript ed espruino
 
 Puoi dare un'occhiata al [tutorial](https://www.espruino.com/Quick+Start+Code)
+
+## Comandi basilari
+
+```js
+1+2
+```
+
+```js
+//set D16 pin to high
+digitalWrite(D16,1)
+```
+
+```js
+//read D16 pin
+digitalRead(D16);
+```
+
+```js
+//Set D16 to high
+//after 200ms Set D16 to low
+function flash() {
+  digitalWrite(D16,1);
+  setTimeout(function() {
+    digitalWrite(D16,0);
+  }, 200);
+}
+
+flash();
+```
+
+
+```js
+function flash() {
+  digitalWrite(D16,1);
+  setTimeout(function() {
+    digitalWrite(D16,0);
+  }, 200);
+}
+
+if (digitalRead(D15)) flash();
+```
+
+```js
+//When press D15, flash will be executed  
+
+function flash() {
+  digitalWrite(D16,1);
+  setTimeout(function() {
+    digitalWrite(D16,0);
+  }, 200);
+}
+
+setInterval(function() {
+  if (digitalRead(D15)) flash();
+}, 500);
+```
+
+```js
+
+var Hh, Mm, Ss, mm;
+function initOLED(){
+  oled.setFont8x12();
+  oled.drawString("init OLDED 789");
+  oled.flip();
+}
+
+require("Font8x12").add(Graphics);
+I2C1.setup({ scl: D5, sda: D4 });
+var oled = require("SSD1306").connect(I2C1, initOLED, { rst: D16, height : 32, width:128 });
+
+function orario(){
+  var data = new Date();
+  Hh = data.getHours() + ":";
+  Mm = data.getMinutes() + ":";
+  Ss = data.getSeconds();
+  oled.clear();
+  oled.drawString("Ora:"); 
+  oled.drawString(Hh + Mm + Ss,0,16); 
+  oled.flip();
+}
+setInterval(orario,1000);
+```
+
+## Led blink
+
+```js
+var  on = false;
+var pin = D16;
+setInterval(function() {
+  on = !on;
+  digitalWrite(pin, on);
+}, 500);
+```
+
+```js
+function start(){
+  g.setFont8x12();
+  g.drawString("Ciao mondo");
+  g.flip();
+  console.log(g.getFonts());
+}
+
+require("Font4x4Numeric").add(Graphics);
+require("Font8x12").add(Graphics);
+I2C1.setup({ scl: D5, sda: D4 });
+var g = require("SSD1306").connect(I2C1, start, { rst: D16, height : 32, width:128   });
+```
