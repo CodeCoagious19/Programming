@@ -1,36 +1,50 @@
 # React.js
 
 - [React.js](#reactjs)
+- [Prerequisiti](#prerequisiti)
 - [React.js in pratica](#reactjs-in-pratica)
+  - [Strumenti necessari](#strumenti-necessari)
+  - [Hello react!](#hello-react)
 - [Folder structure react app](#folder-structure-react-app)
   - [Package.json](#packagejson)
   - [Folder public](#folder-public)
   - [Folder src](#folder-src)
+    - [App.js](#appjs)
+    - [Index.js](#indexjs)
 - [React component](#react-component)
-- [Partiamo da zero](#partiamo-da-zero)
-- [Divertiamoci un po'](#divertiamoci-un-po)
-- [Creo un nuovo componente](#creo-un-nuovo-componente)
-- [creaiamo Qualcosa di più interessante](#creaiamo-qualcosa-di-più-interessante)
-- [Aggiungere stile](#aggiungere-stile)
+  - [Partiamo da zero](#partiamo-da-zero)
+  - [Divertiamoci un po'](#divertiamoci-un-po)
+    - [Creaiamo Qualcosa di più interessante](#creaiamo-qualcosa-di-più-interessante)
+    - [Aggiungiamo un po' di stile](#aggiungiamo-un-po-di-stile)
 - [Props](#props)
 - [Stato](#stato)
 - [Hooks](#hooks)
-  - [npx ??](#npx-)
-  - [Funzioni o componenti?](#funzioni-o-componenti)
+
+# Prerequisiti
+
+React è una libreria Javascript utilizzata per creare applicazioni web e usa la sintassi [jsx](), un mix tra [html]() e [javascript](). Per poter padroneggiare react avrai bisogno di conoscere Javascript, html e css. 
 
 # React.js in pratica
 
-Puoi trovare un tutorial ben fatto sulla pagina ufficiale di [react.js](https://it.reactjs.org/docs/getting-started.html#learn-react). Ti proporrà un tutorial pratico in cui imparerai a costruire il gioco "tris" oppure un tutorial passo passo, dove partirai da zero e sarai poi eventualmente in grado di integrare con l'altro tipo di tutorial.
+Puoi trovare un tutorial ben fatto sulla pagina ufficiale di [react.js](https://it.reactjs.org/docs/getting-started.html#learn-react). Ti proporrà due tipi di tutorial, uno pratico basato sulla costruzione del gioco del tris e uno passo passo in cui potrai apprendere i concetti di react un po' alla volta.
 
-Per creare una nuova app react devi aver nodejs installato.
+## Strumenti necessari
 
-Dopodichè dal terminale devi digitare:
+Per creare un'app react avrai bisogno di:
+- [nodejs]() 
+- script `create-react-app`
+
+Se hai una delle ultime versioni di nodejs, avrai incluso anche `npx` un comando che ti permette di installare degli script come `create-react-app`, eseguirlo e successivamente cancellarlo. In questo modo eviti di installare script globalmente inutilmente.
+
+## Hello react!
+
+Digitando da terminale:
 
 ```bash
 npx create-react-app my-app
 ```
 
-Una volta finito stamperà tra le altre cose:
+Lo script `create-react-app` creerà una struttura base contenente la tua app react chiamata `my-app` e una serie di script utili per lanciare l'applicazione, compilarla ecc..
 
 ```bash
 Success! Created my-app at /home/s/Repository/corso-react/my-app
@@ -57,25 +71,45 @@ We suggest that you begin by typing:
 Happy hacking!
 ```
 
-Suggerendoti quindi di entrare nella cartella appena creata e lanciare il comando:
+Se, come suggerito, entri nella root principale della tua applicazione e lanci il comando `npm start` vedrai partire un'app di default
 
 ```bash
+cd my-app
 npm start
 ```
-
-Se provi a farlo, partirà un'applicazione react, un'applicazione di default
 
 ![react-default](./images/react-default.gif)
 
 
 # Folder structure react app
 
+Lanciando lo script `crete-react-app` verrà creat una folder structure di questo tipo:
+
+```bash
+my-app
+├── README.md
+├── node_modules
+├── package.json
+├── .gitignore
+├── public
+│   ├── favicon.ico
+│   ├── index.html
+│   └── manifest.json
+└── src
+    ├── App.css
+    ├── App.js
+    ├── App.test.js
+    ├── index.css
+    ├── index.js
+    ├── logo.svg
+    └── serviceWorker.js
+    └── setupTests.js
+```
+
 Una volta lanciato questo comando verranno create le seguenti cartelle
 
-![folder-structure](./images/folder-structure-A.png)
-
 ## Package.json
-Il file `package.json` è un file di configurazione e contiene tra le altre cose il nome dell'applicazione, la versione, le dipendeze ovvero i pacchetti necessari a react. Puoi vedere infatti, anche durante la fase di installazione che react ha come dipendenze `react`, `react-dom`, `react-scripts`. Contiene inoltre alcuni scripts, cioè dei comandi che puoi lanciare da terminale per abbreviare e accelerare il processo di compilazione dell'app.
+Il file `package.json` è un file di configurazione e contiene tra le altre cose il nome dell'applicazione, la versione, le dipendeze ovvero i pacchetti npm necessari a react, scripts.. 
 
 ```json
 {
@@ -121,9 +155,15 @@ Il file `package.json` è un file di configurazione e contiene tra le altre cose
 
 ## Folder public
 
-![folder-structure](./images/folder-structure-2.png)
+```bash
+├── public
+│   ├── favicon.ico
+│   ├── index.html
+│   └── manifest.json
+```
 
-Contiene tra gli altri file non fondamentali come icone e logo anche `index.html` ovvero l'entry point dell'applicazione react.
+
+Contiene il file `index.html` ovvero l'entry point dell'applicazione react.
 
 ```html
 <!DOCTYPE html>
@@ -171,15 +211,25 @@ Contiene tra gli altri file non fondamentali come icone e logo anche `index.html
 </html>
 ```
 
-La cosa da notare è che il body non contiene niente tranne un `div` vuoto con `id="root"`. Questo id lo ritroveremo più avanti
+La cosa da notare è che il body non contiene niente tranne un `div` vuoto con `id="root"`. 
 
 ## Folder src
 
-![folder-structure](./images/folder-structure-3.png)
+```bash
+└── src
+    ├── App.css
+    ├── App.js
+    ├── App.test.js
+    ├── index.css
+    ├── index.js
+    ├── logo.svg
+    └── serviceWorker.js
+    └── setupTests.js
+```
 
-Il vero fulcro è sono i file `App.js` e `index.js`
+L'applicazione react si sviluppa intorno ai file: `App.js` e `index.js`
 
-Se apri `App.js` troverai:
+### App.js
 
 ```jsx
 import logo from './logo.svg';
@@ -209,8 +259,9 @@ function App() {
 export default App;
 ```
 
-Da qua ti consiglio di notare i seguenti concetti:
-- tutto è recchiuso dentro una funzione Javascript chiamata `App`:
+Osserva che 
+
+1. **tutto è racchiuso dentro una funzione Javascript chiamata `App`**
   
 ```jsx
 function App() {
@@ -220,7 +271,7 @@ function App() {
 }
 ```
 
-- la funzione `App` ha come valore di `return` delle linee di codice simil-html. Ma attenzione questo non è html bensì JSX.
+2. La funzione `App` ha come valore di `return` delle linee di codice molto somiglianti ad `html` anche se viene compilato e tradotto in javascript. Questa particolare sintassi è chiamata `JSX`
 
 ```html
     <div className="App">
@@ -241,13 +292,13 @@ function App() {
     </div>
 ```
 
-- la funzione `App` è esportata esternamente.
+3. la funzione `App` è esportata esternamente.
 
 ```jsx
 export default App;
 ```
 
-Mentre se apri `index.js` troverai:
+### Index.js
 
 ```jsx
 import React from 'react';
@@ -269,16 +320,13 @@ ReactDOM.render(
 reportWebVitals();
 ```
 
-
-8:48
-
 # React component
 
-Un componente è un file e al suo interno c'è html, css, javascript. La forza di react è quella di poter creare un componente e riutilizzarlo a piacimento
+Un componente in react è un file che rappresenta un elemento grafico. Un componente contiene tutto il codice necessario per poter essere rappresentato quindi codice `html, css, javascript`. La forza di react sta nel poter creare un componente e riutilizzarlo a piacimento in ogni punto dell'applicazione
 
-# Partiamo da zero
+## Partiamo da zero
 
-Entra nel file `App.js` e cancella tutto. Scrivi semplicemente
+Entra nel file `App.js` e sentiti libero di cancellare tutto. Partiamo da qualcosa di più semplice
 
 ```Javascript
 //App.js
@@ -304,7 +352,7 @@ Otterrai:
 
 Quello che hai fatto è scrivere codice `JSX` cioè codice simil-html compilato da react in modo che appaia come codice javascript.
 
-Dopocdichè nell' `index.js` ..
+Apri anche il file `index.js` e osserva le importazioni
 
 ```javascript
 //index.js
@@ -327,15 +375,13 @@ ReactDOM.render(
 reportWebVitals();
 ```
 
-Vedi che hai:
-
-- L'importazione di `App.js`
+Noterai l'importazione di `App`
   
 ```javascript
 import App from './App';
 ```
 
-- Il collegamento con `html` tramite
+Nota anche come react si connette alla vera pagina in esecuzione `/public/index.html`, cioè attraverso il metodo `ReactDOM.render()` `document.getElementById('root')`
 
 ```javascript
 ReactDOM.render(
@@ -346,7 +392,7 @@ ReactDOM.render(
 );
 ```
 
-perchè la vera pagina è `/public/index.html`
+Ricordiamo infatti che la pagina in esecuzione è proprio `/public/index.html`
 
 ```html
 <!DOCTYPE html>
@@ -413,9 +459,10 @@ In particolare ti faccio notare:
 </body>
 ```
 
-Quello che viene fatto da `ReactDOM.render` è prendere `App` e metterla dentro `<div id="root"></div>`
+In pratica, quello che viene fatto dal metodo `ReactDOM.render()` è prendere il componente `App` e inserirlo all'interno di `<div id="root"></div>`
 
-# Divertiamoci un po'
+
+## Divertiamoci un po'
 
 Adesso aggiungerò un tasto e l'evento `click`
 
@@ -466,9 +513,7 @@ export default App;
 
 Un altro modo è quello di creare un componente esterno
 
-# Creo un nuovo componente
-
-All'interno di `src` crea un nuovo file ad esempio `Stampa.js`
+All'interno di `src` creo un nuovo file ad esempio `Stampa.js`
 
 ```javascript
 //Stampa.js
@@ -486,7 +531,7 @@ function Stampa() {
 export default Stampa;
 ```
 
-A questo punto devo però importarlo in `App.js`
+A questo punto devo importarlo in `App.js` e mandando in esecuzione, tutto funzionerà come prima
 
 ```javascript
 import React from 'react';
@@ -508,11 +553,9 @@ function App(){
 export default App;
 ```
 
-In questo modo funxionerà tutto come prima
-
 ![language](./images/button-react-component.png)
 
-Una volta che ho creato un componente posso riutilizzarlo ovunque, basterà importarlo
+Una creato un componente puoi riutilizzarlo ovunque, basterà importarlo
 
 ```javascript
 import React from 'react';
@@ -538,9 +581,9 @@ export default App;
 
 ![](./images/react-component.png)
 
-# creaiamo Qualcosa di più interessante
+### Creaiamo Qualcosa di più interessante
 
-Creo un componete `FacebookPosts.js` che sarà fatto così:
+Creo un componete `FacebookPosts.js`:
 
 ```javascript
 //FacebookPosts.js
@@ -585,9 +628,9 @@ export default App;
 
 ![language](./images/FacebookPost-component.png)
 
-# Aggiungere stile
+### Aggiungiamo un po' di stile
 
-Per aggiungere stile, puoi farlo in moduli `css`. In questo esempio (anche se non è correttissimo) aggiungeremo stile al componente `FacebookPosts.js` attraverso il file `App.css`
+Per aggiungere stile, puoi farlo in moduli `css`. In questo esempio aggiungeremo stile al componente `FacebookPosts.js` attraverso il file `App.css`
 
 ```javascript
 //FacebookPosts.js
@@ -626,10 +669,9 @@ Apparirà qualcosa del tipo:
 
 Puoi modificare anche il file `index.css` che rappresenta lo stile generale di tutta la pagina `html`
 
-
 # Props
 
-Per passare valori tra i componenti puoi usare `props`
+Per passare valori tra i componenti puoi usare `props`.
 
 Ti faccio vedere un esempio in cui aggiungo dei Post e a ogni Post passo l'autore del post
 
@@ -681,9 +723,9 @@ Otterrai:
 
 ![](images/props.png)
 
-`props` è un oggetto che come property contiene quelle che noi definiamo
+`props` è un oggetto che contiene proprietà da noi definite.
 
-Vediamo un altro esempio
+Vediamo un altro esempio.
 
 ```javascript
 //App.js
@@ -766,7 +808,7 @@ Come si fa?
 
 Dobbiamo introdurre il concetto di `Stato`.
 
-Mostro la discussione poi ne parliamo
+Mostro la soluzione, poi ne parliamo.
 
 ```javascript
 //App.js
@@ -799,7 +841,7 @@ class App extends React.Component{
 export default App;
 ```
 
-- Ho dovuto fare il passaggio da funzione a classe estendendo la classe `React.Component`
+1. Osserva che ho trasformato la funzione `App` in una classe. In particolare una classe che estende la classe `React.component`
 
 ```javascript
 class App extends React.Component{ 
@@ -811,7 +853,7 @@ class App extends React.Component{
 }
 ```
 
-- Ho definito l'oggetto `state` che conterrà le property che io inserisco
+2. Ho definito l'oggetto `state` che contiene la property `number`. `state` è un oggetto, una variabile che contiene lo stato del componente
 
 ```javascript
 class App extends React.Component{ 
@@ -826,7 +868,7 @@ class App extends React.Component{
 }
 ```
 
-- Ho usato le property definite accedendo al campo `this.state.nomeProperty`
+3. Per accedere alla property `number` ho usato `this.state.number`
   
 ```javascript
 class App extends React.Component{ 
@@ -844,7 +886,7 @@ class App extends React.Component{
 }
 ```
 
-- Ho definito un metodo che potesse incrementare la property definita
+4. Ho definito un metodo che potesse incrementare la property definita
 
 ```javascript
 increment = () => {
@@ -856,9 +898,9 @@ increment = () => {
 
 # Hooks
 
-Con gli Hooks è possibile cambiare lo stato con la notazione a funzione
+Con gli Hooks è possibile cambiare lo stato con la notazione a funzione anzichè quella di classe.
 
-Vediamo come si fa
+Vediamo un esempio pratico.
 
 ```javascript
 //App.js
@@ -886,12 +928,4 @@ function App(){
 export default App;
 ```
 
-## npx ??
-
-Serve per installare script in modo locale quindi senza il bisogno di installare dei pacchetti globalmente e consente di avere la versione più aggiornata. 
-
-In questo caso può essere utilizzato per lo script `create-react-app` senza il bisogno di installare lo script globalmente. Alternativamente avrei dovuto fare `npm install - g create-react-app`. Dopodichè per creare una nuova applicazione react bata digitare `create-react-app my-app` e creerà una nuova applicazione react all'interno della folder `my-app`
-
-## Funzioni o componenti?
-
-Per gestire lo stato dell'applicazione, tempo fa era necessario l'uso delle classi.. Da quando sono stati introdotti gli `HOOCKS` è possibile gestire lo stato con le funzioni. Sarebbe comunque meglio vedere entrambi i modi poichè alcuni pezzi di codici sono scritti con le classi, altri con gli `HOOCKS`
+Per adesso, continueremo a gestire lo stato con la notazione a classe. Più avanti approfondiremo il concetto di hooks e sarai libero di utilizzare la notazione che più ti piace. E' importante tuttavia conoscere entrambe le sintassi poichè in rete si trovano esempi con entrambi i metodi. E' bene tu sappia che React verte per utilizzare la notazione funzionale attraverso gli hooks.
