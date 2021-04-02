@@ -1,28 +1,33 @@
 # Javascript
 
+![](./images/javascript.jpg)
+
 # Lezione 01
 
 ## Prerequisiti al corso
-Prima di iniziare questo modulo, assicurati di avere una buona familiarità con i linguaggi [HTML e CSS](). 
+
+Prima di iniziare questo modulo, assicurati di avere una buona familiarità con [HTML](). 
 
 ## Approccio al corso
 In questo corso vedrai:
-1. Javascript orientato alla programmazione web front-end per realizzare  semplici script lato client nonchè per interagire con elementi html/css. In questo caso ti servirà soltanto un browser web.
-2. Javascript orientato alla programmazione web back-end grazie ed interagire quindi con il sistema operativo di una macchina fisica. In questo caso avrai bisogno di [node.js]()
+1. Javascript orientato alla programmazione web front-end per realizzare  semplici script lato client nonchè per interagire con elementi html/css di una pagina web.
+2. Javascript orientato alla programmazione web back-end per l'interazione con il sistema operativo di una macchina fisica. In questo caso avrai bisogno di [Node.js]()
 
 ## Strumenti Necessari
 
 Per questo corso avrai bisogno di:
-1. un **web browser** come [Google Chrome](https://www.google.com/chrome/)
+1. un **web browser** come [Google Chrome](https://www.google.com/chrome/). Un browser web contiene tutto il necessario per eseguire Javascript lato client
 2. un **editor di testo** come [Visual Studio Code](https://code.visualstudio.com/download). 
-3. [Node.js](https://nodejs.org/it/download/)
+3. [Node.js](https://nodejs.org/it/download/), una runtime environment di javascript per poter eseguire script lato server nonchè sulla propria macchina fisica.
 
 
-## Versioni di Javascript
+## Javascript, ECMA-Script?
 
-Poichè Javascript deve poter essere eseguito su un browser web, ogni browser web deve essere in grado di eseguire tutte le funzionalità richieste dal linguaggio ed eventualmente aggiornarsi a  funzionalità richieste da una nuova versione rilasciata dal consorzio ECMA script.
+ECMAScript (o ES) è la specifica tecnica del linguaggio comunemente noto come Javascript, standardizzata e mantenuta da ECMA International nell'ECMA-262 ed ISO/IEC 16262. 
 
-[Qui](https://kangax.github.io/compat-table/es6/) puoi trovare una tabella aggiornata delle funzionalità coperte da ogni browser web per versione di ECMA script
+La specifica è in continuo aggiornamento e di pari passo anche i runtime environment come i browser web o [Nodejs]() devono poter essere allineati.
+
+[Qui](https://kangax.github.io/compat-table/es6/) puoi trovare una tabella aggiornata delle funzionalità coperte da ogni browser web per versione di ECMAScript
 
 ![](./images/JS-versioni.png)
 
@@ -30,7 +35,7 @@ In questo corso tratteremo in maniera approfondita ES6.
 
 # Lezione 02
 
-## Primo script Javascript all'interno del browser web
+## Primo script all'interno del browser web
 
 Come integro codice javascript all'interno di una pagina html?
 
@@ -183,10 +188,7 @@ multi line comment
 */
 ```
 
-
 ## Introduzione al DOM
-
-
 Nativamente supportato dai browser per modificare gli elementi di un documento HTML, DOM è un modo per accedere e aggiornare dinamicamente il contenuto, la struttura e lo stile dei documenti. 
 
 ![](./images/DOM.png)
@@ -347,10 +349,11 @@ $(window).ready(function () {
 })
 ```
 
-
 ## Variabili Javascript
 
 Le variabili sono utilizzate per rappresentare valori attraverso un nome simbolico chiamato **identificatore**.
+
+Le variabili in JavaScript hanno un tipo, ma a differenza di altri linguaggi fortemente tipizzati, **Javascript utilizza i tipi per valore** e non per variabile. Questo meccanismo prende il nome di **tipizzazione dinamica**.
 
 ```js
 var cognome = 'Rossi';
@@ -362,124 +365,24 @@ pi = 3.14;
 
 Esistono tre tipi di `keyword` per la dichiarazione di variabili/costanti in JS.
 
-- `var`: Sintassi obsoleta.
-- `let`: Introdotta nelle nuove versioni di JS, è usata per dichiarare una variabile locale visibile in un blocco.
-- `const`: Introdotta nelle nuove versioni di JS è utilizzata per creare una costante in sola lettura.
-- Possono inoltre dichiarare una variabile senza nessuna `keyword` (come fatto negli esempi precedenti) ma è da evitare perchè sarà l'interprete ad assegnare a tale variabile una qualificatore
+- `var`: Per variabili sia locali che globali.
+- `let`: Per variabili locali.
+- `const`: Per variabili locali immutabili
+- E' possibile inoltre dichiarare una variabile senza nessuna `keyword`, in questo caso sarà l'interprete ad assegnare a tale variabile il qualificatore attraverso il meccanismo dell' **auto-global variable declaration**
 
-Per le variabili dichiarate con `let` valgono le seguenti regole:
+## Alcune regole per dichiarazione di variabili
 
-- Posso dichiarare una variabile e non inizializzarla. Se non inizializzata verrà attribuita ad essa il valore `undefined`
-- Posso assegnare il valore di una variabile successivamente nel programma e modificarne il contenuto a piacimento (Variable mutation)
+Non è possibile utilizzare:
 
-Per le variabili dichiarate con `const` valgono le seguenti regole:
+- un numero, un `#`, una `@`come inizio del nome di una variabile. E' accettanto invece il simbolo `$`
+- come identificatore, le keyword native di JS come: `function`, `if`, `delete`, `new`, `while` ..
 
-- Una costante non può cambiare il suo valore attraverso ulteriori assegnazioni o essere ridichiarata mentre lo script è in esecuzione. 
-- Deve essere sempre inizializzata ad un valore.
+In javascript è convenzione utilizzare la notazione *camelCase* per la rappresentazione di variabili composte da due o più parole
 
-```js
-let myVar = 4;   //OK, inizializzazione (dichiarazzione + assegnamento)
-myVar = 23;      //OK, assegnamento
-
-let myVar2;      //OK, solo dichiarazione
-myVar2 = 29;     //OK, assegnamento successivo alla dichiarazione
-
-const myVar = 4; //OK, inizializzazione (dichiarazione + assegnazione)
-myVar = 23;      //EEROR!! - assegnazione successiva all'inizializzazione
-
-const myVar2;    //EEROR!! - solo dichiarazione
-```
-
-**Quando usare const, let o var**
-
-E' sempre meglio usare `const` per tutte le strutture dati che non cambiano nel tempo, è più sicuro. E' necessario usare `let` o solo per le variabili o strutture dati che cambiano valore nel tempo.
-
-## Tipi di dati in JS
-
-L'ultimo standard ECMAScript definisce sette tipi di dati:
-
-- Sei tipi di dato che sono *primitives*:
-  - `Boolean`. true e false.
-  - `null`. Una parola chiave che denota un valore nullo.
-  - `undefined`. Una proprietà il cui valore non è stato definito.
-  - `Number`. 42 oppure 3.14159.
-  - `String`. "Salve"
-  - `Symbol` (nuovo in ECMAScript 2015). Un tipo di dato la cui istanza è unica e immutabile.
-  
-- Due *Reference Type*
-  - `Object`
-  - `Array`
-
-**NOTA:** `typeof` è una proprietà di Javascript che ritorna il tipo di un oggetto o una variabile.
-
-## Dati nativi
-
-Javascript assegna il tipo a una variabile in modo dinamico ovvero in fase di dichiarazione della stessa. Vediamo degli esempi
+Vediamo qualche esempio:
 
 ```js
-//String
-//Le stringhe si indicano attraverso i singoli apici 'mystring'
-//attraverso i doppi apici "myString" o l'accento grave `myString`
-const nome = 'simone'; 
-
-//Number
-const temp = -1.5;
-
-//Boolean
-const isMaggiorenne = true;
-
-//Null
-const value = null;
-//Interessante da vedere
-console.log (typeof value);
-
-//Undefined
-const cognome = undefined;
-
-//Symbol
-const mySymbol = Symbol();
-```
-
-## Reference type 
-
-Tra i reference type troviamo:
-
-- **array**: utilizzati principalmente per raggruppare diversi elementi appartenenti alla stessa categoria.
-
-- **oggetti**: sono utilizzati per raggruppare qualità / caratteristiche di una struttura dati più complessa, in genere eterogenea.
-
-```js
-//Arrays
-const nomi = ['simone', 'matteo', 'giovanni'];
-
-//Accedo ai campi di un array con l'operatore di indicizzazione []
-//               0         1         2
-//const nomi = ['simone', 'matteo', 'giovanni'];
-console.log(nomi[1]); //matteo
-
-//Objects
-const persona = {
-    nome: 'simone',
-    eta: 25,
-    isMarry: true
-}
-
-//Accedo ai campi di un Object spcificando il nome della proprietà dell'oggetto
-console.log(persona.nome); //simone
-```
-
-
-
-## Alcune best practice per dichiarazione di variabili
-
-- Usare sempre il camelCase quando la variabile è composta da due o più parole
-- Non si può usare un numero, un `#`, una `@`come inizio del nome di una variabile. E' accettanto invece il simbolo `$`
-- Non si possono utilizzare, come identificatore, le keyword native di JS come: `function`, `if`, `delete`, `new`, `while` ..
-
-Vediamo qualche esempio qua sotto:
-
-```js
-//Sintassi alternativa per dichiarare più costanti
+//Sintassi alternativa per dichiarare più variabili costanti
 const na = 3,
       pigreco = 3.14;
       _iou = 0;
@@ -488,8 +391,62 @@ const na = 3,
       1T = 1;   //ERROR!!
 ```
 
-## Reference type Const
+## Tipi di dati in JS
 
+ECMAScript definisce sette tipi primitivi:
+
+- Sei tipi di dato che sono *primitives*:
+  - `Boolean`. true e false.
+  - `null`. Una parola chiave che denota un oggetto nullo.
+  - `undefined`. Una proprietà il cui valore non è stato definito.
+  - `Number`. 42 oppure 3.14159.
+  - `String`. "Salve"
+  - `Symbol`. Un tipo di dato la cui istanza è unica e immutabile.
+  - `Object`. 
+
+**NOTA:** `typeof` è una proprietà di Javascript che ritorna il tipo di un oggetto o una variabile.
+
+## Tipi Primitivi
+
+Javascript assegna il tipo a una variabile in modo dinamico ovvero in fase di dichiarazione della stessa. Vediamo degli esempi
+
+```js
+const nome = 'simone'; 
+const cognome = "Di Ricco";
+const nome_cognome = `${nome} ${cognome}`;
+
+const temp = -1.5; //Number
+const isMaggiorenne = true; //Boolean
+
+const value = null; //Number
+
+const cognome = undefined; //Undefined
+
+const mySymbol = Symbol(); //Undefined
+
+const persona = { //Object
+    nome: 'simone',
+    eta: 25,
+    isMarry: true
+}
+```
+
+## Standard built-in Object
+
+Sono oggetti predefiniti e accessibili a livello globale, di uso comune in JavaScript. Hanno proprietà e metodi built-in che servono ad eseguire operazioni comuni per l’accesso e la modifica dei dati che contengono.
+
+### Oggetti Fondamentali
+
+Oggetti generali di Javascrpt, sui quali sono basati tutti gli altri oggetti. Rappresentano oggetti, funzioni ed errori.
+
+- Object
+- Function
+- Boolean
+- Symbol
+- Error
+- EvalError
+  
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 **ATTENZIONE:** Se un reference type (array o oggetto) è dichiarato `const` non significa che non è possibile modificare i campi all'interno ma solo che non posso cambiare la natura del reference type. Il nome di un reference type rappresenta solo l'indirizzo in memoria della struttura.
 ```js
 const myObj {
@@ -510,6 +467,7 @@ let myObj2 {
 myObj2.ram = 6;   //OK
 myObj2 = 18;      //OK con let un <oggetto> può tramutarsi dinamicamente in un <number>
 ```
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 
 ## Approfondimento Null - undefined - NaN
 
@@ -3132,9 +3090,9 @@ Console:
   - [Prerequisiti al corso](#prerequisiti-al-corso)
   - [Approccio al corso](#approccio-al-corso)
   - [Strumenti Necessari](#strumenti-necessari)
-  - [Versioni di Javascript](#versioni-di-javascript)
+  - [Javascript, ECMA-Script?](#javascript-ecma-script)
 - [Lezione 02](#lezione-02)
-  - [Primo script Javascript all'interno del browser web](#primo-script-javascript-allinterno-del-browser-web)
+  - [Primo script all'interno del browser web](#primo-script-allinterno-del-browser-web)
     - [Javascript all'interno del tag `script`](#javascript-allinterno-del-tag-script)
     - [Javascript all'interno di un file `.js`](#javascript-allinterno-di-un-file-js)
   - [Primo script Javascript con node.js](#primo-script-javascript-con-nodejs)
@@ -3145,11 +3103,11 @@ Console:
   - [Introduzione alla libreria JQuery](#introduzione-alla-libreria-jquery)
   - [DOM ed Eventi](#dom-ed-eventi)
   - [Variabili Javascript](#variabili-javascript)
+  - [Alcune regole per dichiarazione di variabili](#alcune-regole-per-dichiarazione-di-variabili)
   - [Tipi di dati in JS](#tipi-di-dati-in-js)
-  - [Dati nativi](#dati-nativi)
-  - [Reference type](#reference-type)
-  - [Alcune best practice per dichiarazione di variabili](#alcune-best-practice-per-dichiarazione-di-variabili)
-  - [Reference type Const](#reference-type-const)
+  - [Tipi Primitivi](#tipi-primitivi)
+  - [Standard built-in Object](#standard-built-in-object)
+    - [Oggetti Fondamentali](#oggetti-fondamentali)
   - [Approfondimento Null - undefined - NaN](#approfondimento-null---undefined---nan)
   - [Stringhe](#stringhe)
   - [Opearotri, Proprietà e Metodi su stringhe](#opearotri-proprietà-e-metodi-su-stringhe)
