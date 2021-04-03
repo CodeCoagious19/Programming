@@ -1,264 +1,33 @@
 # Javascript
 
-- [Javascript](#javascript)
-- [Lezione 01](#lezione-01)
-  - [Prerequisiti al corso](#prerequisiti-al-corso)
-  - [Approccio al corso](#approccio-al-corso)
-  - [Strumenti Necessari](#strumenti-necessari)
-  - [Versioni di Javascript](#versioni-di-javascript)
-- [Lezione 02](#lezione-02)
-  - [Primo script Javascript all'interno del browser web](#primo-script-javascript-allinterno-del-browser-web)
-    - [Javascript all'interno del tag `script`](#javascript-allinterno-del-tag-script)
-    - [Javascript all'interno di un file `.js`](#javascript-allinterno-di-un-file-js)
-  - [Primo script Javascript con node.js](#primo-script-javascript-con-nodejs)
-  - [Console](#console)
-  - [Alert & prompt](#alert--prompt)
-  - [Commenti](#commenti)
-  - [Introduzione al DOM](#introduzione-al-dom)
-  - [Introduzione alla libreria JQuery](#introduzione-alla-libreria-jquery)
-  - [DOM ed Eventi](#dom-ed-eventi)
-  - [Variabili Javascript](#variabili-javascript)
-  - [Tipi di dati in JS](#tipi-di-dati-in-js)
-  - [Dati nativi](#dati-nativi)
-  - [Reference type](#reference-type)
-  - [Alcune best practice per dichiarazione di variabili](#alcune-best-practice-per-dichiarazione-di-variabili)
-  - [Reference type Const](#reference-type-const)
-  - [Approfondimento Null - undefined - NaN](#approfondimento-null---undefined---nan)
-  - [Stringhe](#stringhe)
-  - [Opearotri, Proprietà e Metodi su stringhe](#opearotri-proprietà-e-metodi-su-stringhe)
-  - [Operatori](#operatori)
-  - [Approfondimento Interpolazioni di stringhe](#approfondimento-interpolazioni-di-stringhe)
-  - [Le stringhe sono immutabili](#le-stringhe-sono-immutabili)
-  - [Proprietà](#proprietà)
-  - [Metodi](#metodi)
-- [Lezione 08](#lezione-08)
-  - [Conta parole](#conta-parole)
-- [Lezione 09](#lezione-09)
-  - [Approfondimento - Rappresentazione numerica in Javascript](#approfondimento---rappresentazione-numerica-in-javascript)
-  - [Numeri in Fixed Point](#numeri-in-fixed-point)
-  - [Numeri in Floating Point](#numeri-in-floating-point)
-  - [Not A Number NaN](#not-a-number-nan)
-- [Lezione 10](#lezione-10)
-  - [Approfondimento - Codifica caratteri Javascript](#approfondimento---codifica-caratteri-javascript)
-  - [ASCII](#ascii)
-  - [Unicode](#unicode)
-  - [Caratteri di Escape](#caratteri-di-escape)
-- [Lezione 11](#lezione-11)
-  - [Type conversion](#type-conversion)
-  - [Conversione esplicita](#conversione-esplicita)
-  - [Conversione implicita](#conversione-implicita)
-- [Lezione 12](#lezione-12)
-  - [Operatori matematici](#operatori-matematici)
-  - [Pre e post incremento/decremento](#pre-e-post-incrementodecremento)
-  - [Oggetto MATH](#oggetto-math)
-- [Lezione 13](#lezione-13)
-  - [Equazione di II grado](#equazione-di-ii-grado)
-- [Lezione 14](#lezione-14)
-  - [Operator Precedence](#operator-precedence)
-  - [Associatività](#associatività)
-  - [Operatori di assegnamento](#operatori-di-assegnamento)
-- [Lezione 15](#lezione-15)
-  - [Operatori Logici](#operatori-logici)
-  - [Logica Booleana](#logica-booleana)
-  - [Approfondimento - Short evalutation](#approfondimento---short-evalutation)
-  - [Truthy e falsy](#truthy-e-falsy)
-- [Lezione 16](#lezione-16)
-  - [Control Structure if/else](#control-structure-ifelse)
-  - [Ternary Operator](#ternary-operator)
-  - [Switch statemeant](#switch-statemeant)
-- [Lezione 17](#lezione-17)
-  - [while loop](#while-loop)
-  - [do-while loop](#do-while-loop)
-- [Lezione 18](#lezione-18)
-  - [for loop](#for-loop)
-  - [break & coninue](#break--coninue)
-- [Lezione 19](#lezione-19)
-  - [Function](#function)
-  - [Parametri di default](#parametri-di-default)
-  - [Ritorno di una funzione](#ritorno-di-una-funzione)
-- [Lezione 20](#lezione-20)
-  - [Funzioni - Passaggio di oggetti e array](#funzioni---passaggio-di-oggetti-e-array)
-  - [Funzioni - Ritorno di un oggetto o un array](#funzioni---ritorno-di-un-oggetto-o-un-array)
-  - [Approfondimento funzioni - Oggetto Arguments](#approfondimento-funzioni---oggetto-arguments)
-  - [Approfondimento funzioni - Parametri Rest](#approfondimento-funzioni---parametri-rest)
-  - [Approfondimento Introduzione forEach / this](#approfondimento-introduzione-foreach--this)
-- [Lezione 21](#lezione-21)
-  - [Approfondimento Funzioni ricorsive](#approfondimento-funzioni-ricorsive)
-  - [Approfondimento Function expression](#approfondimento-function-expression)
-  - [Approfondimento Hoisting](#approfondimento-hoisting)
-  - [Approfondimento Differenza tra undefined e not defined](#approfondimento-differenza-tra-undefined-e-not-defined)
-  - [Approfondimento IIFI Immediatly invoked function expression](#approfondimento-iifi-immediatly-invoked-function-expression)
-  - [Paradigma di programmazione Javascript](#paradigma-di-programmazione-javascript)
-- [Lezione 22](#lezione-22)
-  - [Scope](#scope)
-  - [Visibilità di variabili](#visibilità-di-variabili)
-  - [Visibilità Globale (global scope)](#visibilità-globale-global-scope)
-  - [Scope Chaining](#scope-chaining)
-  - [Visibilità a livello di blocco (block scope)](#visibilità-a-livello-di-blocco-block-scope)
-  - [Approfondimento - Closure di una funzione](#approfondimento---closure-di-una-funzione)
-- [Lezione 23](#lezione-23)
-  - [Array](#array)
-  - [Matrix](#matrix)
-- [Lezione 24](#lezione-24)
-  - [Array - Metodi base](#array---metodi-base)
-- [Lezione 25](#lezione-25)
-  - [Arrays - forEach()](#arrays---foreach)
-  - [Arrays - map()](#arrays---map)
-  - [Funzioni freccia (lambda)](#funzioni-freccia-lambda)
-  - [Array - Metodi avanzati](#array---metodi-avanzati)
-- [Lezione 26](#lezione-26)
-  - [Introduzione agli Object](#introduzione-agli-object)
-- [Javascript OOP](#javascript-oop)
-- [Lezione 01](#lezione-01-1)
-  - [OOP Object Oriented Programming](#oop-object-oriented-programming)
-- [Lezione 02](#lezione-02-1)
-  - [Introduzione ai Metodi](#introduzione-ai-metodi)
-- [Lezione 03](#lezione-03)
-  - [Costruttore](#costruttore)
-- [Lezione 04](#lezione-04)
-  - [Ereditarietà](#ereditarietà)
-- [Lezione 05](#lezione-05)
-  - [Ereditarietà - Shadowing](#ereditarietà---shadowing)
-  - [Ereditarietà classica](#ereditarietà-classica)
-- [Lezione 06](#lezione-06)
-  - [THIS](#this)
-  - [Object - Variabili Statiche (condivise)](#object---variabili-statiche-condivise)
-- [Lezione 07](#lezione-07)
-  - [Introduzione For In](#introduzione-for-in)
-  - [Oggetto Date()](#oggetto-date)
-- [Lezione 08](#lezione-08-1)
-  - [Classi](#classi)
-- [Lezione 09](#lezione-09-1)
-  - [Classi assegnanili a variabili](#classi-assegnanili-a-variabili)
-  - [Get / Set](#get--set)
-      - [try-catch](#try-catch)
-- [Lezione 10](#lezione-10-1)
-  - [Derivazione di classi , ereditarietà](#derivazione-di-classi--ereditarietà)
-- [Lezione 11](#lezione-11-1)
-  - [Ereditarietà classi Pt 2](#ereditarietà-classi-pt-2)
-- [Lezione 12](#lezione-12-1)
-  - [Approfondimento - Symbols](#approfondimento---symbols)
-- [Lezione 13](#lezione-13-1)
-  - [Approfondimento - Iterables/Iterator](#approfondimento---iterablesiterator)
-  - [Costrutto for - of](#costrutto-for---of)
-- [Lezione 14](#lezione-14-1)
-  - [Approfondimento - Funzioni Generatrici](#approfondimento---funzioni-generatrici)
-- [Lezione 15](#lezione-15-1)
-  - [Approfondimento - Esempio (For .. of) custom](#approfondimento---esempio-for--of-custom)
-- [Lezione 16](#lezione-16-1)
-  - [Destructuring](#destructuring)
-- [Lezione 17](#lezione-17-1)
-  - [Map Object](#map-object)
-  - [Iterazione Map Object](#iterazione-map-object)
-- [Lezione 18](#lezione-18-1)
-  - [Set](#set)
-  - [Conversione di un Oggetto Map / Set in un Array](#conversione-di-un-oggetto-map--set-in-un-array)
-- [Lezione 19](#lezione-19-1)
-  - [Dom Manipulation](#dom-manipulation)
-- [Lezione 20](#lezione-20-1)
-  - [DOM - Selettori](#dom---selettori)
-  - [Metodi di selezione di elementi html](#metodi-di-selezione-di-elementi-html)
-- [Lezione 21](#lezione-21-1)
-  - [Dom - Child e Parent](#dom---child-e-parent)
-  - [DOM - Manipolazione dello stile degli elementi html](#dom---manipolazione-dello-stile-degli-elementi-html)
-- [Lezione 22](#lezione-22-1)
-  - [DOM - Manipolazione del testo degli elementi html](#dom---manipolazione-del-testo-degli-elementi-html)
-  - [DOM - Manipolazione degli attributi html](#dom---manipolazione-degli-attributi-html)
-- [Lezione 23](#lezione-23-1)
-  - [DOM - Creazione di Un elemento](#dom---creazione-di-un-elemento)
-  - [DOM - Rimpiazzo di un elemento](#dom---rimpiazzo-di-un-elemento)
-  - [DOM - ELiminazione di un elemento](#dom---eliminazione-di-un-elemento)
-- [Lezione 24](#lezione-24-1)
-  - [DOM Events](#dom-events)
-  - [Metodo addEventListener](#metodo-addeventlistener)
-- [Lezione 25](#lezione-25-1)
-  - [Prevent Default](#prevent-default)
-    - [Che cos'è esattamente l'oggetto ricevuto come unico parametro "e"?](#che-cosè-esattamente-loggetto-ricevuto-come-unico-parametro-e)
-- [Lezione 26](#lezione-26-1)
-  - [Approfondimento type event](#approfondimento-type-event)
-  - [Aprrofondimento eventi tastiera e input](#aprrofondimento-eventi-tastiera-e-input)
-- [Lezione 27](#lezione-27)
-  - [Argomeni non trattati / da approfondire](#argomeni-non-trattati--da-approfondire)
-  - [Fonti](#fonti)
-- [APPRONDIMENTI PT.1](#approndimenti-pt1)
-- [Node.js](#nodejs)
-  - [Cos'è node](#cosè-node)
-  - [Install node](#install-node)
-  - [Prima applicazione nodejs](#prima-applicazione-nodejs)
-  - [Non esiste l'oggetto window](#non-esiste-loggetto-window)
-  - [global objects](#global-objects)
-  - [Modules](#modules)
-  - [Creiamo un modulo](#creiamo-un-modulo)
-  - [Moduli built-in](#moduli-built-in)
-  - [Modulo path](#modulo-path)
-  - [Modulo OS](#modulo-os)
-  - [Modulo File System](#modulo-file-system)
-  - [Eventi](#eventi)
-  - [Modulo HTTP](#modulo-http)
-  - [Approfondimenti](#approfondimenti)
-    - [Passare dei parametri esterni](#passare-dei-parametri-esterni)
-    - [My first IO sync](#my-first-io-sync)
-    - [My first IO async](#my-first-io-async)
-  - [Filtered](#filtered)
-- [APPRONDIMENTI PT.2](#approndimenti-pt2)
-- [Promise](#promise)
-    - [Un esempio semplice](#un-esempio-semplice)
-- [APPRONDIMENTI PT.3](#approndimenti-pt3)
-  - [Approfondimento Hoisting](#approfondimento-hoisting-1)
-  - [Approfondimento Oggetti](#approfondimento-oggetti)
-  - [Approfondimento Moduli](#approfondimento-moduli)
-  - [Packages](#packages)
-  - [Approfondimento THIS](#approfondimento-this)
-  - [Costruttori prefdefiniti javascript](#costruttori-prefdefiniti-javascript)
-  - [for .. of](#for--of)
-  - [for .. in](#for--in)
-  - [Memoization](#memoization)
-- [Come fare una copia profonda tra oggetti?](#come-fare-una-copia-profonda-tra-oggetti)
-  - [proprietà associate ai dati e proprierà associate all'accesso](#proprietà-associate-ai-dati-e-proprierà-associate-allaccesso)
-    - [get & set](#get--set-1)
-  - [Arrow functions](#arrow-functions)
-  - [High Order Functions](#high-order-functions)
-    - [Array filter](#array-filter)
-    - [Array map](#array-map)
-    - [Array reduce](#array-reduce)
-    - [Gli array possiedono già come metodi filer, map, reduce](#gli-array-possiedono-già-come-metodi-filer-map-reduce)
-  - [Qualche chicca sugli Array](#qualche-chicca-sugli-array)
-    - [Arrray.of, Array.from](#arrrayof-arrayfrom)
-    - [concat, every, some](#concat-every-some)
-    - [find, filter, forEach, includes, indexOf](#find-filter-foreach-includes-indexof)
-    - [push, pop, shift, unshift](#push-pop-shift-unshift)
-    - [sort, splice, slice](#sort-splice-slice)
-  - [setTimeout(), setInterval()](#settimeout-setinterval)
-  - [Eventi Asincroni](#eventi-asincroni)
-  - [Promise, resolve, reject, then](#promise-resolve-reject-then)
-  - [Async, Await](#async-await)
-  - [Promise.all() e Promise.race()](#promiseall-e-promiserace)
-  - [Set e Map](#set-e-map)
-  - [Map](#map)
+![](./images/javascript.jpg)
 
 # Lezione 01
 
 ## Prerequisiti al corso
-Prima di iniziare questo modulo, assicurati di avere una buona familiarità con i linguaggi [HTML e CSS](). 
+
+Prima di iniziare questo modulo, assicurati di avere una buona familiarità con [HTML](). 
 
 ## Approccio al corso
 In questo corso vedrai:
-1. Javascript orientato alla programmazione web front-end per realizzare  semplici script lato client nonchè per interagire con elementi html/css. In questo caso ti servirà soltanto un browser web.
-2. Javascript orientato alla programmazione web back-end grazie ed interagire quindi con il sistema operativo di una macchina fisica. In questo caso avrai bisogno di [node.js]()
+1. Javascript orientato alla programmazione web front-end per realizzare  semplici script lato client nonchè per interagire con elementi html/css di una pagina web.
+2. Javascript orientato alla programmazione web back-end per l'interazione con il sistema operativo di una macchina fisica. In questo caso avrai bisogno di [Node.js]()
 
 ## Strumenti Necessari
 
 Per questo corso avrai bisogno di:
-1. un **web browser** come [Google Chrome](https://www.google.com/chrome/)
+1. un **web browser** come [Google Chrome](https://www.google.com/chrome/). Un browser web contiene tutto il necessario per eseguire Javascript lato client
 2. un **editor di testo** come [Visual Studio Code](https://code.visualstudio.com/download). 
-3. [Node.js](https://nodejs.org/it/download/)
+3. [Node.js](https://nodejs.org/it/download/), una runtime environment di javascript per poter eseguire script lato server nonchè sulla propria macchina fisica.
 
 
-## Versioni di Javascript
+## Javascript, ECMA-Script?
 
-Poichè Javascript deve poter essere eseguito su un browser web, ogni browser web deve essere in grado di eseguire tutte le funzionalità richieste dal linguaggio ed eventualmente aggiornarsi a  funzionalità richieste da una nuova versione rilasciata dal consorzio ECMA script.
+ECMAScript (o ES) è la specifica tecnica del linguaggio comunemente noto come Javascript, standardizzata e mantenuta da ECMA International nell'ECMA-262 ed ISO/IEC 16262. 
 
-[Qui](https://kangax.github.io/compat-table/es6/) puoi trovare una tabella aggiornata delle funzionalità coperte da ogni browser web per versione di ECMA script
+La specifica è in continuo aggiornamento e di pari passo anche i runtime environment come i browser web o [Nodejs]() devono poter essere allineati.
+
+[Qui](https://kangax.github.io/compat-table/es6/) puoi trovare una tabella aggiornata delle funzionalità coperte da ogni browser web per versione di ECMAScript
 
 ![](./images/JS-versioni.png)
 
@@ -266,7 +35,7 @@ In questo corso tratteremo in maniera approfondita ES6.
 
 # Lezione 02
 
-## Primo script Javascript all'interno del browser web
+## Primo script all'interno del browser web
 
 Come integro codice javascript all'interno di una pagina html?
 
@@ -419,10 +188,7 @@ multi line comment
 */
 ```
 
-
 ## Introduzione al DOM
-
-
 Nativamente supportato dai browser per modificare gli elementi di un documento HTML, DOM è un modo per accedere e aggiornare dinamicamente il contenuto, la struttura e lo stile dei documenti. 
 
 ![](./images/DOM.png)
@@ -583,10 +349,11 @@ $(window).ready(function () {
 })
 ```
 
-
 ## Variabili Javascript
 
 Le variabili sono utilizzate per rappresentare valori attraverso un nome simbolico chiamato **identificatore**.
+
+Le variabili in JavaScript hanno un tipo, ma a differenza di altri linguaggi fortemente tipizzati, **Javascript utilizza i tipi per valore** e non per variabile. Questo meccanismo prende il nome di **tipizzazione dinamica**.
 
 ```js
 var cognome = 'Rossi';
@@ -598,124 +365,24 @@ pi = 3.14;
 
 Esistono tre tipi di `keyword` per la dichiarazione di variabili/costanti in JS.
 
-- `var`: Sintassi obsoleta.
-- `let`: Introdotta nelle nuove versioni di JS, è usata per dichiarare una variabile locale visibile in un blocco.
-- `const`: Introdotta nelle nuove versioni di JS è utilizzata per creare una costante in sola lettura.
-- Possono inoltre dichiarare una variabile senza nessuna `keyword` (come fatto negli esempi precedenti) ma è da evitare perchè sarà l'interprete ad assegnare a tale variabile una qualificatore
+- `var`: Per variabili sia locali che globali.
+- `let`: Per variabili locali.
+- `const`: Per variabili locali immutabili
+- E' possibile inoltre dichiarare una variabile senza nessuna `keyword`, in questo caso sarà l'interprete ad assegnare a tale variabile il qualificatore attraverso il meccanismo dell' **auto-global variable declaration**
 
-Per le variabili dichiarate con `let` valgono le seguenti regole:
+## Alcune regole per dichiarazione di variabili
 
-- Posso dichiarare una variabile e non inizializzarla. Se non inizializzata verrà attribuita ad essa il valore `undefined`
-- Posso assegnare il valore di una variabile successivamente nel programma e modificarne il contenuto a piacimento (Variable mutation)
+Non è possibile utilizzare:
 
-Per le variabili dichiarate con `const` valgono le seguenti regole:
+- un numero, un `#`, una `@`come inizio del nome di una variabile. E' accettanto invece il simbolo `$`
+- come identificatore, le keyword native di JS come: `function`, `if`, `delete`, `new`, `while` ..
 
-- Una costante non può cambiare il suo valore attraverso ulteriori assegnazioni o essere ridichiarata mentre lo script è in esecuzione. 
-- Deve essere sempre inizializzata ad un valore.
+In javascript è convenzione utilizzare la notazione *camelCase* per la rappresentazione di variabili composte da due o più parole
 
-```js
-let myVar = 4;   //OK, inizializzazione (dichiarazzione + assegnamento)
-myVar = 23;      //OK, assegnamento
-
-let myVar2;      //OK, solo dichiarazione
-myVar2 = 29;     //OK, assegnamento successivo alla dichiarazione
-
-const myVar = 4; //OK, inizializzazione (dichiarazione + assegnazione)
-myVar = 23;      //EEROR!! - assegnazione successiva all'inizializzazione
-
-const myVar2;    //EEROR!! - solo dichiarazione
-```
-
-**Quando usare const, let o var**
-
-E' sempre meglio usare `const` per tutte le strutture dati che non cambiano nel tempo, è più sicuro. E' necessario usare `let` o solo per le variabili o strutture dati che cambiano valore nel tempo.
-
-## Tipi di dati in JS
-
-L'ultimo standard ECMAScript definisce sette tipi di dati:
-
-- Sei tipi di dato che sono *primitives*:
-  - `Boolean`. true e false.
-  - `null`. Una parola chiave che denota un valore nullo.
-  - `undefined`. Una proprietà il cui valore non è stato definito.
-  - `Number`. 42 oppure 3.14159.
-  - `String`. "Salve"
-  - `Symbol` (nuovo in ECMAScript 2015). Un tipo di dato la cui istanza è unica e immutabile.
-  
-- Due *Reference Type*
-  - `Object`
-  - `Array`
-
-**NOTA:** `typeof` è una proprietà di Javascript che ritorna il tipo di un oggetto o una variabile.
-
-## Dati nativi
-
-Javascript assegna il tipo a una variabile in modo dinamico ovvero in fase di dichiarazione della stessa. Vediamo degli esempi
+Vediamo qualche esempio:
 
 ```js
-//String
-//Le stringhe si indicano attraverso i singoli apici 'mystring'
-//attraverso i doppi apici "myString" o l'accento grave `myString`
-const nome = 'simone'; 
-
-//Number
-const temp = -1.5;
-
-//Boolean
-const isMaggiorenne = true;
-
-//Null
-const value = null;
-//Interessante da vedere
-console.log (typeof value);
-
-//Undefined
-const cognome = undefined;
-
-//Symbol
-const mySymbol = Symbol();
-```
-
-## Reference type 
-
-Tra i reference type troviamo:
-
-- **array**: utilizzati principalmente per raggruppare diversi elementi appartenenti alla stessa categoria.
-
-- **oggetti**: sono utilizzati per raggruppare qualità / caratteristiche di una struttura dati più complessa, in genere eterogenea.
-
-```js
-//Arrays
-const nomi = ['simone', 'matteo', 'giovanni'];
-
-//Accedo ai campi di un array con l'operatore di indicizzazione []
-//               0         1         2
-//const nomi = ['simone', 'matteo', 'giovanni'];
-console.log(nomi[1]); //matteo
-
-//Objects
-const persona = {
-    nome: 'simone',
-    eta: 25,
-    isMarry: true
-}
-
-//Accedo ai campi di un Object spcificando il nome della proprietà dell'oggetto
-console.log(persona.nome); //simone
-```
-
-
-
-## Alcune best practice per dichiarazione di variabili
-
-- Usare sempre il camelCase quando la variabile è composta da due o più parole
-- Non si può usare un numero, un `#`, una `@`come inizio del nome di una variabile. E' accettanto invece il simbolo `$`
-- Non si possono utilizzare, come identificatore, le keyword native di JS come: `function`, `if`, `delete`, `new`, `while` ..
-
-Vediamo qualche esempio qua sotto:
-
-```js
-//Sintassi alternativa per dichiarare più costanti
+//Sintassi alternativa per dichiarare più variabili costanti
 const na = 3,
       pigreco = 3.14;
       _iou = 0;
@@ -724,8 +391,62 @@ const na = 3,
       1T = 1;   //ERROR!!
 ```
 
-## Reference type Const
+## Tipi di dati in JS
 
+ECMAScript definisce sette tipi primitivi:
+
+- Sei tipi di dato che sono *primitives*:
+  - `Boolean`. true e false.
+  - `null`. Una parola chiave che denota un oggetto nullo.
+  - `undefined`. Una proprietà il cui valore non è stato definito.
+  - `Number`. 42 oppure 3.14159.
+  - `String`. "Salve"
+  - `Symbol`. Un tipo di dato la cui istanza è unica e immutabile.
+  - `Object`. 
+
+**NOTA:** `typeof` è una proprietà di Javascript che ritorna il tipo di un oggetto o una variabile.
+
+## Tipi Primitivi
+
+Javascript assegna il tipo a una variabile in modo dinamico ovvero in fase di dichiarazione della stessa. Vediamo degli esempi
+
+```js
+const nome = 'simone'; 
+const cognome = "Di Ricco";
+const nome_cognome = `${nome} ${cognome}`;
+
+const temp = -1.5; //Number
+const isMaggiorenne = true; //Boolean
+
+const value = null; //Number
+
+const cognome = undefined; //Undefined
+
+const mySymbol = Symbol(); //Undefined
+
+const persona = { //Object
+    nome: 'simone',
+    eta: 25,
+    isMarry: true
+}
+```
+
+## Standard built-in Object
+
+Sono oggetti predefiniti e accessibili a livello globale, di uso comune in JavaScript. Hanno proprietà e metodi built-in che servono ad eseguire operazioni comuni per l’accesso e la modifica dei dati che contengono.
+
+### Oggetti Fondamentali
+
+Oggetti generali di Javascrpt, sui quali sono basati tutti gli altri oggetti. Rappresentano oggetti, funzioni ed errori.
+
+- Object
+- Function
+- Boolean
+- Symbol
+- Error
+- EvalError
+  
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 **ATTENZIONE:** Se un reference type (array o oggetto) è dichiarato `const` non significa che non è possibile modificare i campi all'interno ma solo che non posso cambiare la natura del reference type. Il nome di un reference type rappresenta solo l'indirizzo in memoria della struttura.
 ```js
 const myObj {
@@ -746,6 +467,7 @@ let myObj2 {
 myObj2.ram = 6;   //OK
 myObj2 = 18;      //OK con let un <oggetto> può tramutarsi dinamicamente in un <number>
 ```
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 
 ## Approfondimento Null - undefined - NaN
 
@@ -3368,9 +3090,9 @@ Console:
   - [Prerequisiti al corso](#prerequisiti-al-corso)
   - [Approccio al corso](#approccio-al-corso)
   - [Strumenti Necessari](#strumenti-necessari)
-  - [Versioni di Javascript](#versioni-di-javascript)
+  - [Javascript, ECMA-Script?](#javascript-ecma-script)
 - [Lezione 02](#lezione-02)
-  - [Primo script Javascript all'interno del browser web](#primo-script-javascript-allinterno-del-browser-web)
+  - [Primo script all'interno del browser web](#primo-script-allinterno-del-browser-web)
     - [Javascript all'interno del tag `script`](#javascript-allinterno-del-tag-script)
     - [Javascript all'interno di un file `.js`](#javascript-allinterno-di-un-file-js)
   - [Primo script Javascript con node.js](#primo-script-javascript-con-nodejs)
@@ -3381,11 +3103,11 @@ Console:
   - [Introduzione alla libreria JQuery](#introduzione-alla-libreria-jquery)
   - [DOM ed Eventi](#dom-ed-eventi)
   - [Variabili Javascript](#variabili-javascript)
+  - [Alcune regole per dichiarazione di variabili](#alcune-regole-per-dichiarazione-di-variabili)
   - [Tipi di dati in JS](#tipi-di-dati-in-js)
-  - [Dati nativi](#dati-nativi)
-  - [Reference type](#reference-type)
-  - [Alcune best practice per dichiarazione di variabili](#alcune-best-practice-per-dichiarazione-di-variabili)
-  - [Reference type Const](#reference-type-const)
+  - [Tipi Primitivi](#tipi-primitivi)
+  - [Standard built-in Object](#standard-built-in-object)
+    - [Oggetti Fondamentali](#oggetti-fondamentali)
   - [Approfondimento Null - undefined - NaN](#approfondimento-null---undefined---nan)
   - [Stringhe](#stringhe)
   - [Opearotri, Proprietà e Metodi su stringhe](#opearotri-proprietà-e-metodi-su-stringhe)
