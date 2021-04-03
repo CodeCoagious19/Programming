@@ -241,7 +241,7 @@ python3 -m esptool --port /dev/ttyUSB0 --baud 115200 write_flash --flash_freq 40
 
 Una guida completa su questi comandi la puoi trovare su [ESP8266 - Flashing](http://www.espruino.com/ESP8266_Flashing)
 
-Vedi anche `http://www.espruino.com/Quick+Start+USB`
+Vedi anche [Quick start USB](http://www.espruino.com/Quick+Start+USB)
 
 
 
@@ -257,7 +257,7 @@ Per vedere tutte le opzioni di programmazione di espruino ti consiglio di dare u
 
 Puoi usare:
 
-- []
+- [Espuino IDE](https://www.espruino.com/ide/), ma solo con google chrome. Con chromium non funziona.
 - []
 
 ## Primi passi con javascript ed espruino
@@ -281,16 +281,16 @@ digitalRead(D16);
 ```
 
 ```js
-//Set D16 to high
-//after 200ms Set D16 to low
-function flash() {
-  digitalWrite(D16,1);
-  setTimeout(function() {
-    digitalWrite(D16,0);
-  }, 200);
-}
+  //Set D16 to high
+  //after 200ms Set D16 to low
+  function flash() {
+    digitalWrite(D16,1);
+    setTimeout(function() {
+      digitalWrite(D16,0);
+    }, 200);
+  }
 
-flash();
+  flash();
 ```
 
 
@@ -370,3 +370,230 @@ require("Font8x12").add(Graphics);
 I2C1.setup({ scl: D5, sda: D4 });
 var g = require("SSD1306").connect(I2C1, start, { rst: D16, height : 32, width:128   });
 ```
+
+### Orologio con display NOKIA 5110
+
+Puoi trovare il progetto [qua](https://www.espruino.com/Pico+Clock). Riporto comunque il codice completo che comprende l'adattamento NodeMCU.
+
+```js
+
+/*
+GND	GND	GND
+LIGHT	Any	GND (backlight on)
+VCC	3.3v	3.3
+CLK	SPI SCK	D3
+DIN	SPI MOSI	D5
+DC	Any	D6
+CE	Any	D7
+RST	Any	D8
+*/
+
+var g;
+
+var MONTHS = [
+  "Jan","Feb","Mar","Apr","May","Jun",
+  "Jul","Aug","Sep","Oct","Nov","Dec"
+  ];
+
+function draw() {
+  g.clear();
+  var t = new Date();
+  var date = t.getDate()+" "+MONTHS[t.getMonth()]+" "+t.getFullYear();
+  var time = t.getHours()+":" +
+       ("0"+t.getMinutes()).substr(-2);
+  var secs = ("0"+t.getSeconds()).substr(-2);
+  // top left date
+  g.setFontBitmap();
+  g.drawString(date,0,0);
+  // middle time
+  g.setFontVector(20);
+  var timeWidth = g.stringWidth(time);
+  g.drawString(time,(g.getWidth()-timeWidth-12)/2,10);
+  // seconds over to the right
+  g.setFontBitmap();
+  g.drawString(secs,(g.getWidth()+timeWidth-8)/2,26);
+  // send to LCD
+  g.flip();
+}
+
+function onInit() {
+  clearInterval();
+  // Setup SPI
+  var spi = new SPI();
+  spi.setup({ sck:NodeMCU.D3, mosi:NodeMCU.D5 });
+  // Initialise the LCD
+  g = require("PCD8544").connect(spi,NodeMCU.D6,NodeMCU.D7,NodeMCU.D8, function() {
+    // When it's initialised, set up an animation at 20fps (50ms per frame)
+    setInterval(draw, 1000);
+  });
+}
+
+onInit();
+```
+
+
+### Snake
+
+```js
+// Setup SPI
+var spi = new SPI();
+// Graphics
+var g;
+// Current score
+var score = 0;
+// Snake position and direction
+var pos, dir;
+// previous snake positions
+var history = [];
+//initial snake lenght
+var snakeLength = 5;
+// a list of apple locations (that the snake can eat)
+var apples = [];
+//initial speed
+var speed = 120;
+
+var idOnFrame = 0;
+
+function beep(state){
+  digitalWrite(NodeMCU.D4, state);
+}
+
+function updateSnake() {
+  // remove old score...
+  beep(1);
+  g.setColor(0);  
+  g.fillRect(0,0,g.getWidth(),5);
+  g.setColor(1);
+  g.drawString(score);
+  beep(0);
+  clearInterval();
+  speed = (speed <= 20) ? 20: speed-5;
+  idOnFrame = setInterval(onFrame, speed);
+}
+
+function newApple() {
+  var p;
+  // keep coming up with random locations until there
+  // is nothing drawn where we want to put the apple
+  do {
+    p = { x : Math.round(Math.random()*g.getWidth()),
+          y : 6 + Math.round(Math.random()*(g.getHeight()-6)) };
+  } while (g.getPixel(p.x, p.y));
+  // draw the apple, and save it inthe array
+  g.setPixel(p.x, p.y);
+  apples.push(p);
+}
+
+function start() {
+  // clear screen
+  g.clear();
+  g.drawRect(0,6,g.getWidth()-1, g.getHeight()-1);
+
+  speed = 150;
+  // Setup snake position
+  pos = {x:g.getWidth()/2,y:g.getHeight()/2}; // centre of the screen
+  history = [[pos.x, pos.y]]; // reset the 'history' list
+  g.setPixel(pos.x, pos.y);
+  dir = {x:1,y:0}; // the direction of the snake
+  // Now add randomly positioned apples
+  apples = [];
+  for (var i=0;i<10;i++)
+    newApple();
+  // update the screen  
+  g.flip();
+
+  // reset score
+  score = 0;
+  updateSnake(); 
+  // When a button is pressed, rotate the snake
+  setWatch(function(e) {
+      rotate(-1);
+  }, NodeMCU.D1, { repeat:true, edge:"rising", debounce: 10});
+  setWatch(function(e) {
+      rotate(1);
+  }, NodeMCU.D2, { repeat:true, edge:"rising", debounce: 10});
+}
+
+// When Espruino starts up...
+function onInit() {
+  clearInterval();
+  clearWatch();
+  // Setup SPI
+  spi.setup({ sck:NodeMCU.D3, mosi:NodeMCU.D5 });
+  // Initialise the LCD
+  g = require("PCD8544").connect(spi,NodeMCU.D6,NodeMCU.D7,NodeMCU.D8, function(){
+    // When it's initialised, clear it and write some text
+    g.clear();
+    g.drawString("Hello",0,0);
+    // send the graphics to the display
+    g.flip();
+    start();
+  });
+}
+
+function gameOver() {
+  // stop the game
+  beep(1);
+  clearWatch();
+  clearInterval();
+  // write 'game over' on the screen
+  g.clear();
+  var s = "Game Over!";
+  g.drawString(s, (g.getWidth()-g.stringWidth(s))/2, g.getHeight()/2-4);
+  g.flip();
+  beep(0);
+  // when the button is pressed, restart
+  setWatch(function(e) {
+    start();
+  }, NodeMCU.D2, { edge:"rising", debounce: 20});
+}
+
+// called every 'frame' of the game
+function onFrame() {
+  pos.x += dir.x;
+  pos.y += dir.y;
+  // remove tail
+  while (history.length>=snakeLength) {
+    var p = history.shift(); // remove first item from list
+    g.setPixel(p[0], p[1], 0); // clear that pixel
+  }
+  // add current position onto the end
+  history.push([pos.x, pos.y]);
+
+  if (g.getPixel(pos.x, pos.y)) {
+    // check for apples
+    var wasApple = false;
+    for (var i in apples)
+      if (apples[i].x==pos.x && apples[i].y==pos.y) {
+        wasApple = true;
+        // delete this apple
+        apples.splice(i,1);
+        // add a new apple
+        newApple();
+        // change score and increase snake length
+        snakeLength += 1;
+        score += 10;
+        updateSnake();
+        // break out so we don't check any more apples
+        break;
+      }
+    if (!wasApple)
+      gameOver();
+  } else {
+    g.setPixel(pos.x, pos.y);
+    g.flip();
+  }
+}
+
+
+function rotate(d) {
+  if (dir.x) {
+    dir = {x:0,y:d*dir.x};
+  } else {
+    dir = {x:-d*dir.y,y:0};
+  }
+}
+
+onInit();
+```
+
