@@ -13,7 +13,7 @@
   - [PWM](#pwm)
 - [Lezione 06](#lezione-06)
   - [Documentazione Linguaggio Arduino](#documentazione-linguaggio-arduino)
-  - [analogRead](#analogread)
+  - [Binary Clock](#binary-clock)
 
 # Lezione 01
 
@@ -355,5 +355,163 @@ Qua sotto riporto comunque qualche costrutto fondamentale del linguaggio `C++` e
 | String  | -       |Contenitore per testo (e.g., “Resistenza”)
 
 
-## analogRead
+## Binary Clock
 
+Per questo orologio binario ho utilizzato la libreria [simple_matrix](https://github.com/Electro707/Simple-LED-Matrix-Library) per la gestione della matrice di LED e la libreria [RTClib](https://github.com/adafruit/RTClib) per la gestione del tempo.
+
+Ho modificato la libreria [simple_matrix](https://github.com/Electro707/Simple-LED-Matrix-Library) creando una nuova versione, [simple_matrix_v2](https://github.com/CodeCoagious19/arduino-libraries/tree/master/MatrixLEDLib_v2) che in più contiene i metodi:
+
+- `writeSquare(order, x, y, value)`
+- `writePixel(x, y, value)`
+
+```c++
+#include "simple_matrix_v2.h"  //Import the library
+#include "RTClib.h"
+
+#define NUMBER_OF_DISPLAYS 2 //Sets the number of display (4 for this example)
+
+/*
+Initialize the library. The 4 means that the CS pin is connected to pin D4.
+You can change this to whatever you want, just make sure to connect the CS
+pin to the pin number.
+
+The disp means that any future function calls to the library uses "disp" as the
+library's object name. For example, the library has a function called
+"setIntensity", you need to write "disp.setIntensity" to call that function.
+
+If you notice that the display is upside-down per display, change 
+simpleMatrix disp(4, false, NUMBER_OF_DISPLAYS); to simpleMatrix disp(4, true, NUMBER_OF_DISPLAYS);
+*/
+
+/*
+WARNING!!
+There are several problems with the coding of (x, y) coordinates. I advise you to change the library for the LED matrix and switch to MD_MAX72XX which is much more complete and configurable.
+*/
+simpleMatrix disp(4, true, NUMBER_OF_DISPLAYS);
+RTC_DS1307 rtc;
+
+#define ORDER 2
+#define START_X 0
+#define START_Y 8
+
+#define ADJUST_HOUR true
+
+int seconds = 0;
+int minutes = 0;
+int hours = 0;
+
+void seconds_unit(int i){
+  //If you don't understand, see WARNINGS
+  int x = 0;
+  int y = 0;
+  int value = 0;
+  for (int bitNumber = 0; bitNumber < 4; bitNumber++){
+    x = START_Y - 1*ORDER;
+    y = START_X + bitNumber*ORDER;
+    value = (i>>bitNumber)&1;
+    disp.writeSquare(ORDER, x, y, value);
+  }
+}
+
+void seconds_dozens(int i){
+  //If you don't understand, see WARNINGS
+  int x = 0;
+  int y = 0;
+  int value = 0;
+  for (int bitNumber = 0; bitNumber < 4; bitNumber++){
+    x = START_Y - 1*ORDER;
+    y = START_X + 8 + bitNumber*ORDER;
+    value = (i>>bitNumber)&1;
+    disp.writeSquare(ORDER, x, y, value);
+  }
+}
+
+void minutes_unit(int i){
+  //If you don't understand, see WARNINGS
+  int x = 0;
+  int y = 0;
+  int value = 0;
+  for (int bitNumber = 0; bitNumber < 4; bitNumber++){
+    x = START_Y - 2*ORDER -1;
+    y = START_X + bitNumber*ORDER;
+    value = (i>>bitNumber)&1;
+    disp.writeSquare(ORDER, x, y, value);
+  }
+}
+void minutes_dozens(int i){
+  //If you don't understand, see WARNINGS
+  int x = 0;
+  int y = 0;
+  int value = 0;
+  for (int bitNumber = 0; bitNumber < 4; bitNumber++){
+    x = START_Y - 2*ORDER -1;
+    y = START_X + 8 + bitNumber*ORDER;
+    value = (i>>bitNumber)&1;
+    disp.writeSquare(ORDER, x, y, value);
+  }
+}  
+  
+void hours_unit(int i){
+  //If you don't understand, see WARNINGS
+  int x = 0;
+  int y = 0;
+  int value = 0;
+  for (int bitNumber = 0; bitNumber < 4; bitNumber++){
+    x = START_Y - 3*ORDER -2;
+    y = START_X + bitNumber*ORDER;
+    value = (i>>bitNumber)&1;
+    disp.writeSquare(ORDER, x, y, value);
+  }
+}
+
+void hours_dozens(int i){
+  //If you don't understand, see WARNINGS
+  int x = 0;
+  int y = 0;
+  int value = 0;
+  for (int bitNumber = 0; bitNumber < 4; bitNumber++){
+    x = START_Y - 3*ORDER -2;
+    y = START_X + 8 + bitNumber*ORDER;
+    value = (i>>bitNumber)&1;
+    disp.writeSquare(ORDER, x, y, value);
+  }
+}
+
+
+//This code will run only once when the Arduino is turned on.
+void setup(){
+  rtc.begin();
+  //Starts the library
+  disp.begin();
+  //Set the LED's intensity. This value can be anywhere between 0 and 15.
+  disp.setIntensity(0x01);
+
+  if(ADJUST_HOUR){
+     rtc.adjust(DateTime(F(__DATE__), F(__TIME__)));
+   }
+}
+
+//After void setup(), this code will run and loop forever.
+void loop(){
+
+    DateTime adesso = rtc.now();
+   
+    seconds = adesso.second();
+    minutes = adesso.minute();
+    hours = adesso.hour();
+         
+    seconds_unit(seconds%10);
+    seconds_dozens(seconds/10);
+    
+    minutes_unit(minutes%10);
+    minutes_dozens(minutes/10);
+    
+    hours_unit(hours%10);
+    hours_dozens(hours/10);
+    
+    delay(1000);
+
+}
+
+
+```
