@@ -17,7 +17,7 @@
 
 # Lezione 01
 
-Arduino è una scheda elettronica per realizzare prototipi. Il cuore di arduino è il **microcontrollore**. Il modello **Arduino UNO R3** utilizza il microcontrollore **Atmega328P**. 
+Arduino è una scheda elettronica per realizzare prototipi. Il cuore di arduino è il **microcontrollore**. Il modello **Arduino UNO R3** utilizza il microcontrollore **Atmega328P**.
 
 ![](./images/Arduino-board.jpg)
 
@@ -70,29 +70,29 @@ Ci sono inoltre 5 PIN numerati da `14 - 19` per l'interfacciamento con segnali a
 Lo `Sketch` è il programma, la logica. Arduino utilizza come linguaggio di programmazione il `C++` ma fornisce anche delle funzioni di interfacciamento o meglio delle **classi** e dei **metodi** per l'accesso in modo semplificato all'Hardware. Per far ciò, all'accensione del microcontrollore, Arduino configura i registri interni dei moduli del microcontrollore con un settaggio standard e "maschera" queste operazioni all'utente finale mostrando solo due macroblocchi:
 
 
-- **setup** 
-- **loop** 
+- **setup**
+- **loop**
 
 ![](./images/arduino-main.png)
 
 In linea generale possiamo affermare che:
 
 - **setup:** i comandi scritti all'interno di questo blocco vengono eseguiti una sola volta all'avvio di Arduino.
-- **loop** i comandi scritti all'interno di questo blocco vengono eseguiti ciclicamente dopo l'avvio di Arduino fino al riavvio o spegnimento della board. 
+- **loop** i comandi scritti all'interno di questo blocco vengono eseguiti ciclicamente dopo l'avvio di Arduino fino al riavvio o spegnimento della board.
 
 ## Primo sketch - LED Blink
 
 Come primo Sketch vedremo come far lampeggiare un LED. Useremo il LED connesso direttamente ad arduino al `pin 13`. Per far ciò dovremo:
 
 in  `void setup {}`:
-- Impostare il `pin 13` come `output` 
+- Impostare il `pin 13` come `output`
 
 in `void loop(){}`:
 - Scrivere il valore logico `HIGH` sul `pin 13` per fornire `5v` ed accendere il led tramite l'istruzione `digitalWrite()`
 - Inserire un ritardo che esprime il tempo in cui il `pin` starà acceso con l'istruzione `delay()`
 - Scrivere il valore logico `LOW` sul `pin 13` per togliere l'alimentazione e spegnere il led tramite l'istruzione `digitalWrite()`
-- Inserire un ritardo che esprime il tempo in cui il `pin` starà spento con l'istruzione `delay()` 
-  
+- Inserire un ritardo che esprime il tempo in cui il `pin` starà spento con l'istruzione `delay()`
+
 Poichè il `void loop(){}` esegue in loop le istruzioni, realizzerai un lampeggio del LED infinito.
 
 Il codice completo:
@@ -175,7 +175,7 @@ In elettronica e telecomunicazioni la modulazione di larghezza di impulso (o PWM
 
 Poichè arduino è alimentato a `5V` se volessi ottenere un valore medio pari a `2.5V` in uscita da un pin digitale dovrei generare un segnale `PWM` con le seguenti caratteristiche:
 
-- Frequenza: fissa. Valori standard di frequenza per i segnali PWM vanno da qualche centinaia di `Hz` a qualche `Khz`. Il valore di frequenza è stabilito internamente da Arduino quindi per adesso non dovrai preoccupartene. 
+- Frequenza: fissa. Valori standard di frequenza per i segnali PWM vanno da qualche centinaia di `Hz` a qualche `Khz`. Il valore di frequenza è stabilito internamente da Arduino quindi per adesso non dovrai preoccupartene.
 - Duty cicle: `50%`. Per impostare il duty cicle si imposta un valore nel range `0-255` all'interno della funzione `analogWrite()`. Attraverso la proporzione:
 ```math
 dutyCicle% : 100% = value: 255
@@ -244,7 +244,7 @@ void loop() {
   delay(30);
 }
 ```
- In questo esempio il LED, connesso al PIN `9` si accenderà e si spegnerà in modo graduale. Per ottenere questo effetto si agisce su parametro che regola il `duty cicle` che in questo programma è definito dalla variabile `brightness`. 
+ In questo esempio il LED, connesso al PIN `9` si accenderà e si spegnerà in modo graduale. Per ottenere questo effetto si agisce su parametro che regola il `duty cicle` che in questo programma è definito dalla variabile `brightness`.
 
 - In pratica il software imposta una `brightness` pari a `0` aumenta la variabile `brightness` del valore pari a `fadeAmount` (impostata a `5`) secondo l'espressione `brightness = brightness + fadeAmount` che diventa quindi `brightness = brightness + 5`
 
@@ -260,7 +260,7 @@ In questo modo il LED aumenterà la sua luminosità in modo graduale
 
 - Una volta che `brightness` è arrivata al valore minimo, `brightness <= 0`, inverte il valore di `fadeAmount`. In questo caso quindi l'espressione torna a essere `brightness = brightness + 5`.
 - Ripete questa operazione ogni `30 millisecondi`.
-  
+
 E continua fino al reset di Arduino.
 
 **Domanda:**<br>
@@ -364,6 +364,55 @@ Ho modificato la libreria [simple_matrix](https://github.com/Electro707/Simple-L
 - `writeSquare(order, x, y, value)`
 - `writePixel(x, y, value)`
 
+### Collegamenti Hardware
+
+|LED Matrix Pins|	Arduino Pins|
+|---|---|
+|VCC|	VCC|
+|GND|	GND|
+|DIN|	D11 (Fixed)|
+|CLK|	D13 (Fixed)|
+|CS|	D4 (Adjustable by software)|
+
+|RTC |	Arduino Pins|
+|---|---|
+|VCC|	VCC (+5V)|
+|GND|	GND|
+|SDA|	SDA|
+|SCL|	SCL|
+
+![binaryClock](./images/binaryClock.png)
+
+### Il codice
+
+L'orologio binario consiste nel codificare ore, minuti e secondi con la relativa sequenza binaria.
+
+Ho deciso di codificare ogni cifra in una sequenza binaria rappresentando quindi separatamente decine e unità per ore, minuti e secondi.
+
+Ad esempio:
+
+```c++
+12
+
+//decine //unità
+0001     0010
+```
+
+Inoltre la rappresentazione del tempo all'interno della matrice di LED va dall'alto verso il basso a partire dalle ore.
+
+In conclusione, per rappresentare la seguente ora: `21:34:46` vedrai:
+
+```c++
+21:34:46
+
+//d  //u
+0010 0001
+0011 0100
+0100 0110
+```
+
+Ecco quindi il codice completo..
+
 ```c++
 #include "simple_matrix_v2.h"  //Import the library
 #include "RTClib.h"
@@ -379,7 +428,7 @@ The disp means that any future function calls to the library uses "disp" as the
 library's object name. For example, the library has a function called
 "setIntensity", you need to write "disp.setIntensity" to call that function.
 
-If you notice that the display is upside-down per display, change 
+If you notice that the display is upside-down per display, change
 simpleMatrix disp(4, false, NUMBER_OF_DISPLAYS); to simpleMatrix disp(4, true, NUMBER_OF_DISPLAYS);
 */
 
@@ -450,7 +499,7 @@ void minutes_dozens(int i){
     disp.writeSquare(ORDER, x, y, value);
   }
 }  
-  
+
 void hours_unit(int i){
   //If you don't understand, see WARNINGS
   int x = 0;
@@ -495,23 +544,21 @@ void setup(){
 void loop(){
 
     DateTime adesso = rtc.now();
-   
+
     seconds = adesso.second();
     minutes = adesso.minute();
     hours = adesso.hour();
-         
+
     seconds_unit(seconds%10);
     seconds_dozens(seconds/10);
-    
+
     minutes_unit(minutes%10);
     minutes_dozens(minutes/10);
-    
+
     hours_unit(hours%10);
     hours_dozens(hours/10);
-    
+
     delay(1000);
 
 }
-
-
 ```
