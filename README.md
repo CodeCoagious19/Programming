@@ -1,153 +1,69 @@
-# Indice principale
+# Learn
 
 Benvenuto!
 
-In questa repository puoi trovare appunti sui linguaggi di programmazione o framework che ho avuto modo di studiare e approfondire per lavoro o per progetti personali.
+In questa repository puoi trovare appunti di informatica ed elettronica. In particolare puoi trovare corsi dalla programmazione web ai sistemi embedded, tutorial su sistemi operativi come Linux o Android e qualche nozione di elettronica come supporto alla programmazione per sistemi embedded 
 
-- [Indice principale](#indice-principale)
-  - [Link veloci](#link-veloci)
-  - [Programmazione Web](#programmazione-web)
-    - [Html](#html)
-    - [Css](#css)
-    - [Javascript e node.js](#javascript-e-nodejs)
-    - [React](#react)
-  - [Programmazione Desktop](#programmazione-desktop)
-    - [Espressioni Regolari](#espressioni-regolari)
-    - [Java](#java)
-    - [C++](#c)
-    - [Python](#python)
-  - [Programmazione Microcontrollori](#programmazione-microcontrollori)
-    - [Arduino](#arduino)
+- [Learn](#learn)
+  - [Lista completa](#lista-completa)
+    - [Sviluppo web front-end](#sviluppo-web-front-end)
+    - [Scripting & linguaggi general purpose](#scripting--linguaggi-general-purpose)
+    - [Sistemi embedded](#sistemi-embedded)
+    - [Sistemi embedded Automotive](#sistemi-embedded-automotive)
+    - [Ambienti di Sviluppo](#ambienti-di-sviluppo)
+    - [Sistemi operativi](#sistemi-operativi)
 
-<br>
+<img src="./_images/html_original_wordmark_logo_icon_146478.svg" width="75"/>
+<img src="./_images/css_original_wordmark_logo_icon_146576.svg" alt="drawing" width="75"/>
+<img src="./_images/javascript_icon_130900.png" alt="drawing" width="75"/>
+<img src="./_images/react_original_wordmark_logo_icon_146375.svg" alt="drawing" width="75"/>
+<img src="./_images/reg-expr.png" alt="drawing" width="150"/>
+<img src="./_images/java_original_wordmark_logo_icon_146459.svg" alt="drawing" width="75"/>
+<img src="./_images/cpp-logo-350x350.png" alt="drawing" width="75"/>
+<img src="./_images/python_original_wordmark_logo_icon_146382.svg" alt="drawing" width="75"/>
+<img src="./_images/arduino_official_logo_icon_167833.svg" alt="drawing" width="75"/>
+<img src="./_images/atom-logo.svg" alt="drawing" width="75"/>
+<img src="./_images/vscode-logo.png" alt="drawing" width="75"/>
+<img src="./_images/espruino.png" alt="drawing" width="75"/>
+<img src="./_images/rasbpberry.webp" alt="drawing" width="75"/>
+<img src="./_images/ubuntu-logo.png" alt="drawing" width="75"/>
 
-## Link veloci
+## Lista completa
 
-[<img src="./_images/html_original_wordmark_logo_icon_146478.svg" width="75"/>](./html/README.MD/)
-[<img src="./_images/css_original_wordmark_logo_icon_146576.svg" alt="drawing" width="75"  />](./css/README.md)
-[<img src="./_images/javascript_vertical_logo_icon_168606.png" alt="drawing" width="75"  />](./javascript/README.md)
-[<img src="./_images/react_original_wordmark_logo_icon_146375.svg" alt="drawing" width="75"  />](./react-js/README.md)
-[<img src="./_images/reg-expr.png" alt="drawing" width="150"  />](./reg-expr/README.md)
-[<img src="./_images/java_original_wordmark_logo_icon_146459.svg" alt="drawing" width="75"  />](./java/README.md)
-[<img src="./_images/cpp-logo-350x350.png" alt="drawing" width="75"  />](./cpp/README.md)
-[<img src="./_images/python_original_wordmark_logo_icon_146382.svg" alt="drawing" width="75"/>](./python/README.md)
-[<img src="./_images/arduino_official_logo_icon_167833.svg" alt="drawing" width="75"  />](./arduino/README.md)
+### Sviluppo web front-end
 
-## Programmazione Web
+- **[Html](./html/README.MD)** : In informatica l'HyperText Markup Language (traduzione letterale: linguaggio a marcatori per ipertesti), comunemente noto con l'acronimo HTML, è un linguaggio di markup
+- **[Css](./css/README.md)** : Il CSS (sigla di Cascading Style Sheets, in italiano fogli di stile a cascata), in informatica, è un linguaggio usato per definire la formattazione di documenti HTML, XHTML e XML, ad esempio i siti web e relative pagine web.
+- **[Javascript](./javascript/README.md)** : Attualmente quasi tutte le pagine web contengono JavaScript, un linguaggio di scripting che viene eseguito dal browser del visitatore
+- **[Typescript](./typescript/README.MD)** : E' un linguaggio di programmazione open source sviluppato da Microsoft. Si tratta di un Super-set di JavaScript che basa le sue caratteristiche su ECMAScript 6
+- **[react.js](./react/README.md)** : React è una libreria JavaScript per la creazione di interfacce utente
 
+### Scripting & linguaggi general purpose
 
-### Html
+- **[Espressioni regolari](./reg-expr/README.md)** : Un'espressione regolare è una sequenza di simboli che identifica un insieme di stringhe
+- **[Java](./java/README.md)** : In informatica Java è un linguaggio di programmazione ad alto livello, orientato agli oggetti e a tipizzazione statica, che si appoggia sull'omonima piattaforma
+- **[C++](./cpp/README.md)** : In informatica C++ è un linguaggio di programmazione general-purpose, sviluppato in origine da Bjarne Stroustrup nei Bell Labs nel 1983 come evoluzione del linguaggio C inserendo la programmazione orientata agli oggetti, col tempo ha avuto notevoli evoluzioni, come l'introduzione dell'astrazione rispetto al tipo. 
+- **[Python](./python/README.md)** : Python è un linguaggio di programmazione di più "alto livello" rispetto alla maggior parte degli altri linguaggi, orientato a oggetti, adatto, tra gli altri usi, a sviluppare applicazioni distribuite, scripting, computazione numerica e system testing.
 
-| Prerequisiti | Completamento |
-| :---: | :---: |
-| Nessuno | 70%|
+### Sistemi embedded
 
+- **[Arduino](./arduino/README.md)** : Arduino è una piattaforma hardware composta da una serie di schede elettroniche dotate di un microcontrollore
+- **[Espruino](./espruino/README.md)** : Espruino è un interprete JavaScript open source per microcontrollori
+- **[Raspberry pi pico](./raspberry-pi-pico/readme.md)** : E' un chip progettato da Raspberry Pi (RP2040) con un dual core ARM Cortex-M0+ dual core con clock a 133 MHz con memoria flash QSPI integrata da 2 MB. È possibile programmarlo in MicroPython.
 
-In informatica l'HyperText Markup Language (traduzione letterale: linguaggio a marcatori per ipertesti), comunemente noto con l'acronimo HTML, è un linguaggio di markup.
+### Sistemi embedded Automotive
 
-[**vai al corso**](./html/README.MD/)
+- **[Protocollo LIN](./automotive/lin/README.MD)** : Local Interconnect Network (LIN) è un protocollo di comunicazione seriale a bassa velocità su cavo singolo progettato per applicazioni automotive
 
-<br>
+### Ambienti di Sviluppo
 
-### Css
+- **[Editor di testo](./text-editor/readme.md)** : E' un programma per la composizione di testi. Un semplice editor è generalmente incluso in ogni sistema operativo e utilizzato dai programmatori come ambiente di sviluppo
 
-| Prerequisiti | Completamento |
-| :---: | :---: |
-| html | 70%|
+### Sistemi operativi
 
-Il CSS (sigla di Cascading Style Sheets, in italiano fogli di stile a cascata), in informatica, è un linguaggio usato per definire la formattazione di documenti HTML, XHTML e XML, ad esempio i siti web e relative pagine web. 
-
-[**vai al corso**](./css/README.md)
-
-<br>
-
-### Javascript e node.js
-
-| Prerequisiti | Completamento |
-| :---: | :---: |
-| html, css | 80%|
-
-Attualmente quasi tutte le pagine web contengono JavaScript, un linguaggio di scripting che viene eseguito dal browser del visitatore
-
-[**vai al corso**](./javascript/README.md)
-
-<br>
-
-### React
-
-| Prerequisiti | Completamento |
-| :---: | :---: |
-| Html, Css, Javascript, Node.js | 10%|
-
-React è una libreria JavaScript per la creazione di interfacce utente
-
-[**vai al corso**](./react/README.md)
-
-<br>
-
-## Programmazione Desktop
-
-### Espressioni Regolari
-
-| Prerequisiti | Completamento |
-| :---: | :---: |
-| Nessuno | 70%|
-
-Un'espressione regolare è una sequenza di simboli che identifica un insieme di stringhe
-
-[**Vai al corso**](./reg-expr/README.md)
-
-<br>
-
-### Java
-
-| Prerequisiti | Completamento |
-| :---: | :---: |
-| Nessuno | 70%|
-
-In informatica Java è un linguaggio di programmazione ad alto livello, orientato agli oggetti e a tipizzazione statica, che si appoggia sull'omonima piattaforma
-
-[**Vai al corso**](./java/README.md)
-
-<br>
-
-### C++
-
-| Prerequisiti | Completamento |
-| :---: | :---: |
-| Nessuno | 70%|
-
- In informatica C++ è un linguaggio di programmazione general-purpose, sviluppato in origine da Bjarne Stroustrup nei Bell Labs nel 1983 come evoluzione del linguaggio C inserendo la programmazione orientata agli oggetti, col tempo ha avuto notevoli evoluzioni, come l'introduzione dell'astrazione rispetto al tipo. 
-
-[**Vai al corso**](./cpp/README.md)
-
-<br>
-
-### Python
-
-| Prerequisiti | Completamento |
-| :---: | :---: |
-| Nessuno | 50%|
-
-Python è un linguaggio di programmazione di più "alto livello" rispetto alla maggior parte degli altri linguaggi, orientato a oggetti, adatto, tra gli altri usi, a sviluppare applicazioni distribuite, scripting, computazione numerica e system testing.
-
-[**vai al corso**](./python/README.md)
-
-<br>
+- **[Android](./android/README.md)** : Android è un sistema operativo per dispositivi mobili sviluppato da Google, progettato principalmente per sistemi embedded quali smartphone e tablet, con interfacce utente specializzate per televisori, automobili, orologi da polso, occhiali ..
 
 
-
-## Programmazione Microcontrollori
-
-### Arduino
-
-| Prerequisiti | Completamento |
-| :---: | :---: |
-| Nessuno | 10%|
-
-Arduino è una piattaforma hardware composta da una serie di schede elettroniche dotate di un microcontrollore
-
-[**vai al corso**](./arduino/README.md)
 
 
 
