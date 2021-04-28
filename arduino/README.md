@@ -562,3 +562,68 @@ void loop(){
 
 }
 ```
+
+## 7 segment
+
+```c++
+//We always have to include the library
+
+#include "LedControl.h"
+
+/*
+Now we need a LedControl to work with.
+***** These pin numbers will probably not work with your hardware *****
+pin 12 is connected to the DataIn
+pin 11 is connected to the CLK
+pin 10 is connected to LOAD
+We have only a single MAX72XX.
+*/
+
+LedControl lc=LedControl(12,11,10,1);
+
+/* we always wait a bit between updates of the display */
+unsigned long delaytime=500;
+
+void setup() {
+
+  /* The MAX72XX is in power-saving mode on startup, we have to do a wakeup call */
+  lc.shutdown(0,false);
+  /* Set the brightness to a medium values */
+  lc.setIntensity(0,8);
+  /* and clear the display */
+  lc.clearDisplay(0);
+}
+
+int ore = 22;
+int minuti = 30;
+int secondi = 0;
+int centesimi = 0;
+
+void loop() {
+  lc.setDigit(0,7,ore/10,false);
+  lc.setDigit(0,6,ore%10,true);
+  lc.setDigit(0,5,minuti/10,false);
+  lc.setDigit(0,4,minuti%10,true);
+  lc.setDigit(0,3,secondi/10,false);
+  lc.setDigit(0,2,secondi%10,true);
+  lc.setDigit(0,1,centesimi/10,false);
+  lc.setDigit(0,0,centesimi%10,false);
+  delay(10);
+  centesimi++;
+  if (centesimi == 100){
+    centesimi = 0;
+    secondi++;
+  }
+  if (secondi == 60){
+    minuti++;
+    secondi = 0;
+  }
+  if (minuti == 60){
+    ore++;
+    minuti = 0;
+  }
+  if (ore == 24){
+    ore = 0;
+  }
+}
+```
