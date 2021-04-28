@@ -22,7 +22,7 @@
 
 # Prerequisiti
 
-React è una libreria Javascript utilizzata per creare applicazioni web e usa la sintassi [jsx](), un mix tra [html]() e [javascript](). Per poter padroneggiare react avrai bisogno di conoscere Javascript, html e css. 
+React è una libreria Javascript utilizzata per creare applicazioni web e usa la sintassi [jsx](), un mix tra [html]() e [javascript](). Per poter padroneggiare react avrai bisogno di conoscere Javascript, html e css.
 
 # React.js in pratica
 
@@ -31,20 +31,21 @@ Puoi trovare un tutorial ben fatto sulla pagina ufficiale di [react.js](https://
 ## Strumenti necessari
 
 Per creare un'app react avrai bisogno di:
-- [nodejs]() 
+- [nodejs]()
 - script `create-react-app`
 
-Se hai una delle ultime versioni di nodejs, avrai incluso anche `npx` un comando che ti permette di installare degli script come `create-react-app`, eseguirlo e successivamente cancellarlo. In questo modo eviti di installare script globalmente inutilmente.
+Se hai una delle ultime versioni di nodejs, avrai incluso anche `npx` un comando che ti permette di installare degli script come `create-react-app`, eseguirlo e successivamente cancellarlo. In questo modo eviti di installare script a livello globale.
 
 ## Hello react!
 
-Digitando da terminale:
+Se vuoi creare un'applicazione react, digita da terminale:
 
 ```bash
 npx create-react-app my-app
 ```
 
-Lo script `create-react-app` creerà una struttura base contenente la tua app react chiamata `my-app` e una serie di script utili per lanciare l'applicazione, compilarla ecc..
+Il comando crea la cartella `my-app`, installa le librerie React e
+React-DOM con le loro dipendenze, configura il package.json e crea i file di un'applicazione di esempio..
 
 ```bash
 Success! Created my-app at /home/s/Repository/corso-react/my-app
@@ -106,10 +107,8 @@ my-app
     └── setupTests.js
 ```
 
-Una volta lanciato questo comando verranno create le seguenti cartelle
-
 ## Package.json
-Il file `package.json` è un file di configurazione e contiene tra le altre cose il nome dell'applicazione, la versione, le dipendeze ovvero i pacchetti npm necessari a react, scripts.. 
+Il file `package.json` è un file di configurazione e contiene tra le altre cose il nome dell'applicazione, la versione, le dipendeze ovvero i pacchetti npm necessari a react, scripts..
 
 ```json
 {
@@ -211,7 +210,7 @@ Contiene il file `index.html` ovvero l'entry point dell'applicazione react.
 </html>
 ```
 
-La cosa da notare è che il body non contiene niente tranne un `div` vuoto con `id="root"`. 
+La cosa da notare è che il body non contiene niente tranne un `div` vuoto con `id="root"`.
 
 ## Folder src
 
@@ -259,10 +258,10 @@ function App() {
 export default App;
 ```
 
-Osserva che 
+Osserva che
 
 1. **tutto è racchiuso dentro una funzione Javascript chiamata `App`**
-  
+
 ```jsx
 function App() {
   return (
@@ -340,7 +339,7 @@ function App(){
   )
 }
 
-//Equivale a 
+//Equivale a
 //React.createElement(div)
 
 export default App;
@@ -376,7 +375,7 @@ reportWebVitals();
 ```
 
 Noterai l'importazione di `App`
-  
+
 ```javascript
 import App from './App';
 ```
@@ -478,7 +477,7 @@ function App(){
   )
 }
 
-//Equivale a 
+//Equivale a
 //React.createElement(div)
 
 export default App;
@@ -505,7 +504,7 @@ function App(){
   )
 }
 
-//Equivale a 
+//Equivale a
 //React.createElement(div)
 
 export default App;
@@ -547,7 +546,7 @@ function App(){
   )
 }
 
-//Equivale a 
+//Equivale a
 //React.createElement(div)
 
 export default App;
@@ -573,7 +572,7 @@ function App(){
   )
 }
 
-//Equivale a 
+//Equivale a
 //React.createElement(div)
 
 export default App;
@@ -619,7 +618,7 @@ function App(){
   )
 }
 
-//Equivale a 
+//Equivale a
 //React.createElement(div)
 
 export default App;
@@ -694,7 +693,7 @@ function App(){
   )
 }
 
-//Equivale a 
+//Equivale a
 //React.createElement(div)
 
 export default App;
@@ -746,7 +745,7 @@ function App(){
   )
 }
 
-//Equivale a 
+//Equivale a
 //React.createElement(div)
 
 export default App;
@@ -796,7 +795,7 @@ function App(){
   )
 }
 
-//Equivale a 
+//Equivale a
 //React.createElement(div)
 
 export default App;
@@ -817,7 +816,7 @@ import React from 'react';
 import Post from './FacebookPosts';
 
 //JSX
-class App extends React.Component{ 
+class App extends React.Component{
   state = {
     number: 0
   }
@@ -844,7 +843,7 @@ export default App;
 1. Osserva che ho trasformato la funzione `App` in una classe. In particolare una classe che estende la classe `React.component`
 
 ```javascript
-class App extends React.Component{ 
+class App extends React.Component{
   render(){
     return(
 
@@ -856,7 +855,7 @@ class App extends React.Component{
 2. Ho definito l'oggetto `state` che contiene la property `number`. `state` è un oggetto, una variabile che contiene lo stato del componente
 
 ```javascript
-class App extends React.Component{ 
+class App extends React.Component{
   state = {
     number: 0
   }
@@ -869,9 +868,9 @@ class App extends React.Component{
 ```
 
 3. Per accedere alla property `number` ho usato `this.state.number`
-  
+
 ```javascript
-class App extends React.Component{ 
+class App extends React.Component{
   state = {
     number: 0
   }
@@ -907,7 +906,7 @@ Vediamo un esempio pratico.
 import React, {useState} from 'react';
 
 //JSX
-function App(){ 
+function App(){
 
   const [count, setCount] = useState(0);
   const increment = () => {
@@ -922,7 +921,7 @@ function App(){
   );
 }
 
-//Equivale a 
+//Equivale a
 //React.createElement(div)
 
 export default App;
