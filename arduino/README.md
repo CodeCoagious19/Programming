@@ -565,6 +565,8 @@ void loop(){
 
 ## 7 segment
 
+[tutorial](https://www.instructables.com/MAX7219-7-Segment-Using-Arduino/)
+
 ```c++
 //We always have to include the library
 
