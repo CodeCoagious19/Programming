@@ -14,6 +14,10 @@
 - [Lezione 06](#lezione-06)
   - [Documentazione Linguaggio Arduino](#documentazione-linguaggio-arduino)
   - [Binary Clock](#binary-clock)
+    - [Collegamenti Hardware](#collegamenti-hardware)
+    - [Il codice](#il-codice)
+  - [7 segment](#7-segment)
+  - [Display I2C](#display-i2c)
 
 # Lezione 01
 
@@ -627,5 +631,61 @@ void loop() {
   if (ore == 24){
     ore = 0;
   }
+}
+```
+
+## Display I2C
+
+```c++
+//YWROBOT
+//Compatible with the Arduino IDE 1.0
+//Library version:1.1
+#include <Wire.h> 
+#include <LiquidCrystal_I2C.h>
+#include "RTClib.h"
+
+LiquidCrystal_I2C lcd(0x27,20,2);  // set the LCD address to 0x27 for a 16 chars and 2 line display
+RTC_DS1307 rtc;
+
+
+#define ADJUST_HOUR true
+
+void setup()
+{
+  lcd.init();                      // initialize the lcd 
+  // Print a message to the LCD.
+  lcd.backlight();
+  lcd.setCursor(0,0);
+  lcd.print("Time:");
+  
+  rtc.begin();
+
+  if(ADJUST_HOUR){
+     rtc.adjust(DateTime(F(__DATE__), F(__TIME__)));
+   }
+}
+
+
+int seconds = 0;
+int minutes = 0;
+int hours = 0;
+
+String fill_zeros(int n) {return (n < 10 ? String('0' + String(n)) : String(n)); }
+
+String time_to_standard(int h, int m, int s){ return (String(fill_zeros(h) + ':' + fill_zeros(m) + ':' + fill_zeros(s))); } 
+
+
+void loop()
+{
+    DateTime adesso = rtc.now();
+
+    seconds = adesso.second() + 7;
+    minutes = adesso.minute();
+    hours = adesso.hour();
+    
+    lcd.setCursor(0,1);
+    lcd.print(time_to_standard(hours, minutes, seconds));
+
+    delay(1000);
 }
 ```
