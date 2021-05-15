@@ -18,6 +18,7 @@
     - [Il codice](#il-codice)
   - [7 segment](#7-segment)
   - [Display I2C](#display-i2c)
+  - [EEPROM](#eeprom)
 
 # Lezione 01
 
@@ -687,5 +688,32 @@ void loop()
     lcd.print(time_to_standard(hours, minutes, seconds));
 
     delay(1000);
+}
+```
+
+## EEPROM
+
+```c++
+#include <EEPROM.h>
+
+int nByte = 0;
+int value = 50;
+void setup()
+{
+  Serial.begin(9600);
+  if(EEPROM.read(nByte) == 255){
+    Serial.println(String(String(nByte) + "vuoto"));
+    EEPROM.write(nByte, value);
+  }
+  else{
+    int tempvalue = EEPROM.read(nByte);
+    String toprint = String(String(nByte) + ":" + String(tempvalue));
+    Serial.println(toprint);
+  }
+  
+}
+void loop()
+{
+
 }
 ```
