@@ -14,6 +14,12 @@
 - [Lezione 06](#lezione-06)
   - [Documentazione Linguaggio Arduino](#documentazione-linguaggio-arduino)
   - [Binary Clock](#binary-clock)
+    - [Collegamenti Hardware](#collegamenti-hardware)
+    - [Il codice](#il-codice)
+  - [7 segment](#7-segment)
+  - [Display I2C](#display-i2c)
+  - [EEPROM](#eeprom)
+  - [SLEEP MODE](#sleep-mode)
 
 # Lezione 01
 
@@ -370,16 +376,16 @@ Ho modificato la libreria [simple_matrix](https://github.com/Electro707/Simple-L
 |---|---|
 |VCC|	VCC|
 |GND|	GND|
-|DIN|	D11 (Fixed)|
-|CLK|	D13 (Fixed)|
-|CS|	D4 (Adjustable by software)|
+|DIN|	D11|
+|CLK|	D13|
+|CS|	D4 |
 
 |RTC |	Arduino Pins|
 |---|---|
 |VCC|	VCC (+5V)|
 |GND|	GND|
-|SDA|	SDA|
-|SCL|	SCL|
+|SDA|	A4 (SDA) |
+|SCL|	A5 (SCL)|
 
 ![binaryClock](./images/binaryClock.png)
 
@@ -560,5 +566,420 @@ void loop(){
 
     delay(1000);
 
+}
+```
+
+## 7 segment
+
+|7 SEG Pins|	Arduino Pins|
+|---|---|
+|VCC|	VCC|
+|GND|	GND|
+|DIN|	D11|
+|CLK|	D13|
+|CS|	D10 |
+
+[tutorial](https://www.instructables.com/MAX7219-7-Segment-Using-Arduino/)
+
+```c++
+//We always have to include the library
+
+#include "LedControl.h"
+
+/*
+Now we need a LedControl to work with.
+***** These pin numbers will probably not work with your hardware *****
+pin 12 is connected to the DataIn
+pin 11 is connected to the CLK
+pin 10 is connected to LOAD
+We have only a single MAX72XX.
+*/
+
+LedControl lc=LedControl(12,11,10,1);
+
+/* we always wait a bit between updates of the display */
+unsigned long delaytime=500;
+
+void setup() {
+
+  /* The MAX72XX is in power-saving mode on startup, we have to do a wakeup call */
+  lc.shutdown(0,false);
+  /* Set the brightness to a medium values */
+  lc.setIntensity(0,8);
+  /* and clear the display */
+  lc.clearDisplay(0);
+}
+
+int ore = 22;
+int minuti = 30;
+int secondi = 0;
+int centesimi = 0;
+
+void loop() {
+  lc.setDigit(0,7,ore/10,false);
+  lc.setDigit(0,6,ore%10,true);
+  lc.setDigit(0,5,minuti/10,false);
+  lc.setDigit(0,4,minuti%10,true);
+  lc.setDigit(0,3,secondi/10,false);
+  lc.setDigit(0,2,secondi%10,true);
+  lc.setDigit(0,1,centesimi/10,false);
+  lc.setDigit(0,0,centesimi%10,false);
+  delay(10);
+  centesimi++;
+  if (centesimi == 100){
+    centesimi = 0;
+    secondi++;
+  }
+  if (secondi == 60){
+    minuti++;
+    secondi = 0;
+  }
+  if (minuti == 60){
+    ore++;
+    minuti = 0;
+  }
+  if (ore == 24){
+    ore = 0;
+  }
+}
+```
+
+## Display I2C
+
+|RTC |	Arduino Pins|
+|---|---|
+|VCC|	VCC (+5V)|
+|GND|	GND|
+|SDA|	A4 (SDA) |
+|SCL|	A5 (SCL)|
+
+|LCD |	Arduino Pins|
+|---|---|
+|VCC|	VCC (+5V)|
+|GND|	GND|
+|SDA|	A4 (SDA) |
+|SCL|	A5 (SCL)|
+
+```c++
+#include <Wire.h> 
+#include <LiquidCrystal_I2C.h>
+#include "RTClib.h"
+
+LiquidCrystal_I2C lcd(0x27,20,2);  // set the LCD address to 0x27 for a 16 chars and 2 line display
+RTC_DS1307 rtc;
+
+enum Mesi {Jan = 1, Feb, Mar, Apr, May, Jun, Jul, Aug, Sept, Oct, Nov, Dec};
+enum Giorni {Sunday = 0, Monday, Tuesday, Wednesay, Thursday, Friday, Saturday};
+
+//You shall flash the sketch two time.
+//The first for adjust the time 
+//The second for run arduino stand alone
+#define ADJUST_HOUR false
+DateTime dateNow = DateTime(2021, May, 18, 11, 44, 30);
+
+//add 0 if number is  < 9 and return a string
+String fillZeros(int n) {return (n < 10 ? String('0' + String(n)) : String(n)); }
+
+//receive h, m, s and return hh:mm:ss
+String standardTime(int h, int m, int s){ return (String(fillZeros(h) + ':' + fillZeros(m) + ':' + fillZeros(s))); } 
+
+void setup()
+{
+  Serial.begin(9600);
+  lcd.init();                      // initialize the lcd 
+  // Print a message to the LCD.
+  lcd.backlight();
+  lcd.setCursor(0,0);
+  lcd.print("Time:");
+  
+  rtc.begin();
+
+  if(ADJUST_HOUR){
+     //to set time at the compilation time
+     //rtc.adjust(DateTime(F(__DATE__), F(__TIME__)));
+     rtc.adjust(dateNow);
+   }
+}
+
+void loop()
+{
+    DateTime now = rtc.now();
+
+    int year = now.year();
+    int month = now.month();
+    int day = now.day();
+    int dayOfTheWeek = now.dayOfTheWeek();
+
+    int seconds = now.second(); 
+    int minutes = now.minute();
+    int hours = now.hour();
+
+    String LCD_firstRow = "";
+    switch(dayOfTheWeek){
+      case Sunday: LCD_firstRow =  LCD_firstRow + "Dom" + " "; break;
+      case Monday: LCD_firstRow =  LCD_firstRow + "Lun" + " "; break;
+      case Tuesday: LCD_firstRow =  LCD_firstRow + "Mar" + " "; break;
+      case Wednesay: LCD_firstRow =  LCD_firstRow + "Mer" + " "; break;
+      case Thursday: LCD_firstRow =  LCD_firstRow + "Gio" + " "; break;
+      case Friday: LCD_firstRow =  LCD_firstRow + "Ven" + " "; break;
+      case Saturday: LCD_firstRow =  LCD_firstRow + "Sab" + " "; break;
+      break;
+      default:;
+    }
+    LCD_firstRow = LCD_firstRow + String(day) + " ";
+    switch(month){
+      case Jan: LCD_firstRow =  LCD_firstRow + "gen" + " "; break;
+      case Feb: LCD_firstRow =  LCD_firstRow + "gen" + " "; break;
+      case Mar: LCD_firstRow =  LCD_firstRow + "mar" + " "; break;
+      case Apr: LCD_firstRow =  LCD_firstRow + "apr" + " "; break;
+      case May: LCD_firstRow =  LCD_firstRow + "mag" + " "; break;
+      case Jun: LCD_firstRow =  LCD_firstRow + "giu" + " "; break;
+      case Jul: LCD_firstRow =  LCD_firstRow + "lug" + " "; break;
+      case Aug: LCD_firstRow =  LCD_firstRow + "ago" + " "; break;
+      case Sept: LCD_firstRow =  LCD_firstRow + "set" + " "; break;
+      case Oct: LCD_firstRow =  LCD_firstRow + "ott" + " "; break;
+      case Nov: LCD_firstRow =  LCD_firstRow + "nov" + " "; break;
+      case Dec: LCD_firstRow =  LCD_firstRow + "dic" + " "; break;
+      break;
+      default:;
+    }
+    LCD_firstRow = LCD_firstRow + String(year);
+    
+    lcd.setCursor(0,0);
+    lcd.print(LCD_firstRow);
+    lcd.setCursor(0,1);
+    lcd.print(standardTime(hours, minutes, seconds));
+
+    delay(1000);
+}
+```
+
+Versione con sleep mode
+
+```c++
+#include <Wire.h> 
+#include <avr/sleep.h>
+#include <LiquidCrystal_I2C.h>
+#include "RTClib.h"
+
+#define WAKEUP_PIN 2 
+#define RTC_LDC_PIN_POWER_SUPPLY 7
+#define RTC_PIN_POWER_SUPPLY 8
+#define LCD_PIN_POWER_SUPPLY 9
+#define timeBeforeWakeUp 10000
+#define refreshTime 1000
+
+#define ON true
+#define OFF false
+
+enum Mesi {Jan = 1, Feb, Mar, Apr, May, Jun, Jul, Aug, Sept, Oct, Nov, Dec};
+enum Giorni {Sunday = 0, Monday, Tuesday, Wednesay, Thursday, Friday, Saturday};
+
+//You shall flash the sketch two time.
+//The first for adjust the time 
+//The second for run arduino stand alone
+#define ADJUST_HOUR false
+DateTime dateNow = DateTime(2021, May, 19, 19, 9, 10);
+
+LiquidCrystal_I2C lcd(0x27,20,2);  // set the LCD address to 0x27 for a 16 chars and 2 line display
+RTC_DS1307 rtc;
+
+//add 0 if number is  < 9 and return a string
+String fillZeros(int n) {return (n < 10 ? String('0' + String(n)) : String(n)); }
+
+//receive h, m, s and return hh:mm:ss
+String standardTime(int h, int m, int s){ return (String(fillZeros(h) + ':' + fillZeros(m) + ':' + fillZeros(s))); } 
+
+void setup()
+{
+  pinMode(RTC_LDC_PIN_POWER_SUPPLY, OUTPUT);
+  pinMode(RTC_PIN_POWER_SUPPLY, OUTPUT);
+  pinMode(LCD_PIN_POWER_SUPPLY, OUTPUT);
+  pinMode(WAKEUP_PIN,INPUT);
+
+  attachInterrupt(digitalPinToInterrupt(WAKEUP_PIN), mcuWakeUp, RISING); //attaching a interrupt to pin
+
+  lcdPowSupply(ON);
+  rtcPowSupply(ON);
+  
+  if(ADJUST_HOUR){
+     //to set time at the compilation time
+     //rtc.adjust(DateTime(F(__DATE__), F(__TIME__)));
+     rtc.adjust(dateNow);
+   }
+}
+
+void loop()
+{
+    DateTime now = rtc.now();
+
+    int year = now.year();
+    int month = now.month();
+    int day = now.day();
+    int dayOfTheWeek = now.dayOfTheWeek();
+
+    int seconds = now.second(); 
+    int minutes = now.minute();
+    int hours = now.hour();
+
+    String LCD_firstRow = "";
+    switch(dayOfTheWeek){
+      case Sunday: LCD_firstRow =  LCD_firstRow + "Dom" + " "; break;
+      case Monday: LCD_firstRow =  LCD_firstRow + "Lun" + " "; break;
+      case Tuesday: LCD_firstRow =  LCD_firstRow + "Mar" + " "; break;
+      case Wednesay: LCD_firstRow =  LCD_firstRow + "Mer" + " "; break;
+      case Thursday: LCD_firstRow =  LCD_firstRow + "Gio" + " "; break;
+      case Friday: LCD_firstRow =  LCD_firstRow + "Ven" + " "; break;
+      case Saturday: LCD_firstRow =  LCD_firstRow + "Sab" + " "; break;
+      break;
+      default:;
+    }
+    LCD_firstRow = LCD_firstRow + String(day) + " ";
+    switch(month){
+      case Jan: LCD_firstRow =  LCD_firstRow + "gen" + " "; break;
+      case Feb: LCD_firstRow =  LCD_firstRow + "gen" + " "; break;
+      case Mar: LCD_firstRow =  LCD_firstRow + "mar" + " "; break;
+      case Apr: LCD_firstRow =  LCD_firstRow + "apr" + " "; break;
+      case May: LCD_firstRow =  LCD_firstRow + "mag" + " "; break;
+      case Jun: LCD_firstRow =  LCD_firstRow + "giu" + " "; break;
+      case Jul: LCD_firstRow =  LCD_firstRow + "lug" + " "; break;
+      case Aug: LCD_firstRow =  LCD_firstRow + "ago" + " "; break;
+      case Sept: LCD_firstRow =  LCD_firstRow + "set" + " "; break;
+      case Oct: LCD_firstRow =  LCD_firstRow + "ott" + " "; break;
+      case Nov: LCD_firstRow =  LCD_firstRow + "nov" + " "; break;
+      case Dec: LCD_firstRow =  LCD_firstRow + "dic" + " "; break;
+      break;
+      default:;
+    }
+    LCD_firstRow = LCD_firstRow + String(year);
+    
+    lcd.setCursor(0,0);
+    lcd.print(LCD_firstRow);
+    lcd.setCursor(0,1);
+    lcd.print(standardTime(hours, minutes, seconds));
+ 
+
+    delay(refreshTime);
+    static int counter = 0; 
+    if(counter < timeBeforeWakeUp){
+      counter +=  refreshTime; 
+    } 
+    //go to sleep
+    else {
+       counter = 0;
+       lcdPowSupply(OFF);
+       rtcPowSupply(OFF);
+       mcuGoToSleep();
+       //after wake up
+       lcdPowSupply(ON);
+       rtcPowSupply(ON);
+    }
+}
+
+void lcdPowSupply(bool isOn){
+  if(isOn){
+    digitalWrite(LCD_PIN_POWER_SUPPLY, HIGH);
+    lcd.init();  
+    lcd.backlight();                   
+    lcd.setCursor(0,0);
+  }
+  else{
+    digitalWrite(LCD_PIN_POWER_SUPPLY, LOW);
+  }
+
+}
+
+void rtcPowSupply(bool isOn){
+  if(isOn){
+    digitalWrite(RTC_PIN_POWER_SUPPLY, HIGH);
+    rtc.begin();
+  }
+  else{
+    digitalWrite(RTC_PIN_POWER_SUPPLY, LOW);
+  }
+  return;
+}
+
+void mcuGoToSleep(){
+  sleep_enable();
+  set_sleep_mode(SLEEP_MODE_PWR_DOWN);
+  sleep_cpu();
+}
+
+void mcuWakeUp(){
+  sleep_disable();//Disable sleep mode
+}
+```
+
+## EEPROM
+
+```c++
+#include <EEPROM.h>
+
+int nByte = 0;
+int value = 50;
+void setup()
+{
+  Serial.begin(9600);
+  if(EEPROM.read(nByte) == 255){
+    Serial.println(String(String(nByte) + "vuoto"));
+    EEPROM.write(nByte, value);
+  }
+  else{
+    int tempvalue = EEPROM.read(nByte);
+    String toprint = String(String(nByte) + ":" + String(tempvalue));
+    Serial.println(toprint);
+  }
+  
+}
+void loop()
+{
+
+}
+```
+
+## SLEEP MODE
+
+```c++
+/**
+ * Author:Ab Kurk
+ * version: 1.0
+ * date: 24/01/2018
+ * Description: 
+ * This sketch is part of the beginners guide to putting your Arduino to sleep
+ * tutorial. It is to demonstrate how to put your arduino into deep sleep and
+ * how to wake it up.
+ * Link To Tutorial http://www.thearduinomakerman.info/blog/2018/1/24/guide-to-arduino-sleep-mode
+ */
+
+#include <avr/sleep.h>//this AVR library contains the methods that controls the sleep modes
+#define interruptPin 2 //Pin we are going to use to wake up the Arduino
+
+
+void setup() {
+  Serial.begin(9600);//Start Serial Comunication
+  pinMode(LED_BUILTIN,OUTPUT);//We use the led on pin 13 to indecate when Arduino is A sleep
+  pinMode(interruptPin,INPUT);//Set pin d2 to input using the buildin pullup resistor
+  attachInterrupt(digitalPinToInterrupt(interruptPin), wakeUp, RISING);//attaching a interrupt to pin d2
+  digitalWrite(LED_BUILTIN,HIGH);//turning LED on
+}
+
+void loop() {
+ delay(5000);//wait 5 seconds before going to sleep
+ digitalWrite(LED_BUILTIN,LOW);//turning LED off
+ Going_To_Sleep();
+}
+
+void Going_To_Sleep(){
+    sleep_enable();//Enabling sleep mode
+    set_sleep_mode(SLEEP_MODE_PWR_DOWN);//Setting the sleep mode, in our case full sleep
+    sleep_cpu();//activating sleep mode
+  }
+
+void wakeUp(){
+  Serial.println("Interrrupt Fired");//Print message to serial monitor
+  sleep_disable();//Disable sleep mode
+  Serial.println("just woke up!");//next line of code executed after the interrupt 
+  digitalWrite(LED_BUILTIN,HIGH);//turning LED on
 }
 ```
