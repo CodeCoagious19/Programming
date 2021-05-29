@@ -16,10 +16,11 @@
   - [Binary Clock](#binary-clock)
     - [Collegamenti Hardware](#collegamenti-hardware)
     - [Il codice](#il-codice)
-  - [7 segment](#7-segment)
-  - [Display I2C](#display-i2c)
+  - [RTC e display 7 segmenti](#rtc-e-display-7-segmenti)
   - [EEPROM](#eeprom)
   - [SLEEP MODE](#sleep-mode)
+  - [Contatto magnetico](#contatto-magnetico)
+  - [RTC e Display I2C](#rtc-e-display-i2c)
 
 # Lezione 01
 
@@ -569,7 +570,7 @@ void loop(){
 }
 ```
 
-## 7 segment
+## RTC e display 7 segmenti
 
 |7 SEG Pins|	Arduino Pins|
 |---|---|
@@ -644,272 +645,6 @@ void loop() {
 }
 ```
 
-## Display I2C
-
-|RTC |	Arduino Pins|
-|---|---|
-|VCC|	VCC (+5V)|
-|GND|	GND|
-|SDA|	A4 (SDA) |
-|SCL|	A5 (SCL)|
-
-|LCD |	Arduino Pins|
-|---|---|
-|VCC|	VCC (+5V)|
-|GND|	GND|
-|SDA|	A4 (SDA) |
-|SCL|	A5 (SCL)|
-
-```c++
-#include <Wire.h> 
-#include <LiquidCrystal_I2C.h>
-#include "RTClib.h"
-
-LiquidCrystal_I2C lcd(0x27,20,2);  // set the LCD address to 0x27 for a 16 chars and 2 line display
-RTC_DS1307 rtc;
-
-enum Mesi {Jan = 1, Feb, Mar, Apr, May, Jun, Jul, Aug, Sept, Oct, Nov, Dec};
-enum Giorni {Sunday = 0, Monday, Tuesday, Wednesay, Thursday, Friday, Saturday};
-
-//You shall flash the sketch two time.
-//The first for adjust the time 
-//The second for run arduino stand alone
-#define ADJUST_HOUR false
-DateTime dateNow = DateTime(2021, May, 18, 11, 44, 30);
-
-//add 0 if number is  < 9 and return a string
-String fillZeros(int n) {return (n < 10 ? String('0' + String(n)) : String(n)); }
-
-//receive h, m, s and return hh:mm:ss
-String standardTime(int h, int m, int s){ return (String(fillZeros(h) + ':' + fillZeros(m) + ':' + fillZeros(s))); } 
-
-void setup()
-{
-  Serial.begin(9600);
-  lcd.init();                      // initialize the lcd 
-  // Print a message to the LCD.
-  lcd.backlight();
-  lcd.setCursor(0,0);
-  lcd.print("Time:");
-  
-  rtc.begin();
-
-  if(ADJUST_HOUR){
-     //to set time at the compilation time
-     //rtc.adjust(DateTime(F(__DATE__), F(__TIME__)));
-     rtc.adjust(dateNow);
-   }
-}
-
-void loop()
-{
-    DateTime now = rtc.now();
-
-    int year = now.year();
-    int month = now.month();
-    int day = now.day();
-    int dayOfTheWeek = now.dayOfTheWeek();
-
-    int seconds = now.second(); 
-    int minutes = now.minute();
-    int hours = now.hour();
-
-    String LCD_firstRow = "";
-    switch(dayOfTheWeek){
-      case Sunday: LCD_firstRow =  LCD_firstRow + "Dom" + " "; break;
-      case Monday: LCD_firstRow =  LCD_firstRow + "Lun" + " "; break;
-      case Tuesday: LCD_firstRow =  LCD_firstRow + "Mar" + " "; break;
-      case Wednesay: LCD_firstRow =  LCD_firstRow + "Mer" + " "; break;
-      case Thursday: LCD_firstRow =  LCD_firstRow + "Gio" + " "; break;
-      case Friday: LCD_firstRow =  LCD_firstRow + "Ven" + " "; break;
-      case Saturday: LCD_firstRow =  LCD_firstRow + "Sab" + " "; break;
-      break;
-      default:;
-    }
-    LCD_firstRow = LCD_firstRow + String(day) + " ";
-    switch(month){
-      case Jan: LCD_firstRow =  LCD_firstRow + "gen" + " "; break;
-      case Feb: LCD_firstRow =  LCD_firstRow + "gen" + " "; break;
-      case Mar: LCD_firstRow =  LCD_firstRow + "mar" + " "; break;
-      case Apr: LCD_firstRow =  LCD_firstRow + "apr" + " "; break;
-      case May: LCD_firstRow =  LCD_firstRow + "mag" + " "; break;
-      case Jun: LCD_firstRow =  LCD_firstRow + "giu" + " "; break;
-      case Jul: LCD_firstRow =  LCD_firstRow + "lug" + " "; break;
-      case Aug: LCD_firstRow =  LCD_firstRow + "ago" + " "; break;
-      case Sept: LCD_firstRow =  LCD_firstRow + "set" + " "; break;
-      case Oct: LCD_firstRow =  LCD_firstRow + "ott" + " "; break;
-      case Nov: LCD_firstRow =  LCD_firstRow + "nov" + " "; break;
-      case Dec: LCD_firstRow =  LCD_firstRow + "dic" + " "; break;
-      break;
-      default:;
-    }
-    LCD_firstRow = LCD_firstRow + String(year);
-    
-    lcd.setCursor(0,0);
-    lcd.print(LCD_firstRow);
-    lcd.setCursor(0,1);
-    lcd.print(standardTime(hours, minutes, seconds));
-
-    delay(1000);
-}
-```
-
-Versione con sleep mode
-
-```c++
-#include <Wire.h> 
-#include <avr/sleep.h>
-#include <LiquidCrystal_I2C.h>
-#include "RTClib.h"
-
-#define WAKEUP_PIN 2 
-#define RTC_LDC_PIN_POWER_SUPPLY 7
-#define RTC_PIN_POWER_SUPPLY 8
-#define LCD_PIN_POWER_SUPPLY 9
-#define timeBeforeWakeUp 10000
-#define refreshTime 1000
-
-#define ON true
-#define OFF false
-
-enum Mesi {Jan = 1, Feb, Mar, Apr, May, Jun, Jul, Aug, Sept, Oct, Nov, Dec};
-enum Giorni {Sunday = 0, Monday, Tuesday, Wednesay, Thursday, Friday, Saturday};
-
-//You shall flash the sketch two time.
-//The first for adjust the time 
-//The second for run arduino stand alone
-#define ADJUST_HOUR false
-DateTime dateNow = DateTime(2021, May, 19, 19, 9, 10);
-
-LiquidCrystal_I2C lcd(0x27,20,2);  // set the LCD address to 0x27 for a 16 chars and 2 line display
-RTC_DS1307 rtc;
-
-//add 0 if number is  < 9 and return a string
-String fillZeros(int n) {return (n < 10 ? String('0' + String(n)) : String(n)); }
-
-//receive h, m, s and return hh:mm:ss
-String standardTime(int h, int m, int s){ return (String(fillZeros(h) + ':' + fillZeros(m) + ':' + fillZeros(s))); } 
-
-void setup()
-{
-  pinMode(RTC_LDC_PIN_POWER_SUPPLY, OUTPUT);
-  pinMode(RTC_PIN_POWER_SUPPLY, OUTPUT);
-  pinMode(LCD_PIN_POWER_SUPPLY, OUTPUT);
-  pinMode(WAKEUP_PIN,INPUT);
-
-  attachInterrupt(digitalPinToInterrupt(WAKEUP_PIN), mcuWakeUp, RISING); //attaching a interrupt to pin
-
-  lcdPowSupply(ON);
-  rtcPowSupply(ON);
-  
-  if(ADJUST_HOUR){
-     //to set time at the compilation time
-     //rtc.adjust(DateTime(F(__DATE__), F(__TIME__)));
-     rtc.adjust(dateNow);
-   }
-}
-
-void loop()
-{
-    DateTime now = rtc.now();
-
-    int year = now.year();
-    int month = now.month();
-    int day = now.day();
-    int dayOfTheWeek = now.dayOfTheWeek();
-
-    int seconds = now.second(); 
-    int minutes = now.minute();
-    int hours = now.hour();
-
-    String LCD_firstRow = "";
-    switch(dayOfTheWeek){
-      case Sunday: LCD_firstRow =  LCD_firstRow + "Dom" + " "; break;
-      case Monday: LCD_firstRow =  LCD_firstRow + "Lun" + " "; break;
-      case Tuesday: LCD_firstRow =  LCD_firstRow + "Mar" + " "; break;
-      case Wednesay: LCD_firstRow =  LCD_firstRow + "Mer" + " "; break;
-      case Thursday: LCD_firstRow =  LCD_firstRow + "Gio" + " "; break;
-      case Friday: LCD_firstRow =  LCD_firstRow + "Ven" + " "; break;
-      case Saturday: LCD_firstRow =  LCD_firstRow + "Sab" + " "; break;
-      break;
-      default:;
-    }
-    LCD_firstRow = LCD_firstRow + String(day) + " ";
-    switch(month){
-      case Jan: LCD_firstRow =  LCD_firstRow + "gen" + " "; break;
-      case Feb: LCD_firstRow =  LCD_firstRow + "gen" + " "; break;
-      case Mar: LCD_firstRow =  LCD_firstRow + "mar" + " "; break;
-      case Apr: LCD_firstRow =  LCD_firstRow + "apr" + " "; break;
-      case May: LCD_firstRow =  LCD_firstRow + "mag" + " "; break;
-      case Jun: LCD_firstRow =  LCD_firstRow + "giu" + " "; break;
-      case Jul: LCD_firstRow =  LCD_firstRow + "lug" + " "; break;
-      case Aug: LCD_firstRow =  LCD_firstRow + "ago" + " "; break;
-      case Sept: LCD_firstRow =  LCD_firstRow + "set" + " "; break;
-      case Oct: LCD_firstRow =  LCD_firstRow + "ott" + " "; break;
-      case Nov: LCD_firstRow =  LCD_firstRow + "nov" + " "; break;
-      case Dec: LCD_firstRow =  LCD_firstRow + "dic" + " "; break;
-      break;
-      default:;
-    }
-    LCD_firstRow = LCD_firstRow + String(year);
-    
-    lcd.setCursor(0,0);
-    lcd.print(LCD_firstRow);
-    lcd.setCursor(0,1);
-    lcd.print(standardTime(hours, minutes, seconds));
- 
-
-    delay(refreshTime);
-    static int counter = 0; 
-    if(counter < timeBeforeWakeUp){
-      counter +=  refreshTime; 
-    } 
-    //go to sleep
-    else {
-       counter = 0;
-       lcdPowSupply(OFF);
-       rtcPowSupply(OFF);
-       mcuGoToSleep();
-       //after wake up
-       lcdPowSupply(ON);
-       rtcPowSupply(ON);
-    }
-}
-
-void lcdPowSupply(bool isOn){
-  if(isOn){
-    digitalWrite(LCD_PIN_POWER_SUPPLY, HIGH);
-    lcd.init();  
-    lcd.backlight();                   
-    lcd.setCursor(0,0);
-  }
-  else{
-    digitalWrite(LCD_PIN_POWER_SUPPLY, LOW);
-  }
-
-}
-
-void rtcPowSupply(bool isOn){
-  if(isOn){
-    digitalWrite(RTC_PIN_POWER_SUPPLY, HIGH);
-    rtc.begin();
-  }
-  else{
-    digitalWrite(RTC_PIN_POWER_SUPPLY, LOW);
-  }
-  return;
-}
-
-void mcuGoToSleep(){
-  sleep_enable();
-  set_sleep_mode(SLEEP_MODE_PWR_DOWN);
-  sleep_cpu();
-}
-
-void mcuWakeUp(){
-  sleep_disable();//Disable sleep mode
-}
-```
 
 ## EEPROM
 
@@ -981,5 +716,180 @@ void wakeUp(){
   sleep_disable();//Disable sleep mode
   Serial.println("just woke up!");//next line of code executed after the interrupt 
   digitalWrite(LED_BUILTIN,HIGH);//turning LED on
+}
+```
+
+## Contatto magnetico
+
+![language](./images/contatto_magnetico.jpg)
+
+```c++
+void setup() {
+  pinMode(2, INPUT_PULLUP);
+  pinMode(LED_BUILTIN, OUTPUT);
+  Serial.begin(9600);
+}
+
+void loop() {
+  bool v = digitalRead(2);
+  digitalWrite(LED_BUILTIN, !v);
+  delay(100);
+}
+```
+
+## RTC e Display I2C
+
+In questo esempio vedremo come realizzare un orologio utilizzando il modulo **RTC**, un display **LCD** con interfaccia **I2C** e un **tasto touch**. L'orologio sarà alimentato da una **pila a 9V** quindi, per evitare che si scarichi nel giro di poche ore, faremo in modo che arduino vada in **sleep mode** disabilitando tutte le periferiche ad esso connesso. Il tasto touch servià a risvegliare la arduino, il display e il modulo RTC per 10 secondi.
+
+|RTC |	Arduino Pins|
+|---|---|
+|VCC|	VCC (+5V)|
+|GND|	GND|
+|SDA|	A4 (SDA) |
+|SCL|	A5 (SCL)|
+
+|LCD |	Arduino Pins|
+|---|---|
+|VCC|	VCC (+5V)|
+|GND|	GND|
+|SDA|	A4 (SDA) |
+|SCL|	A5 (SCL)|
+
+
+```c++
+#include <Wire.h> 
+#include <avr/sleep.h>
+#include <LiquidCrystal_I2C.h>
+#include "RTClib.h"
+
+#define WAKEUP_PIN 2 
+#define RTC_LDC_PIN_POWER_SUPPLY 7
+#define timeBeforeWakeUp 10000
+#define refreshTime 1000
+
+#define ON true
+#define OFF false
+
+enum Mesi {Jan = 1, Feb, Mar, Apr, May, Jun, Jul, Aug, Sept, Oct, Nov, Dec};
+enum Giorni {Sunday = 0, Monday, Tuesday, Wednesay, Thursday, Friday, Saturday};
+
+//You shall flash the sketch two time.
+//The first for adjust the time 
+//The second for run arduino stand alone
+#define ADJUST_HOUR false
+DateTime dateNow = DateTime(2021, May, 19, 19, 9, 10);
+
+LiquidCrystal_I2C lcd(0x27,20,2);  // set the LCD address to 0x27 for a 16 chars and 2 line display
+RTC_DS1307 rtc;
+
+//add 0 if number is  < 9 and return a string
+String fillZeros(int n) {return (n < 10 ? String('0' + String(n)) : String(n)); }
+
+//receive h, m, s and return hh:mm:ss
+String standardTime(int h, int m, int s){ return (String(fillZeros(h) + ':' + fillZeros(m) + ':' + fillZeros(s))); } 
+
+void setup()
+{
+  pinMode(RTC_LDC_PIN_POWER_SUPPLY, OUTPUT);
+  pinMode(WAKEUP_PIN,INPUT);
+
+  attachInterrupt(digitalPinToInterrupt(WAKEUP_PIN), mcuWakeUp, RISING); //attaching a interrupt to pin
+
+  rtc_lcd_PowSupply(ON);
+  
+  if(ADJUST_HOUR){
+     //to set time at the compilation time
+     //rtc.adjust(DateTime(F(__DATE__), F(__TIME__)));
+     rtc.adjust(dateNow);
+   }
+}
+
+void loop()
+{
+    DateTime now = rtc.now();
+
+    int year = now.year();
+    int month = now.month();
+    int day = now.day();
+    int dayOfTheWeek = now.dayOfTheWeek();
+
+    int seconds = now.second(); 
+    int minutes = now.minute();
+    int hours = now.hour();
+
+    String LCD_firstRow = "";
+    switch(dayOfTheWeek){
+      case Sunday: LCD_firstRow =  LCD_firstRow + "Dom" + " "; break;
+      case Monday: LCD_firstRow =  LCD_firstRow + "Lun" + " "; break;
+      case Tuesday: LCD_firstRow =  LCD_firstRow + "Mar" + " "; break;
+      case Wednesay: LCD_firstRow =  LCD_firstRow + "Mer" + " "; break;
+      case Thursday: LCD_firstRow =  LCD_firstRow + "Gio" + " "; break;
+      case Friday: LCD_firstRow =  LCD_firstRow + "Ven" + " "; break;
+      case Saturday: LCD_firstRow =  LCD_firstRow + "Sab" + " "; break;
+      break;
+      default:;
+    }
+    LCD_firstRow = LCD_firstRow + String(day) + " ";
+    switch(month){
+      case Jan: LCD_firstRow =  LCD_firstRow + "gen" + " "; break;
+      case Feb: LCD_firstRow =  LCD_firstRow + "gen" + " "; break;
+      case Mar: LCD_firstRow =  LCD_firstRow + "mar" + " "; break;
+      case Apr: LCD_firstRow =  LCD_firstRow + "apr" + " "; break;
+      case May: LCD_firstRow =  LCD_firstRow + "mag" + " "; break;
+      case Jun: LCD_firstRow =  LCD_firstRow + "giu" + " "; break;
+      case Jul: LCD_firstRow =  LCD_firstRow + "lug" + " "; break;
+      case Aug: LCD_firstRow =  LCD_firstRow + "ago" + " "; break;
+      case Sept: LCD_firstRow =  LCD_firstRow + "set" + " "; break;
+      case Oct: LCD_firstRow =  LCD_firstRow + "ott" + " "; break;
+      case Nov: LCD_firstRow =  LCD_firstRow + "nov" + " "; break;
+      case Dec: LCD_firstRow =  LCD_firstRow + "dic" + " "; break;
+      break;
+      default:;
+    }
+    LCD_firstRow = LCD_firstRow + String(year);
+    
+    lcd.setCursor(0,0);
+    lcd.print(LCD_firstRow);
+    lcd.setCursor(0,1);
+    lcd.print(standardTime(hours, minutes, seconds));
+ 
+
+    delay(refreshTime);
+    static int counter = 0; 
+    if(counter < timeBeforeWakeUp){
+      counter +=  refreshTime; 
+    } 
+    //go to sleep
+    else {
+      counter = 0;
+      rtc_lcd_PowSupply(OFF);
+      mcuGoToSleep();
+      //after wake up
+      rtc_lcd_PowSupply(ON);
+    }
+}
+
+void rtc_lcd_PowSupply(bool isOn){
+  if(isOn){
+    digitalWrite(RTC_LDC_PIN_POWER_SUPPLY, HIGH);
+    lcd.init();  
+    lcd.backlight();                   
+    lcd.setCursor(0,0);
+    delay(100);
+    rtc.begin();
+  }
+  else{
+    digitalWrite(RTC_LDC_PIN_POWER_SUPPLY, LOW);
+  }
+}
+
+void mcuGoToSleep(){
+  sleep_enable();
+  set_sleep_mode(SLEEP_MODE_PWR_DOWN);
+  sleep_cpu();
+}
+
+void mcuWakeUp(){
+  sleep_disable();//Disable sleep mode
 }
 ```
