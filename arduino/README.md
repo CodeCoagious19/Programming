@@ -791,9 +791,9 @@ String standardTime(int h, int m, int s){ return (String(fillZeros(h) + ':' + fi
 void setup()
 {
   pinMode(RTC_LDC_PIN_POWER_SUPPLY, OUTPUT);
-  pinMode(WAKEUP_PIN,INPUT);
+  pinMode(WAKEUP_PIN,INPUT_PULLUP);
 
-  attachInterrupt(digitalPinToInterrupt(WAKEUP_PIN), mcuWakeUp, RISING); //attaching a interrupt to pin
+  attachInterrupt(digitalPinToInterrupt(WAKEUP_PIN), mcuWakeUp, FALLING); //attaching a interrupt to pin
 
   rtc_lcd_PowSupply(ON);
   
