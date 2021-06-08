@@ -741,6 +741,8 @@ void loop() {
 
 In questo esempio vedremo come realizzare un orologio utilizzando il modulo **RTC**, un display **LCD** con interfaccia **I2C** e un **tasto touch**. L'orologio sarà alimentato da una **pila a 9V** quindi, per evitare che si scarichi nel giro di poche ore, faremo in modo che arduino vada in **sleep mode** disabilitando tutte le periferiche ad esso connesso. Il tasto touch servià a risvegliare la arduino, il display e il modulo RTC per 10 secondi.
 
+![](./images/rtc_lcd_bb.svg)
+
 |RTC |	Arduino Pins|
 |---|---|
 |VCC|	VCC (+5V)|
