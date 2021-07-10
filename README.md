@@ -50,7 +50,9 @@ In questa repository puoi trovare appunti di informatica ed elettronica. In part
 
 ## Altro
 
-- **[Soft mod ps2]**
+- **[freenas]**
+
+- **[Soft mod ps2]** 
 
 
 
