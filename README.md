@@ -50,9 +50,9 @@ In questa repository puoi trovare appunti di informatica ed elettronica. In part
 
 ## Altro
 
-- **[freenas]**
+- **[freenas](./nas/readme.md)**: TrueNAS è un sistema operativo open source basato su FreeBSD che permette di costruire un dispositivo collegato ad una rete di computer la cui funzione principale è quella di condividere tra gli utenti della rete una Area di storage, cioè un NAS
 
-- **[Soft mod ps2]** 
+- **[Soft mod ps2]**: Tramite questa modifica sarà possibile caricare i giochi tramite hard disk
 
 
 
