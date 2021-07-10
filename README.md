@@ -48,7 +48,9 @@ In questa repository puoi trovare appunti di informatica ed elettronica. In part
 
 - **[Android](./android/README.md)** : Android è un sistema operativo per dispositivi mobili sviluppato da Google, progettato principalmente per sistemi embedded quali smartphone e tablet, con interfacce utente specializzate per televisori, automobili, orologi da polso, occhiali ..
 
-## Metodologie di sviluppo software
+## Altro
+
+- **[Soft mod ps2]**
 
 
 
