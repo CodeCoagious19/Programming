@@ -87,6 +87,10 @@ In linea generale possiamo affermare che:
 - **setup:** i comandi scritti all'interno di questo blocco vengono eseguiti una sola volta all'avvio di Arduino.
 - **loop** i comandi scritti all'interno di questo blocco vengono eseguiti ciclicamente dopo l'avvio di Arduino fino al riavvio o spegnimento della board.
 
+## Driver necessari
+
+Normalmente, installando l'IDE Arduino ti troverai installati anche tutti i driver necessari per comunicare con la scheda. Se acquisti un Arduino clone tuttavia potresti aver bisogno dei driver (per Windows) poichè spesso i componenti hardware non sono proprio gli stessi. Da [questa pagina](http://www.wch-ic.com/downloads/CH341SER_EXE.html) è possibile scaricare i driver necessari. Trovi un file eseguibile anche all'interno di questa repository al percorso `files/CH341SER.EXE`
+
 ## Primo sketch - LED Blink
 
 Come primo Sketch vedremo come far lampeggiare un LED. Useremo il LED connesso direttamente ad arduino al `pin 13`. Per far ciò dovremo:
